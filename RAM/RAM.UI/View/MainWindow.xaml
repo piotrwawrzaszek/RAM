@@ -4,11 +4,13 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RAM.UI"
-		DataContext="{Binding MainWindowViewModel, Source={StaticResource ModelViewLocator}}"
+        xmlns:view="clr-namespace:RAM.UI.View"
+        DataContext="{Binding MainWindowViewModel, Source={StaticResource ModelViewLocator}}"
         mc:Ignorable="d"
         Title="{Binding Header}" Height="350" Width="525">
-	
-    <Grid>
-        
-    </Grid>
+
+	<DockPanel>
+		<view:MenuBarView DockPanel.Dock="Top" />
+	</DockPanel>
+
 </Window>

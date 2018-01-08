@@ -2,6 +2,11 @@
 
 namespace RAM.Infrastructure.ViewModel
 {
+	public interface IMainWindowViewModel : IViewModel
+	{
+		string Header { get; set; }
+	}
+
 	public class MainWindowViewModel : BaseViewModel, IMainWindowViewModel
 	{
 		private string _header;
