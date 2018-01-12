@@ -18,7 +18,7 @@ namespace RAM.Infrastructure.ViewModel
 
 		public string Header
 		{
-			get => _header; 
+			get => _header;
 			set => SetProperty(ref _header, value);
 		}
 	}

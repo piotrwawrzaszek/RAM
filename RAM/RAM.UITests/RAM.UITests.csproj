@@ -74,7 +74,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Extensions\NotifyOnPropertyChangedExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\MainWindowViewModelTests.cs" />
     <Compile Include="ViewModel\MenuBarViewModeltests.cs" />
@@ -86,6 +85,10 @@
     <None Include="xunit.runner.json" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\RAM.Domain\RAM.Domain.csproj">
+      <Project>{e0b011f4-c12b-420c-a0fd-0aedc21b9330}</Project>
+      <Name>RAM.Domain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\RAM.Infrastructure\RAM.Infrastructure.csproj">
       <Project>{df8e8356-7e75-4dbd-a244-01517198bdb2}</Project>
       <Name>RAM.Infrastructure</Name>

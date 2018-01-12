@@ -19,11 +19,6 @@ namespace RAM.UITests.ViewModel
 			_mainWindowViewModel.MonitorEvents();
 			_mainWindowViewModel.Header = "Different header";
 			_mainWindowViewModel.ShouldRaisePropertyChangeFor(x => x.Header);
-
-			//var fired = _mainWindowViewModel.IsPropertyChangedFired(
-			//	() => _mainWindowViewModel.Header = "Different header",
-			//	nameof(_mainWindowViewModel.Header));
-			//Assert.True(fired);
 		}
 	}
 }

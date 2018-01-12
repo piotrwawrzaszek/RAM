@@ -1,8 +1,7 @@
 ﻿using System.Collections.ObjectModel;
-using System.Windows.Input;
 using FluentAssertions;
-using Moq;
-using RAM.Infrastructure.Command;
+using RAM.Domain.Model;
+using RAM.Infrastructure.ViewModel;
 using RAM.Infrastructure.ViewModel.Wrapper;
 using Xunit;
 
@@ -12,35 +11,36 @@ namespace RAM.UITests.ViewModel
 	{
 		public MenuItemViewModelTests()
 		{
-			_parentMenuItemMock = new Mock<IMenuItemViewModel>();
-			_menuItemViewModel = new MenuItemViewModel(_parentMenuItemMock.Object);
+			_menuItemViewModel = new MenuItemViewModel
+			{
+				Model = new MenuItemWrapper(new MenuItem("Header"))
+			};
 		}
 
 		private readonly IMenuItemViewModel _menuItemViewModel;
-		private readonly Mock<IMenuItemViewModel> _parentMenuItemMock;
 
 		[Fact]
 		public void Should_raise_property_changed_event_for_child_menu_items()
 		{
 			_menuItemViewModel.MonitorEvents();
-			_menuItemViewModel.ChildMenuItems = new ObservableCollection<MenuItemViewModel>();
-			_menuItemViewModel.ShouldRaisePropertyChangeFor(x => x.ChildMenuItems);
+			_menuItemViewModel.Children = new ObservableCollection<IMenuItemViewModel>();
+			_menuItemViewModel.ShouldRaisePropertyChangeFor(x => x.Children);
 		}
 
 		[Fact]
 		public void Should_raise_property_changed_event_for_header()
 		{
-			_menuItemViewModel.MonitorEvents();
-			_menuItemViewModel.Header = "Different header";
-			_menuItemViewModel.ShouldRaisePropertyChangeFor(x => x.Header);
+			_menuItemViewModel.Model.MonitorEvents();
+			_menuItemViewModel.Model.Header = "Different header";
+			_menuItemViewModel.Model.ShouldRaisePropertyChangeFor(x => x.Model.Header);
 		}
 
 		[Fact]
-		public void Should_raise_property_changed_event_for_parent_menu_item()
+		public void Should_raise_property_changed_event_for_is_checked()
 		{
-			_menuItemViewModel.MonitorEvents();
-			_menuItemViewModel.ParentMenuItem = new MenuItemViewModel();
-			_menuItemViewModel.ShouldRaisePropertyChangeFor(x => x.ParentMenuItem);
+			_menuItemViewModel.Model.MonitorEvents();
+			_menuItemViewModel.Model.IsChecked = true;
+			_menuItemViewModel.Model.ShouldRaisePropertyChangeFor(x => x.Model.IsChecked);
 		}
 	}
 }

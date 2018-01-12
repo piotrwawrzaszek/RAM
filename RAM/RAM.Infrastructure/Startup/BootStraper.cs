@@ -1,6 +1,5 @@
 ﻿using Autofac;
 using RAM.Infrastructure.ViewModel;
-using RAM.Infrastructure.ViewModel.Wrapper;
 
 namespace RAM.Infrastructure.Startup
 {
