@@ -1,0 +1,40 @@
+﻿<UserControl
+	x:Class="RAM.UI.View.StatementGridView"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	d:DesignHeight="200"
+	d:DesignWidth="250"
+	DataContext="{Binding StatementGridViewModel, Source={StaticResource ModelViewLocator}}"
+	mc:Ignorable="d">
+
+	<DataGrid
+		AutoGenerateColumns="False"
+		Background="Transparent"
+		CanUserAddRows="True"
+		CanUserSortColumns="False"
+		IsReadOnly="False"
+		ItemsSource="{Binding Statements}"
+		SelectedItem="{Binding SelectedStatement}"
+		SelectionUnit="Cell">
+		<DataGrid.Columns>
+			<DataGridTextColumn
+				Width="*"
+				Binding="{Binding Model.Label}"
+				Header="Label" />
+			<DataGridTextColumn
+				Width="*"
+				Binding="{Binding Model.Instruction}"
+				Header="Instruction" />
+			<DataGridTextColumn
+				Width="*"
+				Binding="{Binding Model.Argument}"
+				Header="Argument" />
+			<DataGridTextColumn
+				Width="*"
+				Binding="{Binding Model.Comment}"
+				Header="Comment" />
+		</DataGrid.Columns>
+	</DataGrid>
+</UserControl>

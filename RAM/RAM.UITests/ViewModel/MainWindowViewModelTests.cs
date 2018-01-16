@@ -6,7 +6,7 @@ namespace RAM.UITests.ViewModel
 {
 	public class MainWindowViewModelTests
 	{
-		private readonly MainWindowViewModel _mainWindowViewModel;
+		private readonly IMainWindowViewModel _mainWindowViewModel;
 
 		public MainWindowViewModelTests()
 		{

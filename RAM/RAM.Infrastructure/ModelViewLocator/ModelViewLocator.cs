@@ -1,6 +1,5 @@
 ﻿using RAM.Infrastructure.Startup;
 using RAM.Infrastructure.ViewModel;
-using RAM.Infrastructure.ViewModel.Wrapper;
 
 namespace RAM.Infrastructure.ModelViewLocator
 {
@@ -12,7 +11,10 @@ namespace RAM.Infrastructure.ModelViewLocator
 		public IMenuBarViewModel MenuBarViewModel
 			=> Container.Resolve<IMenuBarViewModel>();
 
-		public IMenuItemViewModel MenuItemViewModel 
+		public IMenuItemViewModel MenuItemViewModel
 			=> Container.Resolve<IMenuItemViewModel>();
+
+		public IStatementGridViewModel StatementGridViewModel
+			=> Container.Resolve<IStatementGridViewModel>();
 	}
 }

@@ -1,11 +1,12 @@
-﻿<Application x:Class="RAM.UI.App"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:RAM.UI"
-             StartupUri="View/MainWindow.xaml"
-			 xmlns:modelViewLocator="clr-namespace:RAM.Infrastructure.ModelViewLocator;assembly=RAM.Infrastructure">
-	
-    <Application.Resources>
-		<modelViewLocator:ModelViewLocator x:Key="ModelViewLocator"/>
+﻿<Application
+	x:Class="RAM.UI.App"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:local="clr-namespace:RAM.UI"
+	xmlns:modelViewLocator="clr-namespace:RAM.Infrastructure.ModelViewLocator;assembly=RAM.Infrastructure"
+	StartupUri="View/MainWindow.xaml">
+
+	<Application.Resources>
+		<modelViewLocator:ModelViewLocator x:Key="ModelViewLocator" />
 	</Application.Resources>
 </Application>

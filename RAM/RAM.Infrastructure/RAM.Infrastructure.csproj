@@ -33,6 +33,7 @@
     <Reference Include="Autofac, Version=4.6.2.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
       <HintPath>..\packages\Autofac.4.6.2\lib\net45\Autofac.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -47,10 +48,12 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Command\RelayCommand.cs" />
     <Compile Include="Data\IDataProvider.cs" />
+    <Compile Include="Data\StatementProvider.cs" />
     <Compile Include="ModelViewLocator\ModelViewLocator.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -59,6 +62,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MenuItems.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\StatementGrid.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StatementGrid.resx</DependentUpon>
+    </Compile>
     <Compile Include="Startup\BootStraper.cs" />
     <Compile Include="Startup\Container.cs" />
     <Compile Include="ViewModel\Base\IViewModel.cs" />
@@ -66,7 +74,9 @@
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\MenuBarViewModel.cs" />
     <Compile Include="ViewModel\MenuItemViewModel.cs" />
+    <Compile Include="ViewModel\StatementGridViewModel.cs" />
     <Compile Include="ViewModel\Wrapper\MenuItemWrapper.cs" />
+    <Compile Include="ViewModel\Wrapper\StatementWrapper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -81,6 +91,10 @@
     <EmbeddedResource Include="Resources\MenuItems.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>MenuItems.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\StatementGrid.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>StatementGrid.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -78,6 +78,7 @@
     <Compile Include="ViewModel\MainWindowViewModelTests.cs" />
     <Compile Include="ViewModel\MenuBarViewModeltests.cs" />
     <Compile Include="ViewModel\MenuItemViewModelTests.cs" />
+    <Compile Include="ViewModel\StatementGridViewModelTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="bower.json" />

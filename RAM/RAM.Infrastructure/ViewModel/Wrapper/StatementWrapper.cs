@@ -5,16 +5,16 @@ using RAM.Infrastructure.ViewModel.Base;
 
 namespace RAM.Infrastructure.ViewModel.Wrapper
 {
-	public class MenuItemWrapper : BaseViewModel
+	public class StatementWrapper : BaseViewModel
 	{
 		private bool _isChanged;
 
-		public MenuItemWrapper(MenuItem menuItem)
+		public StatementWrapper(Statement statement)
 		{
-			Model = menuItem;
+			Model = statement;
 		}
 
-		public MenuItem Model { get; }
+		public Statement Model { get; }
 
 		public void AcceptChanges()
 		{
@@ -32,7 +32,7 @@ namespace RAM.Infrastructure.ViewModel.Wrapper
 
 		#endregion
 
-		#region MenuItem properties 
+		#region Statement properties
 
 		public bool IsChanged
 		{
@@ -42,22 +42,42 @@ namespace RAM.Infrastructure.ViewModel.Wrapper
 
 		public Guid Id => Model.Id;
 
-		public string Header
+		public string Label
 		{
-			get => Model.Header;
+			get => Model.Label;
 			set
 			{
-				Model.SetHeader(value);
+				Model.SetLabel(value);
 				OnPropertyChanged();
 			}
 		}
 
-		public bool IsChecked
+		public string Instruction
 		{
-			get => Model.IsChecked;
+			get => Model.Instruction;
 			set
 			{
-				Model.SetIsChecked(value);
+				Model.SetInstruction(value);
+				OnPropertyChanged();
+			}
+		}
+
+		public string Argument
+		{
+			get => Model.Argument;
+			set
+			{
+				Model.SetArgument(value);
+				OnPropertyChanged();
+			}
+		}
+
+		public string Comment
+		{
+			get => Model.Comment;
+			set
+			{
+				Model.SetComment(value);
 				OnPropertyChanged();
 			}
 		}
