@@ -14,6 +14,8 @@ namespace RAM.Infrastructure.Startup
 			builder.RegisterType<MenuBarViewModel>().As<IMenuBarViewModel>();
 			builder.RegisterType<MenuItemViewModel>().As<IMenuItemViewModel>();
 			builder.RegisterType<StatementGridViewModel>().As<IStatementGridViewModel>();
+			builder.RegisterType<InputTapeViewModel>().As<IInputTapeViewModel>();
+			builder.RegisterType<OutputTapeViewModel>().As<IOutputTapeViewModel>();
 
 			builder.RegisterType<StatementProvider>().As<IStatementProvider>();
 

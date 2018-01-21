@@ -71,12 +71,15 @@
     <Compile Include="Startup\Container.cs" />
     <Compile Include="ViewModel\Base\IViewModel.cs" />
     <Compile Include="ViewModel\Base\BaseViewModel.cs" />
+    <Compile Include="ViewModel\InputTapeViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\MenuBarViewModel.cs" />
     <Compile Include="ViewModel\MenuItemViewModel.cs" />
+    <Compile Include="ViewModel\OutputTapeViewModel.cs" />
     <Compile Include="ViewModel\StatementGridViewModel.cs" />
     <Compile Include="ViewModel\Wrapper\MenuItemWrapper.cs" />
     <Compile Include="ViewModel\Wrapper\StatementWrapper.cs" />
+    <Compile Include="ViewModel\Wrapper\TapeMemberWrapper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

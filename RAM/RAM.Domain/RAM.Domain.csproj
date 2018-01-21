@@ -43,6 +43,7 @@
     <Compile Include="Helpers\ExtensionMethods.cs" />
     <Compile Include="Model\MenuItem.cs" />
     <Compile Include="Model\Statement.cs" />
+    <Compile Include="Model\TapeMember.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

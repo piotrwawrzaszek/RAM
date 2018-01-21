@@ -54,12 +54,22 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="View\InputTapeView.xaml.cs">
+      <DependentUpon>InputTapeView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\MenuBarView.xaml.cs">
       <DependentUpon>MenuBarView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\OutputTapewView.xaml.cs">
+      <DependentUpon>OutputTapewView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\StatementGridView.xaml.cs">
       <DependentUpon>StatementGridView.xaml</DependentUpon>
     </Compile>
+    <Page Include="View\InputTapeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -73,6 +83,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="View\MenuBarView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\OutputTapewView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

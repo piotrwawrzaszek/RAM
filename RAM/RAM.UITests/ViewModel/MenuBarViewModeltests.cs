@@ -23,7 +23,7 @@ namespace RAM.UITests.ViewModel
 		private static IMenuItemViewModel CreateMenuItemViewModel()
 		{
 			var menuItemViewModelMock = new Mock<IMenuItemViewModel>();
-			
+
 			menuItemViewModelMock.Setup(vm =>
 					vm.Load(It.IsAny<MenuItemWrapper>(),
 						It.IsAny<ICommand>(),

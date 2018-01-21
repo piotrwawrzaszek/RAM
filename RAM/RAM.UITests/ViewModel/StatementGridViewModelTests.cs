@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 using FluentAssertions;
 using Moq;
 using RAM.Domain.Model;
@@ -16,14 +11,14 @@ namespace RAM.UITests.ViewModel
 {
 	public class StatementGridViewModelTests
 	{
-		private readonly IStatementGridViewModel _statementGridViewModel;
-		private readonly Mock<IStatementProvider> _statementProviderMock;
-
 		public StatementGridViewModelTests()
 		{
 			_statementProviderMock = new Mock<IStatementProvider>();
 			_statementGridViewModel = new StatementGridViewModel(_statementProviderMock.Object);
 		}
+
+		private readonly IStatementGridViewModel _statementGridViewModel;
+		private readonly Mock<IStatementProvider> _statementProviderMock;
 
 		[Fact]
 		public void Should_raise_property_changed_event_for_selected_statement()
@@ -42,4 +37,3 @@ namespace RAM.UITests.ViewModel
 		}
 	}
 }
-

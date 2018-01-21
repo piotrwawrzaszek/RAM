@@ -16,5 +16,11 @@ namespace RAM.Infrastructure.ModelViewLocator
 
 		public IStatementGridViewModel StatementGridViewModel
 			=> Container.Resolve<IStatementGridViewModel>();
+
+		public IInputTapeViewModel InputTapeViewModel
+			=> Container.Resolve<IInputTapeViewModel>();
+
+		public IOutputTapeViewModel OutputTapeViewModel
+			=> Container.Resolve<IOutputTapeViewModel>();
 	}
 }

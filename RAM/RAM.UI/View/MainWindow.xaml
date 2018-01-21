@@ -28,7 +28,9 @@
 				<RowDefinition Height="1*" />
 			</Grid.RowDefinitions>
 
+			<view:InputTapeView Grid.Row="1" Grid.Column="0" />
 			<view:StatementGridView Grid.Row="1" Grid.Column="1" />
+			<view:OutputTapewView Grid.Row="1" Grid.Column="2" />
 		</Grid>
 	</DockPanel>
 
