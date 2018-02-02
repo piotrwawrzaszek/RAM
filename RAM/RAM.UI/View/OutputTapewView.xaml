@@ -17,11 +17,11 @@
 			<DataGrid.Columns>
 				<DataGridTextColumn
 					Width="*"
-					Binding="{Binding Model.Number}"
+					Binding="{Binding Number}"
 					Header="No." />
 				<DataGridTextColumn
 					Width="4*"
-					Binding="{Binding Model.Value}"
+					Binding="{Binding Value}"
 					Header="Value" />
 			</DataGrid.Columns>
 

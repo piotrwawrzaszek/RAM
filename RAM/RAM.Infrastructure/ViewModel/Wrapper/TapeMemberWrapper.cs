@@ -5,6 +5,7 @@ using System;
 
 namespace RAM.Infrastructure.ViewModel.Wrapper
 {
+    [Serializable]
 	public class TapeMemberWrapper : BaseViewModel
 	{
 		private bool _isChanged;
@@ -14,7 +15,10 @@ namespace RAM.Infrastructure.ViewModel.Wrapper
 			Model = tapeMember;
 		}
 
-		public TapeMember Model { get; }
+        public static TapeMemberWrapper GetEmptyInstance()
+            => new TapeMemberWrapper(TapeMember.GetEmptyInstance());
+        
+        public TapeMember Model { get; }
 
 		public void AcceptChanges()
 		{

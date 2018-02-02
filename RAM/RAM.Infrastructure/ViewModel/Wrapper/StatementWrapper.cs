@@ -5,6 +5,7 @@ using RAM.Infrastructure.ViewModel.Base;
 
 namespace RAM.Infrastructure.ViewModel.Wrapper
 {
+   [Serializable]
 	public class StatementWrapper : BaseViewModel
 	{
 		private bool _isChanged;
@@ -14,7 +15,10 @@ namespace RAM.Infrastructure.ViewModel.Wrapper
 			Model = statement;
 		}
 
-		public Statement Model { get; }
+        public static StatementWrapper GetEmptyInstance()
+            => new StatementWrapper(Statement.GetEmptyInstance());
+        
+        public Statement Model { get; }
 
 		public void AcceptChanges()
 		{

@@ -18,6 +18,7 @@ namespace RAM.Infrastructure.Startup
 			builder.RegisterType<OutputTapeViewModel>().As<IOutputTapeViewModel>();
 
 			builder.RegisterType<StatementProvider>().As<IStatementProvider>();
+		    builder.RegisterType<TapeMemberProvider>().As<ITapeMemberProvider>();
 
 			return builder.Build();
 		}

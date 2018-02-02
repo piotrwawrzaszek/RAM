@@ -54,6 +54,7 @@
     <Compile Include="Command\RelayCommand.cs" />
     <Compile Include="Data\IDataProvider.cs" />
     <Compile Include="Data\StatementProvider.cs" />
+    <Compile Include="Data\TapeMemberProvider.cs" />
     <Compile Include="ModelViewLocator\ModelViewLocator.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

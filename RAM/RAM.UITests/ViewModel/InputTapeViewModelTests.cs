@@ -1,6 +1,8 @@
 ﻿using System.Collections.ObjectModel;
 using FluentAssertions;
+using Moq;
 using RAM.Domain.Model;
+using RAM.Infrastructure.Data;
 using RAM.Infrastructure.ViewModel;
 using RAM.Infrastructure.ViewModel.Wrapper;
 using Xunit;
@@ -11,10 +13,12 @@ namespace RAM.UITests.ViewModel
 	{
 		public InputTapeViewModelTests()
 		{
-			_inputTapeViewModel = new InputTapeViewModel();
+            _tapeMemberProviderMock = new Mock<ITapeMemberProvider>();
+			_inputTapeViewModel = new InputTapeViewModel(_tapeMemberProviderMock.Object);
 		}
 
 		private readonly IInputTapeViewModel _inputTapeViewModel;
+	    private readonly Mock<ITapeMemberProvider> _tapeMemberProviderMock;
 
 		[Fact]
 		public void Should_raise_property_changed_event_for_selected_tape_member()

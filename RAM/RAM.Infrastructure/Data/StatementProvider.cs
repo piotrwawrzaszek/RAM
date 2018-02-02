@@ -24,7 +24,7 @@ namespace RAM.Infrastructure.Data
 				new Statement("ADD", "=2"),
 				new Statement("WRITE", "1"),
 				new Statement("HALT"),
-				Statement.GetEmptyStatement()
+				Statement.GetEmptyInstance()
 			};
 		}
 

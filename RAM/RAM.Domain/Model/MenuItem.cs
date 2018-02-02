@@ -3,66 +3,72 @@ using RAM.Domain.Helpers;
 
 namespace RAM.Domain.Model
 {
-	[Serializable]
 	public class MenuItem
 	{
 		public Guid Id { get; protected set; }
 		public string Header { get; protected set; }
 		public bool IsChecked { get; protected set; }
 
-		public void SetHeader(string header)
-		{
-			if (header.IsNullOrWhiteSpace())
-				throw new Exception("Menu item's header cannot be empty.");
-			if (Header == header)
-				throw new Exception("You cannot save menu item's header with the same value.");
-			Header = header;
-		}
+	    public static MenuItem GetEmptyInstance()
+	        => new MenuItem { Id = Guid.NewGuid() };
 
-		public void SetIsChecked(bool isChecked)
-		{
-			if (IsChecked == isChecked)
-				throw new Exception("You cannot save menu item's is checked with the same value.");
-			IsChecked = isChecked;
-		}
+        #region Constructors
 
-		// Working perfectly fine, but in MVVM pattern is causing more troubles than benefits.
-		[Obsolete]
-		public void Check()
-		{
-			if (!IsChecked)
-				throw new Exception("Menu item is already checked.");
-			IsChecked = true;
-		}
+        public MenuItem(Guid id, string header, bool isChecked)
+	    {
+	        Id = id;
+	        SetHeader(header);
+	        IsChecked = isChecked;
+	    }
 
-		[Obsolete]
-		public void Uncheck()
-		{
-			if (!IsChecked)
-				throw new Exception("Menu item is already unchecked.");
-			IsChecked = false;
-		}
+	    public MenuItem(string header)
+	    {
+	        Id = Guid.NewGuid();
+	        SetHeader(header);
+	        IsChecked = false;
+	    }
 
-		#region Constructors
+	    protected MenuItem()
+	    {
+	    }
 
-		public MenuItem(Guid id, string header, bool isChecked)
-		{
-			Id = id;
-			SetHeader(header);
-			IsChecked = isChecked;
-		}
+        #endregion
+        
+        #region Setter methods
 
-		public MenuItem(string header)
-		{
-			Id = Guid.NewGuid();
-			SetHeader(header);
-			IsChecked = false;
-		}
+	    public void SetHeader(string header)
+	    {
+	        if (header.IsNullOrWhiteSpace())
+	            throw new Exception("Menu item's header cannot be empty.");
+	        if (Header == header)
+	            throw new Exception("You cannot save menu item's header with the same value.");
+	        Header = header;
+	    }
 
-		protected MenuItem()
-		{
-		}
+	    public void SetIsChecked(bool isChecked)
+	    {
+	        if (IsChecked == isChecked)
+	            throw new Exception("You cannot save menu item's is checked with the same value.");
+	        IsChecked = isChecked;
+	    }
 
-		#endregion
-	}
+	    // Working perfectly fine, but in MVVM pattern is causing more troubles than benefits.
+	    [Obsolete]
+	    public void Check()
+	    {
+	        if (!IsChecked)
+	            throw new Exception("Menu item is already checked.");
+	        IsChecked = true;
+	    }
+
+	    [Obsolete]
+	    public void Uncheck()
+	    {
+	        if (!IsChecked)
+	            throw new Exception("Menu item is already unchecked.");
+	        IsChecked = false;
+	    }
+
+        #endregion
+    }
 }

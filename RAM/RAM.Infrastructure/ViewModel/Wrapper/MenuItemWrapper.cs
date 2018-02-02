@@ -14,6 +14,9 @@ namespace RAM.Infrastructure.ViewModel.Wrapper
 			Model = menuItem;
 		}
 
+        public static MenuItemWrapper GetEmptyInstance()
+            => new MenuItemWrapper(MenuItem.GetEmptyInstance());
+
 		public MenuItem Model { get; }
 
 		public void AcceptChanges()

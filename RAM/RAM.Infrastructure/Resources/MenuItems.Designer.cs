@@ -70,6 +70,42 @@ namespace RAM.Infrastructure.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add above.
+        /// </summary>
+        internal static string AddAboveEN {
+            get {
+                return ResourceManager.GetString("AddAboveEN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add below.
+        /// </summary>
+        internal static string AddBelowEN {
+            get {
+                return ResourceManager.GetString("AddBelowEN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Clear tape.
+        /// </summary>
+        internal static string ClearTapeEN {
+            get {
+                return ResourceManager.GetString("ClearTapeEN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        internal static string DeleteEN {
+            get {
+                return ResourceManager.GetString("DeleteEN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Edit.
         /// </summary>
         internal static string EditEN {

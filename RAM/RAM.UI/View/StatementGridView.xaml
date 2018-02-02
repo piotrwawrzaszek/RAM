@@ -4,6 +4,7 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:viewModel="clr-namespace:RAM.Infrastructure.ViewModel;assembly=RAM.Infrastructure"
 	d:DesignHeight="200"
 	d:DesignWidth="250"
 	DataContext="{Binding StatementGridViewModel, Source={StaticResource ModelViewLocator}}"
@@ -12,29 +13,44 @@
 	<DataGrid
 		AutoGenerateColumns="False"
 		Background="Transparent"
-		CanUserAddRows="True"
 		CanUserSortColumns="False"
 		IsReadOnly="False"
 		ItemsSource="{Binding Statements}"
-		SelectedItem="{Binding SelectedStatement}"
-		SelectionUnit="Cell">
+		SelectedItem="{Binding SelectedStatement}">
 		<DataGrid.Columns>
 			<DataGridTextColumn
 				Width="*"
-				Binding="{Binding Model.Label}"
+				Binding="{Binding Label}"
 				Header="Label" />
 			<DataGridTextColumn
 				Width="*"
-				Binding="{Binding Model.Instruction}"
+				Binding="{Binding Instruction}"
 				Header="Instruction" />
 			<DataGridTextColumn
 				Width="*"
-				Binding="{Binding Model.Argument}"
+				Binding="{Binding Argument}"
 				Header="Argument" />
 			<DataGridTextColumn
 				Width="*"
-				Binding="{Binding Model.Comment}"
+				Binding="{Binding Comment}"
 				Header="Comment" />
 		</DataGrid.Columns>
-	</DataGrid>
+
+        <DataGrid.ContextMenu>
+            <ContextMenu ItemsSource="{Binding MenuItems}">
+                <ContextMenu.ItemContainerStyle>
+                    <Style TargetType="{x:Type MenuItem}">
+                        <Setter Property="Command" Value="{Binding Path=Command}" />
+                        <Setter Property="CommandParameter" 
+                                Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}, Path=SelectedItem}" />
+                    </Style>
+                </ContextMenu.ItemContainerStyle>
+                <ContextMenu.ItemTemplate>
+                    <HierarchicalDataTemplate DataType="{x:Type viewModel:MenuItemViewModel}" ItemsSource="{Binding Children}">
+                        <TextBlock Text="{Binding Model.Header}" />
+                    </HierarchicalDataTemplate>
+                </ContextMenu.ItemTemplate>
+            </ContextMenu>
+        </DataGrid.ContextMenu>
+    </DataGrid>
 </UserControl>
