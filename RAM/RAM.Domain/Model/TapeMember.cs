@@ -3,32 +3,30 @@ using RAM.Domain.Helpers;
 
 namespace RAM.Domain.Model
 {
-	[Serializable]
 	public class TapeMember
 	{
 		public Guid Id { get; protected set; }
-		public int Number { get; protected set; }
 		public string Value { get; protected set; }
+	    public int Number { get; protected set; } = -1;
 
         public static TapeMember GetEmptyInstance()
-	        => new TapeMember {Id = Guid.NewGuid()};
-
+	        => new TapeMember();
+	        
 	    #region Constructors
 
-	    public TapeMember(int number, string value)
+	    public TapeMember(int number, string value = "")
 	    {
 	        Id = Guid.NewGuid();
 	        SetNumber(number);
 	        SetValue(value);
 	    }
 
-	    public TapeMember(string value)
+	    public TapeMember(string value = "") : this(0, value)
 	    {
-	        Id = Guid.NewGuid();
-	        SetValue(value);
 	    }
 
-	    protected TapeMember()
+	    public TapeMember(TapeMember tapeMember) 
+            : this(tapeMember.Number, tapeMember.Value)
 	    {
 	    }
 
@@ -47,8 +45,6 @@ namespace RAM.Domain.Model
 
 	    public void SetValue(string value)
 	    {
-	        if (value.IsNullOrEmpty())
-	            throw new Exception("Tape member's value cannot be empty.");
 	        if (Value == value)
 	            throw new Exception("You cannot save tape member's value with the same value.");
 	        Value = value;

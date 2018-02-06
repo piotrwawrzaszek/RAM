@@ -1,10 +1,10 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
-using System.Windows.Input;
 using RAM.Infrastructure.Command;
 using RAM.Infrastructure.Data;
 using RAM.Infrastructure.ViewModel.Base;
 using RAM.Infrastructure.ViewModel.Wrapper;
+using static RAM.Infrastructure.ViewModel.MenuItemViewModel;
 
 namespace RAM.Infrastructure.ViewModel
 {
@@ -53,10 +53,13 @@ namespace RAM.Infrastructure.ViewModel
 	    {
 	        var menuItems = new ObservableCollection<IMenuItemViewModel>
 	        {
-	            MenuItemViewModel.LoadInstance(Resources.MenuItems.AddAboveEN, new RelayCommand(AddAboveExecute)),
-	            MenuItemViewModel.LoadInstance(Resources.MenuItems.AddBelowEN, new RelayCommand(AddBelowExecute)),
-	            MenuItemViewModel.LoadInstance(Resources.MenuItems.DeleteEN, new RelayCommand(DeleteExecute)),
-	            MenuItemViewModel.LoadInstance(Resources.MenuItems.ClearTapeEN, new RelayCommand(ClearTapeExecute))
+	            LoadInstance(Resources.MenuItems.PasteEN, new RelayCommand(PasteExecute)),
+	            LoadInstance(Resources.MenuItems.CopyEN, new RelayCommand(CopyExecute)),
+	            LoadInstance(Resources.MenuItems.CutEN, new RelayCommand(CutExecute)),
+                LoadInstance(Resources.MenuItems.AddAboveEN, new RelayCommand(AddAboveExecute)),
+	            LoadInstance(Resources.MenuItems.AddBelowEN, new RelayCommand(AddBelowExecute)),
+	            LoadInstance(Resources.MenuItems.DeleteEN, new RelayCommand(DeleteExecute)),
+	            LoadInstance(Resources.MenuItems.ClearTapeEN, new RelayCommand(ClearTapeExecute))
 	        };
 	        return menuItems;
 	    }
@@ -97,6 +100,30 @@ namespace RAM.Infrastructure.ViewModel
 	        _statements.Add(StatementWrapper.GetEmptyInstance());
 	    }
 
-	    #endregion
+	    private static StatementWrapper _clipboard;
+
+	    private void PasteExecute(object sender)
+	    {
+	        if (!(sender is StatementWrapper statement)) return;
+	        if (_clipboard == null) return;
+
+	        var index = _statements.IndexOf(statement);
+	        _statements.Insert(index, _clipboard);
+	    }
+
+	    private static void CopyExecute(object sender)
+	    {
+	        if (!(sender is StatementWrapper statement)) return;
+            _clipboard = new StatementWrapper(statement);
+	    }
+
+	    private void CutExecute(object sender)
+	    {
+	        if (!(sender is StatementWrapper statement)) return;
+
+	        _statements.Remove(statement);
+	        _clipboard = new StatementWrapper(statement);
+	    }
+        #endregion
     }
 }

@@ -3,21 +3,20 @@ using RAM.Domain.Helpers;
 
 namespace RAM.Domain.Model
 {
-	[Serializable]
 	public class Statement
 	{
 		public Guid Id { get; protected set; }
 		public string Label { get; protected set; }
-		public string Instruction { get; protected set; }
-		public string Argument { get; protected set; }
+		public string Instruction { get; protected set; } 
+		public string Argument { get; protected set; } 
 		public string Comment { get; protected set; }
 
 	    public static Statement GetEmptyInstance()
-	        => new Statement { Id = Guid.NewGuid() };
+	        => new Statement();
 
         #region Constructors
 
-        public Statement(string instruction, string argument = "",
+        public Statement(string instruction = "", string argument = "",
 	        string label = "", string comment = "")
 	    {
 	        Id = Guid.NewGuid();
@@ -27,7 +26,8 @@ namespace RAM.Domain.Model
 	        SetComment(comment);
 	    }
 
-	    protected Statement()
+	    public Statement(Statement statement) : this(statement.Instruction, 
+            statement.Argument, statement.Label, statement.Comment)
 	    {
 	    }
 
@@ -44,11 +44,9 @@ namespace RAM.Domain.Model
 
 	    public void SetInstruction(string instruction)
 	    {
-	        if (instruction.IsNullOrWhiteSpace())
-	            throw new Exception("Statement's instruction cannot be empty.");
 	        if (Instruction == instruction)
 	            throw new Exception("You cannot save statement's instruction with the same value.");
-	        Instruction = instruction;
+	        Instruction = instruction.ToUpper();
 	    }
 
 	    public void SetArgument(string argument)

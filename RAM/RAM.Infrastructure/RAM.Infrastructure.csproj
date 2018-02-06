@@ -68,8 +68,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>StatementGrid.resx</DependentUpon>
     </Compile>
+    <Compile Include="Services\IService.cs" />
+    <Compile Include="Services\StatementService.cs" />
     <Compile Include="Startup\BootStraper.cs" />
     <Compile Include="Startup\Container.cs" />
+    <Compile Include="Startup\Modules\DataProviderModule.cs" />
+    <Compile Include="Startup\Modules\ServiceModule.cs" />
+    <Compile Include="Startup\Modules\ViewModelModule.cs" />
     <Compile Include="ViewModel\Base\IViewModel.cs" />
     <Compile Include="ViewModel\Base\BaseViewModel.cs" />
     <Compile Include="ViewModel\InputTapeViewModel.cs" />

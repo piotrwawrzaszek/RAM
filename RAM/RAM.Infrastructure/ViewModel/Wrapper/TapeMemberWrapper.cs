@@ -5,17 +5,30 @@ using System;
 
 namespace RAM.Infrastructure.ViewModel.Wrapper
 {
-    [Serializable]
 	public class TapeMemberWrapper : BaseViewModel
 	{
 		private bool _isChanged;
 
-		public TapeMemberWrapper(TapeMember tapeMember)
-		{
-			Model = tapeMember;
+	    #region Constructors
+
+	     public TapeMemberWrapper(int number, string value)
+	    {
+	        Model = new TapeMember(number, value);
+	    }
+
+        public TapeMemberWrapper(TapeMember tapeMember) 
+            : this(tapeMember.Number, tapeMember.Value)
+        {
 		}
 
-        public static TapeMemberWrapper GetEmptyInstance()
+	    public TapeMemberWrapper(TapeMemberWrapper tapeMemberWrapper) 
+            : this(tapeMemberWrapper.Model)
+	    {
+	    }
+
+	    #endregion
+       
+	    public static TapeMemberWrapper GetEmptyInstance()
             => new TapeMemberWrapper(TapeMember.GetEmptyInstance());
         
         public TapeMember Model { get; }

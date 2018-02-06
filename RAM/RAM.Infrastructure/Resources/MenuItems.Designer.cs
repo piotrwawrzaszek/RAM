@@ -97,6 +97,24 @@ namespace RAM.Infrastructure.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Copy.
+        /// </summary>
+        internal static string CopyEN {
+            get {
+                return ResourceManager.GetString("CopyEN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cut.
+        /// </summary>
+        internal static string CutEN {
+            get {
+                return ResourceManager.GetString("CutEN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete.
         /// </summary>
         internal static string DeleteEN {
@@ -120,6 +138,15 @@ namespace RAM.Infrastructure.Resources {
         internal static string FileEN {
             get {
                 return ResourceManager.GetString("FileEN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Paste.
+        /// </summary>
+        internal static string PasteEN {
+            get {
+                return ResourceManager.GetString("PasteEN", resourceCulture);
             }
         }
         

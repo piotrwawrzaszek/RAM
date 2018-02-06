@@ -25,9 +25,9 @@ namespace RAM.Infrastructure.ViewModel
 		{
 			_tapeMembers = new ObservableCollection<TapeMemberWrapper>
 			{
-				new TapeMemberWrapper(new TapeMember(1, "aaa")),
-				new TapeMemberWrapper(new TapeMember(2, "4")),
-				new TapeMemberWrapper(new TapeMember(3, "bbc")),
+				new TapeMemberWrapper(1, "aaa"),
+				new TapeMemberWrapper(2, "4"),
+				new TapeMemberWrapper(3, "bbc"),
 			};
 		}
 

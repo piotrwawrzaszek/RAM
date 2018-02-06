@@ -5,15 +5,29 @@ using RAM.Infrastructure.ViewModel.Base;
 
 namespace RAM.Infrastructure.ViewModel.Wrapper
 {
-   [Serializable]
 	public class StatementWrapper : BaseViewModel
 	{
 		private bool _isChanged;
 
-		public StatementWrapper(Statement statement)
+	    #region Constructors
+
+	    public StatementWrapper(string instruction, string argument = "",
+	        string label = "", string comment = "")
+	    {
+	        Model = new Statement(instruction, argument, label, comment);
+	    }
+
+	    public StatementWrapper(Statement statement) : this(statement.Instruction, 
+            statement.Argument, statement.Label, statement.Comment)
 		{
-			Model = statement;
 		}
+
+	    public StatementWrapper(StatementWrapper statementWrapper) 
+            : this(statementWrapper.Model)
+	    {
+	    }
+
+	    #endregion
 
         public static StatementWrapper GetEmptyInstance()
             => new StatementWrapper(Statement.GetEmptyInstance());

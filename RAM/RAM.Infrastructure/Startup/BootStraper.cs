@@ -1,26 +1,19 @@
 ﻿using Autofac;
-using RAM.Infrastructure.Data;
-using RAM.Infrastructure.ViewModel;
+using RAM.Infrastructure.Startup.Modules;
 
 namespace RAM.Infrastructure.Startup
 {
-	public class BootStraper
-	{
-		public IContainer BootStrap()
-		{
-			var builder = new ContainerBuilder();
+    public class BootStraper
+    {
+        public IContainer BootStrap()
+        {
+            var builder = new ContainerBuilder();
 
-			builder.RegisterType<MainWindowViewModel>().As<IMainWindowViewModel>();
-			builder.RegisterType<MenuBarViewModel>().As<IMenuBarViewModel>();
-			builder.RegisterType<MenuItemViewModel>().As<IMenuItemViewModel>();
-			builder.RegisterType<StatementGridViewModel>().As<IStatementGridViewModel>();
-			builder.RegisterType<InputTapeViewModel>().As<IInputTapeViewModel>();
-			builder.RegisterType<OutputTapeViewModel>().As<IOutputTapeViewModel>();
+            builder.RegisterModule<ViewModelModule>();
+            builder.RegisterModule<DataProviderModule>();
+            builder.RegisterModule<ServiceModule>();
 
-			builder.RegisterType<StatementProvider>().As<IStatementProvider>();
-		    builder.RegisterType<TapeMemberProvider>().As<ITapeMemberProvider>();
-
-			return builder.Build();
-		}
-	}
+            return builder.Build();
+        }
+    }
 }

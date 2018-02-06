@@ -24,7 +24,6 @@
 					Binding="{Binding Value}"
 					Header="Value" />
 			</DataGrid.Columns>
-
 		</DataGrid>
 	</Grid>
 </UserControl>

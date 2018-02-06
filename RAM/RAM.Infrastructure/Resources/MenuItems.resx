@@ -129,6 +129,12 @@
   <data name="ClearTapeEN" xml:space="preserve">
     <value>Clear tape</value>
   </data>
+  <data name="CopyEN" xml:space="preserve">
+    <value>Copy</value>
+  </data>
+  <data name="CutEN" xml:space="preserve">
+    <value>Cut</value>
+  </data>
   <data name="DeleteEN" xml:space="preserve">
     <value>Delete</value>
   </data>
@@ -137,6 +143,9 @@
   </data>
   <data name="FileEN" xml:space="preserve">
     <value>File</value>
+  </data>
+  <data name="PasteEN" xml:space="preserve">
+    <value>Paste</value>
   </data>
   <data name="ViewEN" xml:space="preserve">
     <value>View</value>

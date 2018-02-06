@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Linq;
-using System.Windows;
+using RAM.Domain.Model;
 using RAM.Infrastructure.Command;
 using RAM.Infrastructure.Data;
 using RAM.Infrastructure.ViewModel.Base;
 using RAM.Infrastructure.ViewModel.Wrapper;
+using static RAM.Infrastructure.ViewModel.MenuItemViewModel;
 
 namespace RAM.Infrastructure.ViewModel
 {
@@ -52,13 +52,13 @@ namespace RAM.Infrastructure.ViewModel
         {
             var menuItems = new ObservableCollection<IMenuItemViewModel>
             {
-                //MenuItemViewModel.LoadInstance(Resources.MenuItems.AddAboveEN, new RelayCommand(PasteExecute, PasteCanExecute)),
-                //MenuItemViewModel.LoadInstance(Resources.MenuItems.AddAboveEN, new RelayCommand(CopyExecute, CopyCanExecute)),
-                //MenuItemViewModel.LoadInstance(Resources.MenuItems.AddAboveEN, new RelayCommand(CutExecute, CutCanExecute)),
-                MenuItemViewModel.LoadInstance(Resources.MenuItems.AddAboveEN, new RelayCommand(AddAboveExecute)),
-                MenuItemViewModel.LoadInstance(Resources.MenuItems.AddBelowEN, new RelayCommand(AddBelowExecute)),
-                MenuItemViewModel.LoadInstance(Resources.MenuItems.DeleteEN, new RelayCommand(DeleteExecute)),
-                MenuItemViewModel.LoadInstance(Resources.MenuItems.ClearTapeEN, new RelayCommand(ClearTapeExecute))
+                LoadInstance(Resources.MenuItems.PasteEN, new RelayCommand(PasteExecute)),
+                LoadInstance(Resources.MenuItems.CopyEN, new RelayCommand(CopyExecute)),
+                LoadInstance(Resources.MenuItems.CutEN, new RelayCommand(CutExecute)),
+                LoadInstance(Resources.MenuItems.AddAboveEN, new RelayCommand(AddAboveExecute)),
+                LoadInstance(Resources.MenuItems.AddBelowEN, new RelayCommand(AddBelowExecute)),
+                LoadInstance(Resources.MenuItems.DeleteEN, new RelayCommand(DeleteExecute)),
+                LoadInstance(Resources.MenuItems.ClearTapeEN, new RelayCommand(ClearTapeExecute))
             };
             return menuItems;
         }
@@ -98,42 +98,32 @@ namespace RAM.Infrastructure.ViewModel
             _tapeMembers.Clear();
             _tapeMembers.Add(TapeMemberWrapper.GetEmptyInstance());
         }
-        /*
-        private const string Key = "tapeMember";
+
+        private static TapeMemberWrapper _clipboard;
 
         private void PasteExecute(object sender)
         {
             if (!(sender is TapeMemberWrapper tapeMember)) return;
+            if (_clipboard == null) return;
 
             var index = _tapeMembers.IndexOf(tapeMember);
-            _tapeMembers.Insert(index, Clipboard.GetData(Key) as TapeMemberWrapper);
+            _tapeMembers.Insert(index, _clipboard);
         }
 
-        private static bool PasteCanExecute(object sender)
-            => /*Clipboard.GetData(Key) is TapeMemberWrapper || *//*true;
-        
         private static void CopyExecute(object sender)
         {
             if (!(sender is TapeMemberWrapper tapeMember)) return;
-            Clipboard.Clear();
-            Clipboard.SetData(Key, tapeMember);
+            _clipboard = new TapeMemberWrapper(tapeMember);
         }
-
-        private static bool CopyCanExecute(object sender)
-            => true;
-
 
         private void CutExecute(object sender)
         {
             if (!(sender is TapeMemberWrapper tapeMember)) return;
-            Clipboard.Clear();
-            Clipboard.SetData(Key, tapeMember);
+
             _tapeMembers.Remove(tapeMember);
+            _clipboard = new TapeMemberWrapper(tapeMember);
         }
 
-        private static bool CutCanExecute(object sender)
-            => true;
-        */
         #endregion
     }
 }
