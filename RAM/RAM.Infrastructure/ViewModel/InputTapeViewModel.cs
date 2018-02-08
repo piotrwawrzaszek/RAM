@@ -5,6 +5,7 @@ using RAM.Infrastructure.Command;
 using RAM.Infrastructure.Data;
 using RAM.Infrastructure.ViewModel.Base;
 using RAM.Infrastructure.ViewModel.Wrapper;
+using RAM.Infrastructure.Resources.MenuItems;
 using static RAM.Infrastructure.ViewModel.MenuItemViewModel;
 
 namespace RAM.Infrastructure.ViewModel
@@ -13,7 +14,7 @@ namespace RAM.Infrastructure.ViewModel
     {
         TapeMemberWrapper SelectedTapeMember { get; set; }
         ObservableCollection<TapeMemberWrapper> TapeMembers { get; set; }
-        ObservableCollection<IMenuItemViewModel> MenuItems { get; }
+        ObservableCollection<IMenuItemViewModel> MenuItemViewModels { get; }
     }
 
     public class InputTapeViewModel : BaseViewModel, IInputTapeViewModel
@@ -27,7 +28,7 @@ namespace RAM.Infrastructure.ViewModel
         {
             _tapeMemberProvider = tapeMemberProvider;
 
-            MenuItems = Seed();
+            MenuItemViewModels = Seed();
             _tapeMembers = new ObservableCollection<TapeMemberWrapper>(
                 _tapeMemberProvider.GetAllTapeMembers().Select(x => new TapeMemberWrapper(x)));
         }
@@ -44,7 +45,7 @@ namespace RAM.Infrastructure.ViewModel
             set => SetProperty(ref _tapeMembers, value);
         }
 
-        public ObservableCollection<IMenuItemViewModel> MenuItems { get; protected set; }
+        public ObservableCollection<IMenuItemViewModel> MenuItemViewModels { get; protected set; }
 
         #region Menu items creation
 
@@ -52,13 +53,13 @@ namespace RAM.Infrastructure.ViewModel
         {
             var menuItems = new ObservableCollection<IMenuItemViewModel>
             {
-                LoadInstance(Resources.MenuItems.PasteEN, new RelayCommand(PasteExecute)),
-                LoadInstance(Resources.MenuItems.CopyEN, new RelayCommand(CopyExecute)),
-                LoadInstance(Resources.MenuItems.CutEN, new RelayCommand(CutExecute)),
-                LoadInstance(Resources.MenuItems.AddAboveEN, new RelayCommand(AddAboveExecute)),
-                LoadInstance(Resources.MenuItems.AddBelowEN, new RelayCommand(AddBelowExecute)),
-                LoadInstance(Resources.MenuItems.DeleteEN, new RelayCommand(DeleteExecute)),
-                LoadInstance(Resources.MenuItems.ClearTapeEN, new RelayCommand(ClearTapeExecute))
+                LoadInstance(MenuItems.Paste, new RelayCommand(PasteExecute)),
+                LoadInstance(MenuItems.Copy, new RelayCommand(CopyExecute)),
+                LoadInstance(MenuItems.Cut, new RelayCommand(CutExecute)),
+                LoadInstance(MenuItems.AddAbove, new RelayCommand(AddAboveExecute)),
+                LoadInstance(MenuItems.AddBelow, new RelayCommand(AddBelowExecute)),
+                LoadInstance(MenuItems.Delete, new RelayCommand(DeleteExecute)),
+                LoadInstance(MenuItems.ClearTape, new RelayCommand(ClearTapeExecute))
             };
             return menuItems;
         }

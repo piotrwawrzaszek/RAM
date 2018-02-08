@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RAM.Infrastructure.Resources {
+namespace RAM.Infrastructure.Resources.Statements {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace RAM.Infrastructure.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class StatementGrid {
+    internal class Statements {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal StatementGrid() {
+        internal Statements() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace RAM.Infrastructure.Resources {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("RAM.Infrastructure.Resources.StatementGrid", typeof(StatementGrid).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("RAM.Infrastructure.Resources.Statements.Statements", typeof(Statements).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -63,36 +63,36 @@ namespace RAM.Infrastructure.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Argument.
         /// </summary>
-        internal static string ArgumentEN {
+        internal static string Argument {
             get {
-                return ResourceManager.GetString("ArgumentEN", resourceCulture);
+                return ResourceManager.GetString("Argument", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Comment.
         /// </summary>
-        internal static string CommentEN {
+        internal static string Comment {
             get {
-                return ResourceManager.GetString("CommentEN", resourceCulture);
+                return ResourceManager.GetString("Comment", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Instruction.
         /// </summary>
-        internal static string InstructionEN {
+        internal static string Instruction {
             get {
-                return ResourceManager.GetString("InstructionEN", resourceCulture);
+                return ResourceManager.GetString("Instruction", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Label.
         /// </summary>
-        internal static string LabelEN {
+        internal static string Label {
             get {
-                return ResourceManager.GetString("LabelEN", resourceCulture);
+                return ResourceManager.GetString("Label", resourceCulture);
             }
         }
     }

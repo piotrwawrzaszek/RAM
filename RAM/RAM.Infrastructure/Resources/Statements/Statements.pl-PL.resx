@@ -117,37 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AboutEN" xml:space="preserve">
-    <value>About</value>
+  <data name="Argument" xml:space="preserve">
+    <value>Argument</value>
   </data>
-  <data name="AddAboveEN" xml:space="preserve">
-    <value>Add above</value>
+  <data name="Comment" xml:space="preserve">
+    <value>Komentarz</value>
   </data>
-  <data name="AddBelowEN" xml:space="preserve">
-    <value>Add below</value>
+  <data name="Instruction" xml:space="preserve">
+    <value>Instrukcja</value>
   </data>
-  <data name="ClearTapeEN" xml:space="preserve">
-    <value>Clear tape</value>
-  </data>
-  <data name="CopyEN" xml:space="preserve">
-    <value>Copy</value>
-  </data>
-  <data name="CutEN" xml:space="preserve">
-    <value>Cut</value>
-  </data>
-  <data name="DeleteEN" xml:space="preserve">
-    <value>Delete</value>
-  </data>
-  <data name="EditEN" xml:space="preserve">
-    <value>Edit</value>
-  </data>
-  <data name="FileEN" xml:space="preserve">
-    <value>File</value>
-  </data>
-  <data name="PasteEN" xml:space="preserve">
-    <value>Paste</value>
-  </data>
-  <data name="ViewEN" xml:space="preserve">
-    <value>View</value>
+  <data name="Label" xml:space="preserve">
+    <value>Etykieta</value>
   </data>
 </root>

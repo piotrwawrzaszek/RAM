@@ -1,4 +1,8 @@
-﻿using RAM.Infrastructure.ViewModel.Base;
+﻿using System.Globalization;
+using RAM.Infrastructure.ViewModel.Base;
+using System.Threading;
+using System.Configuration;
+using RAM.Infrastructure.Resources.MenuItems;
 
 namespace RAM.Infrastructure.ViewModel
 {
@@ -10,10 +14,14 @@ namespace RAM.Infrastructure.ViewModel
 	public class MainWindowViewModel : BaseViewModel, IMainWindowViewModel
 	{
 		private string _header;
-
-		public MainWindowViewModel()
+	    private string _culture;
+        
+        public MainWindowViewModel()
 		{
-			_header = "Test header";
+            _culture = ConfigurationManager.AppSettings["Culture"];
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo(_culture);
+
+            _header = MenuItems.About;
 		}
 
 		public string Header

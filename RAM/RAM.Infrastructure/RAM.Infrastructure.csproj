@@ -36,6 +36,7 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.IO.Compression.FileSystem" />
@@ -58,15 +59,45 @@
     <Compile Include="ModelViewLocator\ModelViewLocator.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Resources\MenuItems.Designer.cs">
+    <Compile Include="Resources\MenuItems\MenuItems.de-DE.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MenuItems.de-DE.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\MenuItems\MenuItems.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>MenuItems.resx</DependentUpon>
     </Compile>
-    <Compile Include="Resources\StatementGrid.Designer.cs">
+    <Compile Include="Resources\MenuItems\MenuItems.en-GB.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>StatementGrid.resx</DependentUpon>
+      <DependentUpon>MenuItems.en-GB.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\MenuItems\MenuItems.pl-PL.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MenuItems.pl-PL.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Statements\Statements.de-DE.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Statements.de-DE.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Statements\Statements.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Statements.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Statements\Statements.pl-PL.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Statements.pl-PL.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Statements\Statements.en-GB.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Statements.en-GB.resx</DependentUpon>
     </Compile>
     <Compile Include="Services\IService.cs" />
     <Compile Include="Services\StatementService.cs" />
@@ -97,13 +128,37 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\MenuItems.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+    <EmbeddedResource Include="Resources\MenuItems\MenuItems.de-DE.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>MenuItems.de-DE.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\MenuItems\MenuItems.en-GB.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>MenuItems.en-GB.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\MenuItems\MenuItems.pl-PL.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>MenuItems.pl-PL.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\MenuItems\MenuItems.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>MenuItems.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\StatementGrid.resx">
+    <EmbeddedResource Include="Resources\Statements\Statements.en-GB.resx">
+      <LastGenOutput>Statements.en-GB.Designer.cs</LastGenOutput>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Statements\Statements.de-DE.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Statements.de-DE.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Statements\Statements.pl-PL.resx">
+      <LastGenOutput>Statements.pl-PL.Designer.cs</LastGenOutput>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Statements\Statements.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>StatementGrid.Designer.cs</LastGenOutput>
+      <LastGenOutput>Statements.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

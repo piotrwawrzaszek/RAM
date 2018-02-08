@@ -3,22 +3,24 @@ using System.Collections.ObjectModel;
 using System.Windows.Forms;
 using RAM.Infrastructure.Command;
 using RAM.Infrastructure.ViewModel.Base;
+using RAM.Infrastructure.Resources.MenuItems;
+using static RAM.Infrastructure.ViewModel.MenuItemViewModel;
 
 namespace RAM.Infrastructure.ViewModel
 {
     public interface IMenuBarViewModel : IViewModel
     {
-        ObservableCollection<IMenuItemViewModel> MenuItems { get; }
+        ObservableCollection<IMenuItemViewModel> MenuItemViewModels { get; }
     }
 
     public class MenuBarViewModel : BaseViewModel, IMenuBarViewModel
     {
         public MenuBarViewModel()
         {
-            MenuItems = Seed();
+            MenuItemViewModels = Seed();
         }
 
-        public ObservableCollection<IMenuItemViewModel> MenuItems { get; protected set; }
+        public ObservableCollection<IMenuItemViewModel> MenuItemViewModels { get; protected set; }
 
         #region Command methods
 
@@ -39,29 +41,29 @@ namespace RAM.Infrastructure.ViewModel
         {
             var menuItems = new ObservableCollection<IMenuItemViewModel>
             {
-                MenuItemViewModel.LoadInstance(Resources.MenuItems.FileEN, null,
+                LoadInstance(MenuItems.File, null,
                     new List<IMenuItemViewModel>
                     {
-                        MenuItemViewModel.LoadInstance("Option 1", new RelayCommand(Execute)),
-                        MenuItemViewModel.LoadInstance("Option 2", new RelayCommand(Execute))
+                        LoadInstance("Option 1", new RelayCommand(Execute)),
+                        LoadInstance("Option 2", new RelayCommand(Execute))
                     }),
-                MenuItemViewModel.LoadInstance(Resources.MenuItems.EditEN, null,
+                LoadInstance(MenuItems.Edit, null,
                     new List<IMenuItemViewModel>
                     {
-                        MenuItemViewModel.LoadInstance("Option 1", new RelayCommand(Execute)),
-                        MenuItemViewModel.LoadInstance("Option 2", new RelayCommand(Execute))
+                        LoadInstance("Option 1", new RelayCommand(Execute)),
+                        LoadInstance("Option 2", new RelayCommand(Execute))
                     }),
-                MenuItemViewModel.LoadInstance(Resources.MenuItems.ViewEN, null,
+                LoadInstance(MenuItems.View, null,
                     new List<IMenuItemViewModel>
                     {
-                        MenuItemViewModel.LoadInstance("Option 1", new RelayCommand(Execute)),
-                        MenuItemViewModel.LoadInstance("Option 2", new RelayCommand(Execute))
+                        LoadInstance("Option 1", new RelayCommand(Execute)),
+                        LoadInstance("Option 2", new RelayCommand(Execute))
                     }),
-                MenuItemViewModel.LoadInstance(Resources.MenuItems.AboutEN, null,
+                LoadInstance(MenuItems.About, null,
                     new List<IMenuItemViewModel>
                     {
-                        MenuItemViewModel.LoadInstance("Option 1", new RelayCommand(Execute)),
-                        MenuItemViewModel.LoadInstance("Option 2", new RelayCommand(Execute))
+                        LoadInstance("Option 1", new RelayCommand(Execute)),
+                        LoadInstance("Option 2", new RelayCommand(Execute))
                     })
             };
             return menuItems;

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RAM.Infrastructure.Resources {
+namespace RAM.Infrastructure.Resources.MenuItems {
     using System;
     
     
@@ -22,7 +22,7 @@ namespace RAM.Infrastructure.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class MenuItems {
+    public class MenuItems {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,10 +36,10 @@ namespace RAM.Infrastructure.Resources {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("RAM.Infrastructure.Resources.MenuItems", typeof(MenuItems).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("RAM.Infrastructure.Resources.MenuItems.MenuItems", typeof(MenuItems).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -51,7 +51,7 @@ namespace RAM.Infrastructure.Resources {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,99 +63,99 @@ namespace RAM.Infrastructure.Resources {
         /// <summary>
         ///   Looks up a localized string similar to About.
         /// </summary>
-        internal static string AboutEN {
+        public static string About {
             get {
-                return ResourceManager.GetString("AboutEN", resourceCulture);
+                return ResourceManager.GetString("About", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Add above.
         /// </summary>
-        internal static string AddAboveEN {
+        public static string AddAbove {
             get {
-                return ResourceManager.GetString("AddAboveEN", resourceCulture);
+                return ResourceManager.GetString("AddAbove", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Add below.
         /// </summary>
-        internal static string AddBelowEN {
+        public static string AddBelow {
             get {
-                return ResourceManager.GetString("AddBelowEN", resourceCulture);
+                return ResourceManager.GetString("AddBelow", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Clear tape.
         /// </summary>
-        internal static string ClearTapeEN {
+        public static string ClearTape {
             get {
-                return ResourceManager.GetString("ClearTapeEN", resourceCulture);
+                return ResourceManager.GetString("ClearTape", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Copy.
         /// </summary>
-        internal static string CopyEN {
+        public static string Copy {
             get {
-                return ResourceManager.GetString("CopyEN", resourceCulture);
+                return ResourceManager.GetString("Copy", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Cut.
         /// </summary>
-        internal static string CutEN {
+        public static string Cut {
             get {
-                return ResourceManager.GetString("CutEN", resourceCulture);
+                return ResourceManager.GetString("Cut", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Delete.
         /// </summary>
-        internal static string DeleteEN {
+        public static string Delete {
             get {
-                return ResourceManager.GetString("DeleteEN", resourceCulture);
+                return ResourceManager.GetString("Delete", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Edit.
         /// </summary>
-        internal static string EditEN {
+        public static string Edit {
             get {
-                return ResourceManager.GetString("EditEN", resourceCulture);
+                return ResourceManager.GetString("Edit", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to File.
         /// </summary>
-        internal static string FileEN {
+        public static string File {
             get {
-                return ResourceManager.GetString("FileEN", resourceCulture);
+                return ResourceManager.GetString("File", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Paste.
         /// </summary>
-        internal static string PasteEN {
+        public static string Paste {
             get {
-                return ResourceManager.GetString("PasteEN", resourceCulture);
+                return ResourceManager.GetString("Paste", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to View.
         /// </summary>
-        internal static string ViewEN {
+        public static string View {
             get {
-                return ResourceManager.GetString("ViewEN", resourceCulture);
+                return ResourceManager.GetString("View", resourceCulture);
             }
         }
     }

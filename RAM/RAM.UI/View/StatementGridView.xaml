@@ -37,7 +37,7 @@
 		</DataGrid.Columns>
 
         <DataGrid.ContextMenu>
-            <ContextMenu ItemsSource="{Binding MenuItems}">
+            <ContextMenu ItemsSource="{Binding MenuItemViewModels}">
                 <ContextMenu.ItemContainerStyle>
                     <Style TargetType="{x:Type MenuItem}">
                         <Setter Property="Command" Value="{Binding Path=Command}" />

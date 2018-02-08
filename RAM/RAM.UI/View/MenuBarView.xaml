@@ -8,7 +8,7 @@
 	DataContext="{Binding MenuBarViewModel, Source={StaticResource ModelViewLocator}}"
 	mc:Ignorable="d">
 
-	<Menu ItemsSource="{Binding MenuItems}">
+    <Menu ItemsSource="{Binding MenuItemViewModels}">
 		<Menu.ItemContainerStyle>
 			<Style TargetType="{x:Type MenuItem}">
 				<Setter Property="Command" Value="{Binding Command}" />
