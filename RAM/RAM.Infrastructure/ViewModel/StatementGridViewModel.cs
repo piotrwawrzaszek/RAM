@@ -1,7 +1,10 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
+using Prism.Events;
 using RAM.Infrastructure.Command;
 using RAM.Infrastructure.Data;
+using RAM.Infrastructure.Events;
+using RAM.Infrastructure.Resources.Controls;
 using RAM.Infrastructure.ViewModel.Base;
 using RAM.Infrastructure.ViewModel.Wrapper;
 using RAM.Infrastructure.Resources.MenuItems;
@@ -11,7 +14,12 @@ namespace RAM.Infrastructure.ViewModel
 {
 	public interface IStatementGridViewModel : IViewModel
 	{
-		StatementWrapper SelectedStatement { get; set; }
+	    string Label { get; set; }
+	    string Instruction { get; set; }
+	    string Argument { get; set; }
+	    string Comment { get; set; }
+
+        StatementWrapper SelectedStatement { get; set; }
 		ObservableCollection<StatementWrapper> Statements { get; set; }
 	    ObservableCollection<IMenuItemViewModel> MenuItemViewModels { get; }
     }
@@ -20,47 +28,91 @@ namespace RAM.Infrastructure.ViewModel
 	{
 		private readonly IStatementProvider _statementProvider;
 
-		private StatementWrapper _selectedStatement;
+	    private string _label;
+	    private string _instruction;
+	    private string _argument;
+	    private string _comment;
+        private StatementWrapper _selectedStatement;
 		private ObservableCollection<StatementWrapper> _statements;
-
-
-	    public StatementGridViewModel(IStatementProvider statementProvider)
+        
+	    public StatementGridViewModel(IStatementProvider statementProvider, IEventAggregator eventAggregator)
 		{
 			_statementProvider = statementProvider;
+		    eventAggregator.GetEvent<LanguageChangedEvent>().Subscribe(LoadLocalizationStrings);
 
 		    MenuItemViewModels = Seed();
 			_statements = new ObservableCollection<StatementWrapper>(
 				_statementProvider.GetAllStatements().Select(x => new StatementWrapper(x)));
+		    LoadLocalizationStrings();
 		}
 
-        public StatementWrapper SelectedStatement
-		{
-			get => _selectedStatement;
-			set => SetProperty(ref _selectedStatement, value);
-		}
+        #region Properties
 
-		public ObservableCollection<StatementWrapper> Statements
-		{
-			get => _statements;
-			set => SetProperty(ref _statements, value);
-		}
+	    public string Label
+	    {
+	        get => _label;
+	        set => SetProperty(ref _label, value);
+	    }
+
+	    public string Instruction
+	    {
+	        get => _instruction;
+	        set => SetProperty(ref _instruction, value);
+	    }
+
+	    public string Argument
+	    {
+	        get => _argument;
+	        set => SetProperty(ref _argument, value);
+	    }
+
+	    public string Comment
+	    {
+	        get => _comment;
+	        set => SetProperty(ref _comment, value);
+	    }
+
+	    public StatementWrapper SelectedStatement
+	    {
+	        get => _selectedStatement;
+	        set => SetProperty(ref _selectedStatement, value);
+	    }
+
+	    public ObservableCollection<StatementWrapper> Statements
+	    {
+	        get => _statements;
+	        set => SetProperty(ref _statements, value);
+	    }
 
 	    public ObservableCollection<IMenuItemViewModel> MenuItemViewModels { get; protected set; }
 
+        #endregion
 
-	    #region Menu items creation
+	    #region Event handlers
+
+	    private void LoadLocalizationStrings()
+	    {
+	        Label = Controls.Label;
+	        Instruction = Controls.Instruction;
+	        Argument = Controls.Number;
+	        Comment = Controls.Comment;
+	    }
+
+	    #endregion
+
+        #region Menu items creation
 
         private ObservableCollection<IMenuItemViewModel> Seed()
 	    {
 	        var menuItems = new ObservableCollection<IMenuItemViewModel>
 	        {
-                LoadInstance(MenuItems.Paste, new RelayCommand(PasteExecute)),
-                LoadInstance(MenuItems.Copy, new RelayCommand(CopyExecute)),
-                LoadInstance(MenuItems.Cut, new RelayCommand(CutExecute)),
-                LoadInstance(MenuItems.AddAbove, new RelayCommand(AddAboveExecute)),
-                LoadInstance(MenuItems.AddBelow, new RelayCommand(AddBelowExecute)),
-                LoadInstance(MenuItems.Delete, new RelayCommand(DeleteExecute)),
-                LoadInstance(MenuItems.ClearTape, new RelayCommand(ClearTapeExecute))
+                LoadInstance(() => MenuItems.Paste, new RelayCommand(PasteExecute)),
+                LoadInstance(() => MenuItems.Copy, new RelayCommand(CopyExecute)),
+                LoadInstance(() => MenuItems.Cut, new RelayCommand(CutExecute)),
+                LoadInstance(() => MenuItems.AddAbove, new RelayCommand(AddAboveExecute)),
+                LoadInstance(() => MenuItems.AddBelow, new RelayCommand(AddBelowExecute)),
+                LoadInstance(() => MenuItems.Delete, new RelayCommand(DeleteExecute)),
+                LoadInstance(() => MenuItems.ClearTape, new RelayCommand(ClearTapeExecute))
             };
 	        return menuItems;
 	    }

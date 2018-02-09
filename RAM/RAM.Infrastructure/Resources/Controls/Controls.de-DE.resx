@@ -121,12 +121,21 @@
     <value>Argument</value>
   </data>
   <data name="Comment" xml:space="preserve">
-    <value>Comment</value>
+    <value>Kommentar</value>
   </data>
   <data name="Instruction" xml:space="preserve">
-    <value>Instruction</value>
+    <value>Instruktion</value>
   </data>
   <data name="Label" xml:space="preserve">
-    <value>Label</value>
+    <value>Etikette</value>
+  </data>
+  <data name="Number" xml:space="preserve">
+    <value>№</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>App title DE</value>
+  </data>
+  <data name="Value" xml:space="preserve">
+    <value>Wert</value>
   </data>
 </root>

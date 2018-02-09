@@ -31,8 +31,7 @@
                     <ContextMenu.ItemContainerStyle>
                         <Style TargetType="{x:Type MenuItem}">
                             <Setter Property="Command" Value="{Binding Path=Command}" />
-                            <Setter Property="CommandParameter" 
-                                    Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}, Path=SelectedItem}" />
+                            <Setter Property="CommandParameter" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}, Path=SelectedItem}" />
                         </Style>
                     </ContextMenu.ItemContainerStyle>
                     <ContextMenu.ItemTemplate>

@@ -1,38 +1,38 @@
 ﻿<Window
-	x:Class="RAM.UI.View.MainWindow"
-	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	xmlns:view="clr-namespace:RAM.UI.View"
+    x:Class="RAM.UI.View.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:p="clr-namespace:RAM.Infrastructure.Resources;assembly=RAM.Infrastructure"
+    xmlns:view="clr-namespace:RAM.UI.View"
     Title="{Binding Header}"
-	Width="725"
-	Height="450"
-	DataContext="{Binding MainWindowViewModel, Source={StaticResource ModelViewLocator}}"
-	mc:Ignorable="d">
+    Width="725"
+    Height="450"
+    DataContext="{Binding MainWindowViewModel, Source={StaticResource ModelViewLocator}}"
+    mc:Ignorable="d">
 
-	<DockPanel>
-		<view:MenuBarView DockPanel.Dock="Top" />
+    <DockPanel>
+        <view:MenuBarView DockPanel.Dock="Top" />
 
-		<Grid DockPanel.Dock="Top">
-			<Grid.ColumnDefinitions>
-				<ColumnDefinition Width="1*" />
-				<ColumnDefinition Width="3*" />
-				<ColumnDefinition Width="1*" />
-			</Grid.ColumnDefinitions>
+        <Grid DockPanel.Dock="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
 
-			<Grid.RowDefinitions>
-				<RowDefinition Height="1*" />
-				<RowDefinition Height="3*" />
-				<RowDefinition Height="1*" />
-				<RowDefinition Height="1*" />
-			</Grid.RowDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="3*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
 
-			<view:InputTapeView Grid.Row="1" Grid.Column="0" />
-			<view:StatementGridView Grid.Row="1" Grid.Column="1" />
-			<view:OutputTapewView Grid.Row="1" Grid.Column="2" />
-		</Grid>
-	</DockPanel>
+            <view:InputTapeView Grid.Row="1" Grid.Column="0" />
+            <view:StatementGridView Grid.Row="1" Grid.Column="1" />
+            <view:OutputTapewView Grid.Row="1" Grid.Column="2" />
+        </Grid>
+    </DockPanel>
 
 </Window>

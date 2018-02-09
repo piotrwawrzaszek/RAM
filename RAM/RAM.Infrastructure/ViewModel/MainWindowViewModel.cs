@@ -2,7 +2,10 @@
 using RAM.Infrastructure.ViewModel.Base;
 using System.Threading;
 using System.Configuration;
-using RAM.Infrastructure.Resources.MenuItems;
+using Prism.Events;
+using RAM.Infrastructure.Data;
+using RAM.Infrastructure.Events;
+using RAM.Infrastructure.Resources.Controls;
 
 namespace RAM.Infrastructure.ViewModel
 {
@@ -13,21 +16,29 @@ namespace RAM.Infrastructure.ViewModel
 
 	public class MainWindowViewModel : BaseViewModel, IMainWindowViewModel
 	{
-		private string _header;
-	    private string _culture;
+	    private string _header;
         
-        public MainWindowViewModel()
-		{
-            _culture = ConfigurationManager.AppSettings["Culture"];
-            Thread.CurrentThread.CurrentUICulture = new CultureInfo(_culture);
-
-            _header = MenuItems.About;
-		}
+        public MainWindowViewModel(IEventAggregator eventAggregator, 
+            ICultureInfoProvider cultureInfoProvider)
+        {
+            eventAggregator.GetEvent<LanguageChangedEvent>().Subscribe(LoadLocalizationStrings);
+            Thread.CurrentThread.CurrentUICulture = cultureInfoProvider.GetCultureInfo();
+            LoadLocalizationStrings();
+        }
 
 		public string Header
 		{
 			get => _header;
 			set => SetProperty(ref _header, value);
 		}
-	}
+
+        #region Event handlers
+
+	    private void LoadLocalizationStrings()
+	    {
+	        Header = Controls.Title;
+	    }
+
+        #endregion
+    }
 }

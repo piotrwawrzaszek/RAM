@@ -1,6 +1,9 @@
 ﻿using System.Collections.ObjectModel;
 using FluentAssertions;
+using Moq;
+using Prism.Events;
 using RAM.Domain.Model;
+using RAM.Infrastructure.Events;
 using RAM.Infrastructure.ViewModel;
 using RAM.Infrastructure.ViewModel.Wrapper;
 using Xunit;
@@ -11,15 +14,23 @@ namespace RAM.UITests.ViewModel
 	{
 		public MenuItemViewModelTests()
 		{
-			_menuItemViewModel = new MenuItemViewModel
+		    _eventAggregatorMock = new Mock<IEventAggregator>();
+
+		    var languageChangedEventMock = new Mock<LanguageChangedEvent>();
+		    _eventAggregatorMock
+		        .Setup(ea => ea.GetEvent<LanguageChangedEvent>())
+		        .Returns(languageChangedEventMock.Object);
+
+            _menuItemViewModel = new MenuItemViewModel(_eventAggregatorMock.Object)
 			{
 				Model = new MenuItemWrapper(new MenuItem("Header"))
 			};
 		}
 
 		private readonly IMenuItemViewModel _menuItemViewModel;
+	    private readonly Mock<IEventAggregator> _eventAggregatorMock;
 
-		[Fact]
+        [Fact]
 		public void Should_raise_property_changed_event_for_child_menu_items()
 		{
 			_menuItemViewModel.MonitorEvents();

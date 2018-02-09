@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RAM.Infrastructure.Resources.Statements {
+namespace RAM.Infrastructure.Resources.Controls {
     using System;
     
     
@@ -22,24 +22,24 @@ namespace RAM.Infrastructure.Resources.Statements {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Statements {
+    public class Controls {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Statements() {
+        internal Controls() {
         }
         
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("RAM.Infrastructure.Resources.Statements.Statements", typeof(Statements).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("RAM.Infrastructure.Resources.Controls.Controls", typeof(Controls).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -51,7 +51,7 @@ namespace RAM.Infrastructure.Resources.Statements {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace RAM.Infrastructure.Resources.Statements {
         /// <summary>
         ///   Looks up a localized string similar to Argument.
         /// </summary>
-        internal static string Argument {
+        public static string Argument {
             get {
                 return ResourceManager.GetString("Argument", resourceCulture);
             }
@@ -72,7 +72,7 @@ namespace RAM.Infrastructure.Resources.Statements {
         /// <summary>
         ///   Looks up a localized string similar to Comment.
         /// </summary>
-        internal static string Comment {
+        public static string Comment {
             get {
                 return ResourceManager.GetString("Comment", resourceCulture);
             }
@@ -81,7 +81,7 @@ namespace RAM.Infrastructure.Resources.Statements {
         /// <summary>
         ///   Looks up a localized string similar to Instruction.
         /// </summary>
-        internal static string Instruction {
+        public static string Instruction {
             get {
                 return ResourceManager.GetString("Instruction", resourceCulture);
             }
@@ -90,9 +90,36 @@ namespace RAM.Infrastructure.Resources.Statements {
         /// <summary>
         ///   Looks up a localized string similar to Label.
         /// </summary>
-        internal static string Label {
+        public static string Label {
             get {
                 return ResourceManager.GetString("Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to №.
+        /// </summary>
+        public static string Number {
+            get {
+                return ResourceManager.GetString("Number", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to App title.
+        /// </summary>
+        public static string Title {
+            get {
+                return ResourceManager.GetString("Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Value.
+        /// </summary>
+        public static string Value {
+            get {
+                return ResourceManager.GetString("Value", resourceCulture);
             }
         }
     }

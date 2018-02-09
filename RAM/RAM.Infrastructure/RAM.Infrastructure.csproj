@@ -35,6 +35,9 @@
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="Prism, Version=6.2.0.0, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Core.6.2.1\lib\net45\Prism.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
@@ -53,12 +56,34 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Command\RelayCommand.cs" />
+    <Compile Include="Data\CultureInfoProvider.cs" />
     <Compile Include="Data\IDataProvider.cs" />
     <Compile Include="Data\StatementProvider.cs" />
     <Compile Include="Data\TapeMemberProvider.cs" />
+    <Compile Include="Events\LanguageChangedEvent.cs" />
     <Compile Include="ModelViewLocator\ModelViewLocator.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\Controls\Controls.de-DE.Designer.cs">
+      <DependentUpon>Controls.de-DE.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Controls\Controls.Designer.cs">
+      <DependentUpon>Controls.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Controls\Controls.en-GB.Designer.cs">
+      <DependentUpon>Controls.en-GB.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Controls\Controls.pl-PL.Designer.cs">
+      <DependentUpon>Controls.pl-PL.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Resources\MenuItems\MenuItems.de-DE.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -78,26 +103,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>MenuItems.pl-PL.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Resources\Statements\Statements.de-DE.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Statements.de-DE.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Resources\Statements\Statements.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Statements.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Resources\Statements\Statements.pl-PL.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Statements.pl-PL.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Resources\Statements\Statements.en-GB.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Statements.en-GB.resx</DependentUpon>
     </Compile>
     <Compile Include="Services\IService.cs" />
     <Compile Include="Services\StatementService.cs" />
@@ -128,6 +133,22 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Resources\Controls\Controls.de-DE.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Controls.de-DE.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Controls\Controls.en-GB.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Controls.en-GB.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Controls\Controls.pl-PL.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Controls.pl-PL.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Controls\Controls.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Controls.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\MenuItems\MenuItems.de-DE.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>MenuItems.de-DE.Designer.cs</LastGenOutput>
@@ -143,22 +164,6 @@
     <EmbeddedResource Include="Resources\MenuItems\MenuItems.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>MenuItems.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Statements\Statements.en-GB.resx">
-      <LastGenOutput>Statements.en-GB.Designer.cs</LastGenOutput>
-      <Generator>PublicResXFileCodeGenerator</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Statements\Statements.de-DE.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Statements.de-DE.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Statements\Statements.pl-PL.resx">
-      <LastGenOutput>Statements.pl-PL.Designer.cs</LastGenOutput>
-      <Generator>PublicResXFileCodeGenerator</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Statements\Statements.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Statements.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

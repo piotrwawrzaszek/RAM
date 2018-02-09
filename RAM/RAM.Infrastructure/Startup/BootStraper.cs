@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using Prism.Events;
 using RAM.Infrastructure.Startup.Modules;
 
 namespace RAM.Infrastructure.Startup
@@ -8,6 +9,8 @@ namespace RAM.Infrastructure.Startup
         public IContainer BootStrap()
         {
             var builder = new ContainerBuilder();
+
+            builder.RegisterType<EventAggregator>().As<IEventAggregator>().SingleInstance();
 
             builder.RegisterModule<ViewModelModule>();
             builder.RegisterModule<DataProviderModule>();

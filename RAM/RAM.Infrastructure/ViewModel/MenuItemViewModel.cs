@@ -1,7 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
+using Prism.Events;
 using RAM.Domain.Model;
+using RAM.Infrastructure.Events;
+using RAM.Infrastructure.Startup;
 using RAM.Infrastructure.ViewModel.Base;
 using RAM.Infrastructure.ViewModel.Wrapper;
 
@@ -19,11 +23,14 @@ namespace RAM.Infrastructure.ViewModel
 
     public class MenuItemViewModel : BaseViewModel, IMenuItemViewModel
     {
+        private static Func<string> _getHeader;
+
         private ObservableCollection<IMenuItemViewModel> _childMenuItems;
         private MenuItemWrapper _model;
 
-        public MenuItemViewModel()
+        public MenuItemViewModel(IEventAggregator eventAggregator)
         {
+            eventAggregator.GetEvent<LanguageChangedEvent>().Subscribe(LoadLocalizationStrings);
             _childMenuItems = new ObservableCollection<IMenuItemViewModel>();
         }
 
@@ -49,15 +56,26 @@ namespace RAM.Infrastructure.ViewModel
             Children = new ObservableCollection<IMenuItemViewModel>(children);
         }
 
-        public static IMenuItemViewModel LoadInstance(string header,
+        // This method exists becouse of author's lazyness 
+        public static IMenuItemViewModel LoadInstance(Func<string> getHeader,
             ICommand command, IEnumerable<IMenuItemViewModel> children = null)
         {
-            var menuItem = new MenuItemViewModel();
+            _getHeader = getHeader;
+            var menuItem = new MenuItemViewModel(Container.Resolve<IEventAggregator>());
 
-            menuItem.Load(new MenuItemWrapper(new MenuItem(header)), command,
+            menuItem.Load(new MenuItemWrapper(new MenuItem(_getHeader())), command,
                 children ?? new List<IMenuItemViewModel>());
 
             return menuItem;
         }
+
+        #region Event handlers
+
+        private void LoadLocalizationStrings()
+        {
+            Model.Header = _getHeader();
+        }
+
+        #endregion
     }
 }
