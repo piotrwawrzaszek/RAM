@@ -5,7 +5,6 @@ using System.Windows.Input;
 using Prism.Events;
 using RAM.Domain.Model;
 using RAM.Infrastructure.Events;
-using RAM.Infrastructure.Startup;
 using RAM.Infrastructure.ViewModel.Base;
 using RAM.Infrastructure.ViewModel.Wrapper;
 
@@ -16,20 +15,20 @@ namespace RAM.Infrastructure.ViewModel
         MenuItemWrapper Model { get; set; }
         ICommand Command { get; }
         ObservableCollection<IMenuItemViewModel> Children { get; set; }
-
-        void Load(MenuItemWrapper menuItemWrapper, ICommand command,
-            IEnumerable<IMenuItemViewModel> children);
+        IMenuItemViewModel Load(ICommand command, IEnumerable<IMenuItemViewModel> children);
     }
 
     public class MenuItemViewModel : BaseViewModel, IMenuItemViewModel
     {
-        private static Func<string> _getHeader;
+        private readonly Func<string> _getHeader;
 
         private ObservableCollection<IMenuItemViewModel> _childMenuItems;
         private MenuItemWrapper _model;
 
-        public MenuItemViewModel(IEventAggregator eventAggregator)
+        public MenuItemViewModel(Func<string> getHeader, IEventAggregator eventAggregator)
         {
+            _getHeader = getHeader;
+
             eventAggregator.GetEvent<LanguageChangedEvent>().Subscribe(LoadLocalizationStrings);
             _childMenuItems = new ObservableCollection<IMenuItemViewModel>();
         }
@@ -48,25 +47,16 @@ namespace RAM.Infrastructure.ViewModel
             set => SetProperty(ref _model, value);
         }
 
-        public void Load(MenuItemWrapper menuItemWrapper, ICommand command,
-            IEnumerable<IMenuItemViewModel> children)
+        public IMenuItemViewModel Load(ICommand command,
+            IEnumerable<IMenuItemViewModel> children = null)
         {
-            Model = menuItemWrapper;
+            Model = new MenuItemWrapper(new MenuItem(_getHeader()));
             Command = command;
-            Children = new ObservableCollection<IMenuItemViewModel>(children);
-        }
 
-        // This method exists becouse of author's lazyness 
-        public static IMenuItemViewModel LoadInstance(Func<string> getHeader,
-            ICommand command, IEnumerable<IMenuItemViewModel> children = null)
-        {
-            _getHeader = getHeader;
-            var menuItem = new MenuItemViewModel(Container.Resolve<IEventAggregator>());
+            if (children != null)
+                Children = new ObservableCollection<IMenuItemViewModel>(children);
 
-            menuItem.Load(new MenuItemWrapper(new MenuItem(_getHeader())), command,
-                children ?? new List<IMenuItemViewModel>());
-
-            return menuItem;
+            return this;
         }
 
         #region Event handlers

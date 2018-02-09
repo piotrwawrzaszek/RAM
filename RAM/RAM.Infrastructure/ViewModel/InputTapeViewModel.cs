@@ -1,7 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows.Input;
 using Prism.Events;
-using RAM.Domain.Model;
 using RAM.Infrastructure.Command;
 using RAM.Infrastructure.Data;
 using RAM.Infrastructure.Events;
@@ -9,7 +9,6 @@ using RAM.Infrastructure.Resources.Controls;
 using RAM.Infrastructure.ViewModel.Base;
 using RAM.Infrastructure.ViewModel.Wrapper;
 using RAM.Infrastructure.Resources.MenuItems;
-using static RAM.Infrastructure.ViewModel.MenuItemViewModel;
 
 namespace RAM.Infrastructure.ViewModel
 {
@@ -17,6 +16,15 @@ namespace RAM.Infrastructure.ViewModel
     {
         string Number { get; set; }
         string Value { get; set; }
+
+        ICommand PasteCommand { get; }
+        ICommand CopyCommand { get; }
+        ICommand CutCommand { get; }
+        ICommand AddAboveCommand { get; }
+        ICommand AddBelowCommand { get; }
+        ICommand DeleteCommand { get; }
+        ICommand ClearTapeCommand { get; }
+
         TapeMemberWrapper SelectedTapeMember { get; set; }
         ObservableCollection<TapeMemberWrapper> TapeMembers { get; set; }
         ObservableCollection<IMenuItemViewModel> MenuItemViewModels { get; }
@@ -36,9 +44,12 @@ namespace RAM.Infrastructure.ViewModel
             IEventAggregator eventAggregator)
         {
             _tapeMemberProvider = tapeMemberProvider;
-            eventAggregator.GetEvent<LanguageChangedEvent>().Subscribe(LoadLocalizationStrings);
+            _eventAggregator = eventAggregator;
+            _eventAggregator.GetEvent<LanguageChangedEvent>().Subscribe(LoadLocalizationStrings);
 
-            MenuItemViewModels = Seed();
+            SeedCommands();
+            SeedMenuItems();
+
             _tapeMembers = new ObservableCollection<TapeMemberWrapper>(
                 _tapeMemberProvider.GetAllTapeMembers().Select(x => new TapeMemberWrapper(x)));
             LoadLocalizationStrings();
@@ -70,6 +81,14 @@ namespace RAM.Infrastructure.ViewModel
             set => SetProperty(ref _tapeMembers, value);
         }
 
+        public ICommand PasteCommand { get; protected set; }
+        public ICommand CopyCommand { get; protected set; }
+        public ICommand CutCommand { get; protected set; }
+        public ICommand AddAboveCommand { get; protected set; }
+        public ICommand AddBelowCommand { get; protected set; }
+        public ICommand DeleteCommand { get; protected set; }
+        public ICommand ClearTapeCommand { get; protected set; }
+
         public ObservableCollection<IMenuItemViewModel> MenuItemViewModels { get; protected set; }
 
         #endregion
@@ -86,19 +105,29 @@ namespace RAM.Infrastructure.ViewModel
 
         #region Menu items creation
 
-        private ObservableCollection<IMenuItemViewModel> Seed()
+        private void SeedCommands()
         {
-            var menuItems = new ObservableCollection<IMenuItemViewModel>
+            PasteCommand = new RelayCommand(PasteExecute);
+            CopyCommand = new RelayCommand(CopyExecute);
+            CutCommand = new RelayCommand(CutExecute);
+            AddAboveCommand = new RelayCommand(AddAboveExecute);
+            AddBelowCommand = new RelayCommand(AddBelowExecute);
+            DeleteCommand = new RelayCommand(DeleteExecute);
+            ClearTapeCommand = new RelayCommand(ClearTapeExecute);
+        }
+
+        private void SeedMenuItems()
+        {
+            MenuItemViewModels = new ObservableCollection<IMenuItemViewModel>
             {
-                LoadInstance(() => MenuItems.Paste, new RelayCommand(PasteExecute)),
-                LoadInstance(() => MenuItems.Copy, new RelayCommand(CopyExecute)),
-                LoadInstance(() => MenuItems.Cut, new RelayCommand(CutExecute)),
-                LoadInstance(() => MenuItems.AddAbove, new RelayCommand(AddAboveExecute)),
-                LoadInstance(() => MenuItems.AddBelow, new RelayCommand(AddBelowExecute)),
-                LoadInstance(() => MenuItems.Delete, new RelayCommand(DeleteExecute)),
-                LoadInstance(() => MenuItems.ClearTape, new RelayCommand(ClearTapeExecute))
+                new MenuItemViewModel(() => MenuItems.Paste, _eventAggregator).Load(PasteCommand),
+                new MenuItemViewModel(() => MenuItems.Copy, _eventAggregator).Load(CopyCommand),
+                new MenuItemViewModel(() => MenuItems.Cut, _eventAggregator).Load(CutCommand),
+                new MenuItemViewModel(() => MenuItems.AddAbove, _eventAggregator).Load(AddAboveCommand),
+                new MenuItemViewModel(() => MenuItems.AddBelow, _eventAggregator).Load(AddBelowCommand),
+                new MenuItemViewModel(() => MenuItems.Delete, _eventAggregator).Load(DeleteCommand),
+                new MenuItemViewModel(() => MenuItems.ClearTape, _eventAggregator).Load(ClearTapeCommand)
             };
-            return menuItems;
         }
 
         #endregion

@@ -40,9 +40,9 @@ namespace RAM.Domain.Model
 	    {
 	        if (header.IsNullOrWhiteSpace())
 	            throw new Exception("Menu item's header cannot be empty.");
-	        if (Header == header)
-	            throw new Exception("You cannot save menu item's header with the same value.");
-	        Header = header;
+            if (Header == header)
+                throw new Exception("You cannot save menu item's header with the same value.");
+            Header = header;
 	    }
 
 	    public void SetIsChecked(bool isChecked)

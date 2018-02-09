@@ -1,7 +1,5 @@
-﻿using System.Globalization;
-using RAM.Infrastructure.ViewModel.Base;
+﻿using RAM.Infrastructure.ViewModel.Base;
 using System.Threading;
-using System.Configuration;
 using Prism.Events;
 using RAM.Infrastructure.Data;
 using RAM.Infrastructure.Events;

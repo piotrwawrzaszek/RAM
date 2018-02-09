@@ -7,14 +7,15 @@ using System.Windows.Input;
 using Prism.Events;
 using RAM.Infrastructure.Command;
 using RAM.Infrastructure.Events;
-using RAM.Infrastructure.ViewModel.Base;
 using RAM.Infrastructure.Resources.MenuItems;
-using static RAM.Infrastructure.ViewModel.MenuItemViewModel;
+using RAM.Infrastructure.ViewModel.Base;
 
 namespace RAM.Infrastructure.ViewModel
 {
     public interface IMenuBarViewModel : IViewModel
     {
+        ICommand TestCommand { get; }
+
         ICommand ChangeLanguageCommand { get; }
         ObservableCollection<IMenuItemViewModel> MenuItemViewModels { get; }
     }
@@ -27,20 +28,25 @@ namespace RAM.Infrastructure.ViewModel
         {
             _eventAggregator = eventAggregator;
 
-            ChangeLanguageCommand = new RelayCommand(ChangeLanguageExecute);
-
-            MenuItemViewModels = Seed();
+            SeedCommands();
+            SeedMenuItems();
         }
+
+        #region Properties
+
+        public ICommand TestCommand { get; protected set; }
 
         public ICommand ChangeLanguageCommand { get; protected set; }
         public ObservableCollection<IMenuItemViewModel> MenuItemViewModels { get; protected set; }
+
+        #endregion
 
         #region Command methods
 
         // Only for current testing purpose
         private void ChangeLanguageExecute(object o)
         {
-            Thread.CurrentThread.CurrentUICulture = new CultureInfo("de-DE");
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-GB");
             _eventAggregator.GetEvent<LanguageChangedEvent>().Publish();
         }
 
@@ -57,37 +63,42 @@ namespace RAM.Infrastructure.ViewModel
 
         #region Menu items creation
 
-        private ObservableCollection<IMenuItemViewModel> Seed()
+        private void SeedCommands()
         {
-            var menuItems = new ObservableCollection<IMenuItemViewModel>
+            TestCommand = new RelayCommand(Execute);
+
+            ChangeLanguageCommand = new RelayCommand(ChangeLanguageExecute);
+        }
+
+        private void SeedMenuItems()
+        {
+            MenuItemViewModels = new ObservableCollection<IMenuItemViewModel>
             {
-                LoadInstance(() => MenuItems.File, null,
-                    new List<IMenuItemViewModel>
+                new MenuItemViewModel(() => MenuItems.File, _eventAggregator).Load(null, 
+                new List<IMenuItemViewModel>
                     {
-                        LoadInstance(() => "Option 1", new RelayCommand(Execute)),
-                        LoadInstance(() => "Option 2", new RelayCommand(Execute))
+                        new MenuItemViewModel(() => "Lang: EN", _eventAggregator).Load(ChangeLanguageCommand),
+                        new MenuItemViewModel(() => "Option 2", _eventAggregator).Load(TestCommand)
                     }),
-                LoadInstance(() => MenuItems.Edit, null,
-                    new List<IMenuItemViewModel>
+                new MenuItemViewModel(() => MenuItems.Edit, _eventAggregator)
+                    .Load(null, new List<IMenuItemViewModel>
                     {
-                        LoadInstance(() => "Option 1", new RelayCommand(Execute)),
-                        LoadInstance(() => "Option 2", new RelayCommand(Execute)),
-                        LoadInstance(()=> "de-DE", ChangeLanguageCommand)
+                        new MenuItemViewModel(() => "Option 1", _eventAggregator).Load(TestCommand),
+                        new MenuItemViewModel(() => "Option 2", _eventAggregator).Load(TestCommand)
                     }),
-                LoadInstance(() => MenuItems.View, null,
-                    new List<IMenuItemViewModel>
+                new MenuItemViewModel(() => MenuItems.View, _eventAggregator)
+                    .Load(null, new List<IMenuItemViewModel>
                     {
-                        LoadInstance(() => "Option 1", new RelayCommand(Execute)),
-                        LoadInstance(() => "Option 2", new RelayCommand(Execute))
+                        new MenuItemViewModel(() => "Option 1", _eventAggregator).Load(TestCommand),
+                        new MenuItemViewModel(() => "Option 2", _eventAggregator).Load(TestCommand)
                     }),
-                LoadInstance(() => MenuItems.About, null,
-                    new List<IMenuItemViewModel>
+                new MenuItemViewModel(() => MenuItems.About, _eventAggregator)
+                    .Load(null, new List<IMenuItemViewModel>
                     {
-                        LoadInstance(() => "Option 1", new RelayCommand(Execute)),
-                        LoadInstance(() => "Option 2", new RelayCommand(Execute))
+                        new MenuItemViewModel(() => "Option 1", _eventAggregator).Load(TestCommand),
+                        new MenuItemViewModel(() => "Option 2", _eventAggregator).Load(TestCommand)
                     })
             };
-            return menuItems;
         }
 
         #endregion

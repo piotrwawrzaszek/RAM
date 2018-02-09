@@ -1,11 +1,10 @@
 ﻿using System.Collections.ObjectModel;
+using System.Windows.Input;
 using FluentAssertions;
 using Moq;
 using Prism.Events;
-using RAM.Domain.Model;
 using RAM.Infrastructure.Events;
 using RAM.Infrastructure.ViewModel;
-using RAM.Infrastructure.ViewModel.Wrapper;
 using Xunit;
 
 namespace RAM.UITests.ViewModel
@@ -21,14 +20,15 @@ namespace RAM.UITests.ViewModel
 		        .Setup(ea => ea.GetEvent<LanguageChangedEvent>())
 		        .Returns(languageChangedEventMock.Object);
 
-            _menuItemViewModel = new MenuItemViewModel(_eventAggregatorMock.Object)
-			{
-				Model = new MenuItemWrapper(new MenuItem("Header"))
-			};
+            _commandMock = new Mock<ICommand>();
+		    _menuItemViewModel = new MenuItemViewModel(() => "Header",
+                _eventAggregatorMock.Object).Load(_commandMock.Object);
+
 		}
 
 		private readonly IMenuItemViewModel _menuItemViewModel;
 	    private readonly Mock<IEventAggregator> _eventAggregatorMock;
+	    private readonly Mock<ICommand> _commandMock;
 
         [Fact]
 		public void Should_raise_property_changed_event_for_child_menu_items()
