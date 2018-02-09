@@ -65,6 +65,7 @@ namespace RAM.Infrastructure.ViewModel.Wrapper
 			get => Model.Label;
 			set
 			{
+			    if (Model.Label == value) return;
 				Model.SetLabel(value);
 				OnPropertyChanged();
 			}
@@ -75,7 +76,8 @@ namespace RAM.Infrastructure.ViewModel.Wrapper
 			get => Model.Instruction;
 			set
 			{
-				Model.SetInstruction(value);
+			    if (Model.Instruction == value) return;
+                Model.SetInstruction(value);
 				OnPropertyChanged();
 			}
 		}
@@ -85,7 +87,8 @@ namespace RAM.Infrastructure.ViewModel.Wrapper
 			get => Model.Argument;
 			set
 			{
-				Model.SetArgument(value);
+			    if (Model.Argument == value) return;
+                Model.SetArgument(value);
 				OnPropertyChanged();
 			}
 		}
@@ -95,7 +98,8 @@ namespace RAM.Infrastructure.ViewModel.Wrapper
 			get => Model.Comment;
 			set
 			{
-				Model.SetComment(value);
+			    if (Model.Comment == value) return;
+                Model.SetComment(value);
 				OnPropertyChanged();
 			}
 		}

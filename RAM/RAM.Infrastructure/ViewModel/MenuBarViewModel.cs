@@ -74,8 +74,8 @@ namespace RAM.Infrastructure.ViewModel
         {
             MenuItemViewModels = new ObservableCollection<IMenuItemViewModel>
             {
-                new MenuItemViewModel(() => MenuItems.File, _eventAggregator).Load(null, 
-                new List<IMenuItemViewModel>
+                new MenuItemViewModel(() => MenuItems.File, _eventAggregator)
+                    .Load(null, new List<IMenuItemViewModel>
                     {
                         new MenuItemViewModel(() => "Lang: EN", _eventAggregator).Load(ChangeLanguageCommand),
                         new MenuItemViewModel(() => "Option 2", _eventAggregator).Load(TestCommand)

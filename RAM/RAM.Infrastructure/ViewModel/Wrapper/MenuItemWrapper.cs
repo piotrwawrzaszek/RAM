@@ -50,7 +50,8 @@ namespace RAM.Infrastructure.ViewModel.Wrapper
 			get => Model.Header;
 			set
 			{
-				Model.SetHeader(value);
+			    if (Model.Header == value) return;
+                Model.SetHeader(value);
 				OnPropertyChanged();
 			}
 		}

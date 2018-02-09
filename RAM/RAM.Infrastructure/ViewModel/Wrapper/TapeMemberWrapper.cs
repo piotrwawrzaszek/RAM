@@ -64,7 +64,8 @@ namespace RAM.Infrastructure.ViewModel.Wrapper
 			get => Model.Number;
 			set
 			{
-				Model.SetNumber(value);
+			    if (Model.Number == value) return;
+                Model.SetNumber(value);
 				OnPropertyChanged();
 			}
 		}
@@ -74,7 +75,8 @@ namespace RAM.Infrastructure.ViewModel.Wrapper
 			get => Model.Value;
 			set
 			{
-				Model.SetValue(value);
+			    if (Model.Value == value) return;
+                Model.SetValue(value);
 				OnPropertyChanged();
 			}
 		}
