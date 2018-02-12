@@ -16,14 +16,27 @@
             ItemsSource="{Binding TapeMembers}"
             SelectedItem="{Binding SelectedTapeMember}">
             <DataGrid.Columns>
-                <DataGridTextColumn
-                    Width="*"
-                    Binding="{Binding Number}"
-                    Header="No." />
-                <DataGridTextColumn
-                    Width="4*"
-                    Binding="{Binding Value}"
-                    Header="Value" />
+                <DataGridTemplateColumn Width="1*">
+                    <DataGridTemplateColumn.Header>
+                        <TextBlock Text="{Binding DataContext.Number, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" />
+                    </DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Number}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Width="4*">
+                    <DataGridTemplateColumn.Header>
+                        <TextBlock Text="{Binding DataContext.Value, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" />
+                    </DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBox BorderThickness="0" Text="{Binding Value}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
 
             <DataGrid.ContextMenu>

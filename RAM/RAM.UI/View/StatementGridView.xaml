@@ -18,22 +18,49 @@
         ItemsSource="{Binding Statements}"
         SelectedItem="{Binding SelectedStatement}">
         <DataGrid.Columns>
-            <DataGridTextColumn
-                Width="*"
-                Binding="{Binding Label}"
-                Header="Label" />
-            <DataGridTextColumn
-                Width="*"
-                Binding="{Binding Instruction}"
-                Header="Instruction" />
-            <DataGridTextColumn
-                Width="*"
-                Binding="{Binding Argument}"
-                Header="Argument" />
-            <DataGridTextColumn
-                Width="*"
-                Binding="{Binding Comment}"
-                Header="Comment" />
+            <DataGridTemplateColumn Width="*">
+                <DataGridTemplateColumn.Header>
+                    <TextBlock Text="{Binding DataContext.Label, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" />
+                </DataGridTemplateColumn.Header>
+                <DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate>
+                        <TextBox BorderThickness="0" Text="{Binding Label}" />
+                    </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
+
+            <DataGridTemplateColumn Width="*">
+                <DataGridTemplateColumn.Header>
+                    <TextBlock Text="{Binding DataContext.Instruction, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" />
+                </DataGridTemplateColumn.Header>
+                <DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate>
+                        <TextBox BorderThickness="0" Text="{Binding Instruction}" />
+                    </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
+
+            <DataGridTemplateColumn Width="*">
+                <DataGridTemplateColumn.Header>
+                    <TextBlock Text="{Binding DataContext.Argument, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" />
+                </DataGridTemplateColumn.Header>
+                <DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate>
+                        <TextBox BorderThickness="0" Text="{Binding Argument}" />
+                    </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
+
+            <DataGridTemplateColumn Width="*">
+                <DataGridTemplateColumn.Header>
+                    <TextBlock Text="{Binding DataContext.Comment, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" />
+                </DataGridTemplateColumn.Header>
+                <DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate>
+                        <TextBox BorderThickness="0" Text="{Binding Comment}" />
+                    </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
         </DataGrid.Columns>
 
         <DataGrid.ContextMenu>

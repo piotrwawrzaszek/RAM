@@ -1,6 +1,9 @@
 ﻿using System.Collections.ObjectModel;
 using FluentAssertions;
+using Moq;
+using Prism.Events;
 using RAM.Domain.Model;
+using RAM.Infrastructure.Events;
 using RAM.Infrastructure.ViewModel;
 using RAM.Infrastructure.ViewModel.Wrapper;
 using Xunit;
@@ -11,10 +14,18 @@ namespace RAM.UITests.ViewModel
 	{
 		public OutputTapeViewModelTests()
 		{
-			_outputTapeViewModel = new OutputTapeViewModel();
+		    _eventAggregatorMock = new Mock<IEventAggregator>();
+
+		    var languageChangedEventMock = new Mock<LanguageChangedEvent>();
+		    _eventAggregatorMock
+		        .Setup(ea => ea.GetEvent<LanguageChangedEvent>())
+		        .Returns(languageChangedEventMock.Object);
+
+            _outputTapeViewModel = new OutputTapeViewModel(_eventAggregatorMock.Object);
 		}
 
-		private readonly IOutputTapeViewModel _outputTapeViewModel;
+	    private readonly Mock<IEventAggregator> _eventAggregatorMock;
+        private readonly IOutputTapeViewModel _outputTapeViewModel;
 
 		[Fact]
 		public void Should_raise_property_changed_event_for_selected_tape_member()

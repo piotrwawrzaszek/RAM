@@ -50,7 +50,7 @@ namespace RAM.Infrastructure.ViewModel
             _eventAggregator.GetEvent<LanguageChangedEvent>().Publish();
         }
 
-        private void Execute(object o)
+        private static void Execute(object o)
         {
             // Only for current testing purpose
             var result = MessageBox.Show(@"Do you want to close this window?", @"Confirmation", MessageBoxButtons.YesNo,

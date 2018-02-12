@@ -9,7 +9,6 @@ using RAM.Infrastructure.Resources.Controls;
 using RAM.Infrastructure.ViewModel.Base;
 using RAM.Infrastructure.ViewModel.Wrapper;
 using RAM.Infrastructure.Resources.MenuItems;
-using static RAM.Infrastructure.ViewModel.MenuItemViewModel;
 
 namespace RAM.Infrastructure.ViewModel
 {
@@ -42,6 +41,7 @@ namespace RAM.Infrastructure.ViewModel
 	    private string _instruction;
 	    private string _argument;
 	    private string _comment;
+
         private StatementWrapper _selectedStatement;
 		private ObservableCollection<StatementWrapper> _statements;
         
@@ -115,7 +115,7 @@ namespace RAM.Infrastructure.ViewModel
 	    {
 	        Label = Controls.Label;
 	        Instruction = Controls.Instruction;
-	        Argument = Controls.Number;
+	        Argument = Controls.Argument;
 	        Comment = Controls.Comment;
 	    }
 

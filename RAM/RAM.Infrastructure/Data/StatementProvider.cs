@@ -19,7 +19,7 @@ namespace RAM.Infrastructure.Data
 		{
 			_statements = new List<Statement>
 			{
-				new Statement("READ", "1"),
+				new Statement("READ", "1", "start:"),
 				new Statement("READ", "2"),
 				new Statement("ADD", "=2"),
 				new Statement("WRITE", "1"),
