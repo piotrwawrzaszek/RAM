@@ -40,11 +40,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Helpers\ExtensionMethods.cs" />
+    <Compile Include="Helpers\Extensions\EnumExtensions.cs" />
+    <Compile Include="Helpers\Extensions\StringExtensions.cs" />
+    <Compile Include="Helpers\Instruction.cs" />
+    <Compile Include="Model\FileRecord.cs" />
     <Compile Include="Model\MenuItem.cs" />
     <Compile Include="Model\Statement.cs" />
     <Compile Include="Model\TapeMember.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\ExceptionMessages.Designer.cs">
+      <DependentUpon>ExceptionMessages.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\ExceptionMessages.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ExceptionMessages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -70,11 +70,29 @@ namespace RAM.Infrastructure.Resources.Controls {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string CancelButtonText {
+            get {
+                return ResourceManager.GetString("CancelButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Comment.
         /// </summary>
         public static string Comment {
             get {
                 return ResourceManager.GetString("Comment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        public static string DeleteButtonText {
+            get {
+                return ResourceManager.GetString("DeleteButtonText", resourceCulture);
             }
         }
         
@@ -97,11 +115,47 @@ namespace RAM.Infrastructure.Resources.Controls {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Load Program.
+        /// </summary>
+        public static string LoadDialogHeader {
+            get {
+                return ResourceManager.GetString("LoadDialogHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Load Input.
+        /// </summary>
+        public static string LoadInputMembersText {
+            get {
+                return ResourceManager.GetString("LoadInputMembersText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string Name {
+            get {
+                return ResourceManager.GetString("Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to №.
         /// </summary>
         public static string Number {
             get {
                 return ResourceManager.GetString("Number", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        public static string OkButtonText {
+            get {
+                return ResourceManager.GetString("OkButtonText", resourceCulture);
             }
         }
         

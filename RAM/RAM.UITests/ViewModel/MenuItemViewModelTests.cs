@@ -21,7 +21,7 @@ namespace RAM.UITests.ViewModel
 		        .Returns(languageChangedEventMock.Object);
 
             _commandMock = new Mock<ICommand>();
-		    _menuItemViewModel = new MenuItemViewModel(() => "Header",
+		    _menuItemViewModel = new MenuItemViewModel(() => "Title",
                 _eventAggregatorMock.Object).Load(_commandMock.Object);
 
 		}

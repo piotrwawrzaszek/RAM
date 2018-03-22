@@ -117,43 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Argument" xml:space="preserve">
-    <value>Argument</value>
+  <data name="EditEN" xml:space="preserve">
+    <value>_Edit</value>
   </data>
-  <data name="CancelButtonText" xml:space="preserve">
-    <value>Cancel</value>
+  <data name="EditPL" xml:space="preserve">
+    <value>_Edycja</value>
   </data>
-  <data name="Comment" xml:space="preserve">
-    <value>Comment</value>
+  <data name="FileEN" xml:space="preserve">
+    <value>_File</value>
   </data>
-  <data name="DeleteButtonText" xml:space="preserve">
-    <value>Delete</value>
+  <data name="FilePL" xml:space="preserve">
+    <value>_Plik</value>
   </data>
-  <data name="Instruction" xml:space="preserve">
-    <value>Instruction</value>
+  <data name="HelpEN" xml:space="preserve">
+    <value>_Help</value>
   </data>
-  <data name="Label" xml:space="preserve">
-    <value>Label</value>
+  <data name="HelpPL" xml:space="preserve">
+    <value>_Pomoc</value>
   </data>
-  <data name="LoadDialogHeader" xml:space="preserve">
-    <value>Load Program</value>
+  <data name="ViewEN" xml:space="preserve">
+    <value>_View</value>
   </data>
-  <data name="LoadInputMembersText" xml:space="preserve">
-    <value>Load Input</value>
-  </data>
-  <data name="Name" xml:space="preserve">
-    <value>Name</value>
-  </data>
-  <data name="Number" xml:space="preserve">
-    <value>№</value>
-  </data>
-  <data name="OkButtonText" xml:space="preserve">
-    <value>OK</value>
-  </data>
-  <data name="Title" xml:space="preserve">
-    <value>App title</value>
-  </data>
-  <data name="Value" xml:space="preserve">
-    <value>Value</value>
+  <data name="ViewPL" xml:space="preserve">
+    <value>_Widok</value>
   </data>
 </root>

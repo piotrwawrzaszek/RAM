@@ -1,5 +1,5 @@
 ﻿using System;
-using RAM.Domain.Helpers;
+using RAM.Domain.Resources;
 
 namespace RAM.Domain.Model
 {
@@ -37,16 +37,16 @@ namespace RAM.Domain.Model
 	    public void SetNumber(int number)
 	    {
 	        if (number < 0)
-	            throw new Exception("You cannot save tape member's number with value less than zero.");
+	            throw new Exception(ExceptionMessages.NumberLessThanZero);
 	        if (Number == number)
-	            throw new Exception("You cannot save tape member's number with the same value.");
+	            throw new Exception(ExceptionMessages.DuplicatedNumber);
 	        Number = number;
 	    }
 
 	    public void SetValue(string value)
 	    {
 	        if (Value == value)
-	            throw new Exception("You cannot save tape member's value with the same value.");
+	            throw new Exception(ExceptionMessages.DuplicatedValue);
 	        Value = value;
 	    }
 

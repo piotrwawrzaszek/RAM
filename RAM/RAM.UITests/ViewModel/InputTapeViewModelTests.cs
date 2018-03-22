@@ -15,7 +15,7 @@ namespace RAM.UITests.ViewModel
 	{
 		public InputTapeViewModelTests()
 		{
-            _tapeMemberProviderMock = new Mock<ITapeMemberProvider>();
+            _tapeMemberProviderMock = new Mock<IImputMembersProvider>();
             _eventAggregatorMock = new Mock<IEventAggregator>();
 
 		    var languageChangedEventMock = new Mock<LanguageChangedEvent>();
@@ -28,7 +28,7 @@ namespace RAM.UITests.ViewModel
 
 		private readonly IInputTapeViewModel _inputTapeViewModel;
 	    private readonly Mock<IEventAggregator> _eventAggregatorMock;
-        private readonly Mock<ITapeMemberProvider> _tapeMemberProviderMock;
+        private readonly Mock<IImputMembersProvider> _tapeMemberProviderMock;
 
 		[Fact]
 		public void Should_raise_property_changed_event_for_selected_tape_member()

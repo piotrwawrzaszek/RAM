@@ -1,12 +1,14 @@
 ﻿<Application
-	x:Class="RAM.UI.App"
-	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-	xmlns:local="clr-namespace:RAM.UI"
-	xmlns:modelViewLocator="clr-namespace:RAM.Infrastructure.ModelViewLocator;assembly=RAM.Infrastructure"
-	StartupUri="View/MainWindow.xaml">
+    x:Class="RAM.UI.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converters="clr-namespace:RAM.Infrastructure.Converters;assembly=RAM.Infrastructure"
+    xmlns:modelViewLocator="clr-namespace:RAM.Infrastructure.ModelViewLocator;assembly=RAM.Infrastructure"
+    StartupUri="View/MainWindow.xaml">
 
-	<Application.Resources>
-		<modelViewLocator:ModelViewLocator x:Key="ModelViewLocator" />
-	</Application.Resources>
+    <Application.Resources>
+        <modelViewLocator:ModelViewLocator x:Key="ModelViewLocator" />
+        <converters:InstructionConverter x:Key="InstructionConverter" />
+        <converters:NumberingConverter x:Key="NumberingConverter" />
+    </Application.Resources>
 </Application>

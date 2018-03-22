@@ -33,6 +33,9 @@
     <Reference Include="Autofac, Version=4.6.2.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
       <HintPath>..\packages\Autofac.4.6.2\lib\net45\Autofac.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="Prism, Version=6.2.0.0, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
@@ -56,10 +59,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Command\RelayCommand.cs" />
-    <Compile Include="Data\CultureInfoProvider.cs" />
+    <Compile Include="Converters\InstructionConverter.cs" />
+    <Compile Include="Converters\NumberingConverter.cs" />
+    <Compile Include="Data\ConfigurationProvider.cs" />
     <Compile Include="Data\IDataProvider.cs" />
     <Compile Include="Data\StatementProvider.cs" />
-    <Compile Include="Data\TapeMemberProvider.cs" />
+    <Compile Include="Data\ImputMembersProvider.cs" />
     <Compile Include="Events\LanguageChangedEvent.cs" />
     <Compile Include="ModelViewLocator\ModelViewLocator.cs" />
     <Compile Include="Properties\Annotations.cs" />
@@ -104,6 +109,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MenuItems.pl-PL.resx</DependentUpon>
     </Compile>
+    <Compile Include="Services\FileDataService.cs" />
     <Compile Include="Services\IService.cs" />
     <Compile Include="Services\StatementService.cs" />
     <Compile Include="Startup\BootStraper.cs" />
@@ -113,12 +119,15 @@
     <Compile Include="Startup\Modules\ViewModelModule.cs" />
     <Compile Include="ViewModel\Base\IViewModel.cs" />
     <Compile Include="ViewModel\Base\BaseViewModel.cs" />
+    <Compile Include="ViewModel\Dialogs\LoadFileDialogViewModel.cs" />
     <Compile Include="ViewModel\InputTapeViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\MenuBarViewModel.cs" />
     <Compile Include="ViewModel\MenuItemViewModel.cs" />
     <Compile Include="ViewModel\OutputTapeViewModel.cs" />
+    <Compile Include="ViewModel\RegisterPanelViewModel.cs" />
     <Compile Include="ViewModel\StatementGridViewModel.cs" />
+    <Compile Include="ViewModel\Wrapper\FileRecordWrapper.cs" />
     <Compile Include="ViewModel\Wrapper\MenuItemWrapper.cs" />
     <Compile Include="ViewModel\Wrapper\StatementWrapper.cs" />
     <Compile Include="ViewModel\Wrapper\TapeMemberWrapper.cs" />
@@ -166,5 +175,6 @@
       <LastGenOutput>MenuItems.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

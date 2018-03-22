@@ -117,43 +117,55 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Argument" xml:space="preserve">
-    <value>Argument</value>
+  <data name="AlreadyChecked" xml:space="preserve">
+    <value>Menu item is already checked.</value>
   </data>
-  <data name="CancelButtonText" xml:space="preserve">
-    <value>Cancel</value>
+  <data name="AlreadyUnchecked" xml:space="preserve">
+    <value>Menu item is already unchecked.</value>
   </data>
-  <data name="Comment" xml:space="preserve">
-    <value>Comment</value>
+  <data name="DuplicatedArgument" xml:space="preserve">
+    <value>You cannot save statement's argument with the same value.</value>
   </data>
-  <data name="DeleteButtonText" xml:space="preserve">
-    <value>Delete</value>
+  <data name="DuplicatedHeader" xml:space="preserve">
+    <value>You cannot save menu item's header with the same value.</value>
   </data>
-  <data name="Instruction" xml:space="preserve">
-    <value>Instruction</value>
+  <data name="DuplicatedInputMembers" xml:space="preserve">
+    <value>You cannot save file record's input members with the same value.</value>
   </data>
-  <data name="Label" xml:space="preserve">
-    <value>Label</value>
+  <data name="DuplicatedInstruction" xml:space="preserve">
+    <value>You cannot save statement's instruction with the same value.</value>
   </data>
-  <data name="LoadDialogHeader" xml:space="preserve">
-    <value>Load Program</value>
+  <data name="DuplicatedIsChecked" xml:space="preserve">
+    <value>You cannot save menu item's is checked with the same value.</value>
   </data>
-  <data name="LoadInputMembersText" xml:space="preserve">
-    <value>Load Input</value>
+  <data name="DuplicatedLabel" xml:space="preserve">
+    <value>You cannot save statement's label with the same value.</value>
   </data>
-  <data name="Name" xml:space="preserve">
-    <value>Name</value>
+  <data name="DuplicatedNumber" xml:space="preserve">
+    <value>You cannot save tape member's number with the same value.</value>
   </data>
-  <data name="Number" xml:space="preserve">
-    <value>№</value>
+  <data name="DuplicatedStatements" xml:space="preserve">
+    <value>You cannot save file record's statements with the same value.</value>
   </data>
-  <data name="OkButtonText" xml:space="preserve">
-    <value>OK</value>
+  <data name="DuplicatedValue" xml:space="preserve">
+    <value>You cannot save tape member's value with the same value.</value>
   </data>
-  <data name="Title" xml:space="preserve">
-    <value>App title</value>
+  <data name="EmptyHeader" xml:space="preserve">
+    <value>Menu item's header cannot be empty.</value>
   </data>
-  <data name="Value" xml:space="preserve">
-    <value>Value</value>
+  <data name="EmptyPath" xml:space="preserve">
+    <value>Path to file cannot be empty.</value>
+  </data>
+  <data name="EmptyRecordName" xml:space="preserve">
+    <value>Record name cannot be empty.</value>
+  </data>
+  <data name="FileRecord_DuplicatedComment" xml:space="preserve">
+    <value>You cannot save file record's comment with the same value.</value>
+  </data>
+  <data name="NumberLessThanZero" xml:space="preserve">
+    <value>You cannot save tape member's number with value less than zero.</value>
+  </data>
+  <data name="Statement_DuplicatedComment" xml:space="preserve">
+    <value>You cannot save statement's comment with the same value.</value>
   </data>
 </root>

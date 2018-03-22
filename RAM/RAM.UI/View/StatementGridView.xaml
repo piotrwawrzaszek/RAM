@@ -35,7 +35,7 @@
                 </DataGridTemplateColumn.Header>
                 <DataGridTemplateColumn.CellTemplate>
                     <DataTemplate>
-                        <TextBox BorderThickness="0" Text="{Binding Instruction}" />
+                        <TextBox BorderThickness="0" Text="{Binding Instruction, Converter={StaticResource InstructionConverter}}" />
                     </DataTemplate>
                 </DataGridTemplateColumn.CellTemplate>
             </DataGridTemplateColumn>
@@ -67,7 +67,7 @@
             <ContextMenu ItemsSource="{Binding MenuItemViewModels}">
                 <ContextMenu.ItemContainerStyle>
                     <Style TargetType="{x:Type MenuItem}">
-                        <Setter Property="Command" Value="{Binding Path=Command}" />
+                        <Setter Property="Command" Value="{Binding Path=(viewModel:IMenuItemViewModel.Command)}" />
                         <Setter Property="CommandParameter" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}, Path=SelectedItem}" />
                     </Style>
                 </ContextMenu.ItemContainerStyle>

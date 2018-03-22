@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
+using RAM.Domain.Helpers;
 using RAM.Domain.Model;
 using RAM.Infrastructure.ViewModel.Base;
 
@@ -11,7 +12,7 @@ namespace RAM.Infrastructure.ViewModel.Wrapper
 
 	    #region Constructors
 
-	    public StatementWrapper(string instruction, string argument = "",
+	    public StatementWrapper(Instruction instruction, string argument = "",
 	        string label = "", string comment = "")
 	    {
 	        Model = new Statement(instruction, argument, label, comment);
@@ -71,7 +72,7 @@ namespace RAM.Infrastructure.ViewModel.Wrapper
 			}
 		}
 
-		public string Instruction
+		public Instruction Instruction
 		{
 			get => Model.Instruction;
 			set

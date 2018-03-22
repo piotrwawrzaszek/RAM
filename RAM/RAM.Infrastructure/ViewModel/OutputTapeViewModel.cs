@@ -9,8 +9,8 @@ namespace RAM.Infrastructure.ViewModel
 {
 	public interface IOutputTapeViewModel : IViewModel
 	{
-	    string Number { get; set; }
-	    string Value { get; set; }
+	    string Number { get; }
+	    string Value { get; }
 
         TapeMemberWrapper SelectedTapeMember { get; set; }
 		ObservableCollection<TapeMemberWrapper> TapeMembers { get; set; }
@@ -45,13 +45,13 @@ namespace RAM.Infrastructure.ViewModel
 	    public string Number
 	    {
 	        get => _number;
-	        set => SetProperty(ref _number, value);
+	        protected set => SetProperty(ref _number, value);
 	    }
 
 	    public string Value
 	    {
 	        get => _value;
-	        set => SetProperty(ref _value, value);
+	        protected set => SetProperty(ref _value, value);
 	    }
 
         public TapeMemberWrapper SelectedTapeMember

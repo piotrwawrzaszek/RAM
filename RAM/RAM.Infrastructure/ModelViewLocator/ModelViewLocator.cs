@@ -1,5 +1,6 @@
 ﻿using RAM.Infrastructure.Startup;
 using RAM.Infrastructure.ViewModel;
+using RAM.Infrastructure.ViewModel.Dialogs;
 
 namespace RAM.Infrastructure.ModelViewLocator
 {
@@ -22,5 +23,12 @@ namespace RAM.Infrastructure.ModelViewLocator
 
 		public IOutputTapeViewModel OutputTapeViewModel
 			=> Container.Resolve<IOutputTapeViewModel>();
+
+	    public IRegisterPanelViewModel RegisterPanelViewModel
+	        => Container.Resolve<IRegisterPanelViewModel>();
+
+        //Dialogs
+	    public ILoadFileDialogViewModel LoadFileDialogViewModel
+	        => Container.Resolve<ILoadFileDialogViewModel>();
 	}
 }

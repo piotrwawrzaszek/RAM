@@ -12,8 +12,8 @@ namespace RAM.Infrastructure.ViewModel
 {
     public interface IMenuItemViewModel : IViewModel
     {
-        MenuItemWrapper Model { get; set; }
         ICommand Command { get; }
+        MenuItemWrapper Model { get; set; }
         ObservableCollection<IMenuItemViewModel> Children { get; set; }
         IMenuItemViewModel Load(ICommand command, IEnumerable<IMenuItemViewModel> children);
     }
@@ -28,9 +28,8 @@ namespace RAM.Infrastructure.ViewModel
         public MenuItemViewModel(Func<string> getHeader, IEventAggregator eventAggregator)
         {
             _getHeader = getHeader;
-
-            eventAggregator.GetEvent<LanguageChangedEvent>().Subscribe(LoadLocalizationStrings);
             _childMenuItems = new ObservableCollection<IMenuItemViewModel>();
+            eventAggregator.GetEvent<LanguageChangedEvent>().Subscribe(LoadLocalizationStrings);
         }
 
         public ICommand Command { get; protected set; }

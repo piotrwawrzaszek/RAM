@@ -11,7 +11,7 @@
     <Menu ItemsSource="{Binding MenuItemViewModels}">
         <Menu.ItemContainerStyle>
             <Style TargetType="{x:Type MenuItem}">
-                <Setter Property="Command" Value="{Binding Command}" />
+                <Setter Property="Command" Value="{Binding (viewModel:IMenuItemViewModel.Command)}" />
             </Style>
         </Menu.ItemContainerStyle>
         <Menu.ItemTemplate>

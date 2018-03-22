@@ -14,10 +14,10 @@ namespace RAM.Infrastructure.ViewModel
 {
 	public interface IStatementGridViewModel : IViewModel
 	{
-	    string Label { get; set; }
-	    string Instruction { get; set; }
-	    string Argument { get; set; }
-	    string Comment { get; set; }
+	    string Label { get; }
+	    string Instruction { get; }
+	    string Argument { get; }
+	    string Comment { get; }
 
 	    ICommand PasteCommand { get; }
 	    ICommand CopyCommand { get; }
@@ -56,7 +56,10 @@ namespace RAM.Infrastructure.ViewModel
 
 			_statements = new ObservableCollection<StatementWrapper>(
 				_statementProvider.GetAllStatements().Select(x => new StatementWrapper(x)));
-		    LoadLocalizationStrings();
+
+            Clipboard = StatementWrapper.GetEmptyInstance();
+		    Clipboard.PropertyChanged += (sender, args) => InvalidateCommands(); 
+            LoadLocalizationStrings();
 		}
 
         #region Properties
@@ -64,25 +67,25 @@ namespace RAM.Infrastructure.ViewModel
 	    public string Label
 	    {
 	        get => _label;
-	        set => SetProperty(ref _label, value);
+	        protected set => SetProperty(ref _label, value);
 	    }
 
 	    public string Instruction
 	    {
 	        get => _instruction;
-	        set => SetProperty(ref _instruction, value);
+	        protected set => SetProperty(ref _instruction, value);
 	    }
 
 	    public string Argument
 	    {
 	        get => _argument;
-	        set => SetProperty(ref _argument, value);
+	        protected set => SetProperty(ref _argument, value);
 	    }
 
 	    public string Comment
 	    {
 	        get => _comment;
-	        set => SetProperty(ref _comment, value);
+	        protected set => SetProperty(ref _comment, value);
 	    }
 
 	    public StatementWrapper SelectedStatement
@@ -123,17 +126,6 @@ namespace RAM.Infrastructure.ViewModel
 
         #region Menu items creation
 
-	    private void SeedCommands()
-	    {
-	        PasteCommand = new RelayCommand(PasteExecute);
-	        CopyCommand = new RelayCommand(CopyExecute);
-	        CutCommand = new RelayCommand(CutExecute);
-	        AddAboveCommand = new RelayCommand(AddAboveExecute);
-	        AddBelowCommand = new RelayCommand(AddBelowExecute);
-	        DeleteCommand = new RelayCommand(DeleteExecute);
-	        ClearTapeCommand = new RelayCommand(ClearTapeExecute);
-        }
-
 	    private void SeedMenuItems()
 	    {
 	        MenuItemViewModels = new ObservableCollection<IMenuItemViewModel>
@@ -148,9 +140,25 @@ namespace RAM.Infrastructure.ViewModel
             };
 	    }
 
-	    #endregion
+        #endregion
 
-	    #region Command methods
+        #region Command methods
+        
+	    private void SeedCommands()
+	    {
+	        PasteCommand = new RelayCommand(PasteExecute, PasteCanExecute);
+	        CopyCommand = new RelayCommand(CopyExecute);
+	        CutCommand = new RelayCommand(CutExecute);
+	        AddAboveCommand = new RelayCommand(AddAboveExecute);
+	        AddBelowCommand = new RelayCommand(AddBelowExecute);
+	        DeleteCommand = new RelayCommand(DeleteExecute);
+	        ClearTapeCommand = new RelayCommand(ClearTapeExecute);
+	    }
+
+	    private void InvalidateCommands()
+	    {
+            ((RelayCommand) PasteCommand).RaiseCanExecuteChanged();
+        }
 
 	    private void AddAboveExecute(object sender)
 	    {
@@ -175,39 +183,48 @@ namespace RAM.Infrastructure.ViewModel
 
 	        if (_statements.Count == 0)
 	            _statements.Add(StatementWrapper.GetEmptyInstance());
-	    }
+        }
 
 	    private void ClearTapeExecute(object sender)
 	    {
 	        if (!(sender is StatementWrapper)) return;
 	        _statements.Clear();
 	        _statements.Add(StatementWrapper.GetEmptyInstance());
-	    }
+        }
 
-	    private static StatementWrapper _clipboard;
+	    private StatementWrapper _clipboard;
+
+        protected StatementWrapper Clipboard
+        {
+            get => _clipboard;
+            set => SetProperty(ref _clipboard, value);
+        }
 
 	    private void PasteExecute(object sender)
 	    {
 	        if (!(sender is StatementWrapper statement)) return;
-	        if (_clipboard == null) return;
 
 	        var index = _statements.IndexOf(statement);
-	        _statements.Insert(index, _clipboard);
-	    }
+	        _statements.Insert(index, Clipboard);
+        }
 
-	    private static void CopyExecute(object sender)
+	    private bool PasteCanExecute(object sender)
+	        => Clipboard != null && Clipboard == StatementWrapper.GetEmptyInstance();
+
+	    private void CopyExecute(object sender)
 	    {
 	        if (!(sender is StatementWrapper statement)) return;
-            _clipboard = new StatementWrapper(statement);
-	    }
+	        Clipboard = new StatementWrapper(statement);
+        }
 
 	    private void CutExecute(object sender)
 	    {
 	        if (!(sender is StatementWrapper statement)) return;
 
 	        _statements.Remove(statement);
-	        _clipboard = new StatementWrapper(statement);
-	    }
+	        Clipboard = new StatementWrapper(statement);
+        }
+
         #endregion
     }
 }

@@ -54,6 +54,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Dialogs\LoadFileDialogView.xaml.cs">
+      <DependentUpon>LoadFileDialogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\SaveFileDialogView.xaml.cs">
+      <DependentUpon>SaveFileDialogView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\InputTapeView.xaml.cs">
       <DependentUpon>InputTapeView.xaml</DependentUpon>
     </Compile>
@@ -63,9 +69,20 @@
     <Compile Include="View\OutputTapewView.xaml.cs">
       <DependentUpon>OutputTapewView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\RegisterPanelView.xaml.cs">
+      <DependentUpon>RegisterPanelView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\StatementGridView.xaml.cs">
       <DependentUpon>StatementGridView.xaml</DependentUpon>
     </Compile>
+    <Page Include="Dialogs\LoadFileDialogView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\SaveFileDialogView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\InputTapeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -87,6 +104,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\OutputTapewView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\RegisterPanelView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -127,6 +148,8 @@
       <Name>RAM.Infrastructure</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Styles\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -9,32 +9,32 @@ namespace RAM.Infrastructure.ViewModel
 {
 	public interface IMainWindowViewModel : IViewModel
 	{
-		string Header { get; set; }
+		string Title { get; }
 	}
 
 	public class MainWindowViewModel : BaseViewModel, IMainWindowViewModel
 	{
-	    private string _header;
+	    private string _title;
         
         public MainWindowViewModel(IEventAggregator eventAggregator, 
-            ICultureInfoProvider cultureInfoProvider)
+            IConfigurationProvider configurationProvider)
         {
             eventAggregator.GetEvent<LanguageChangedEvent>().Subscribe(LoadLocalizationStrings);
-            Thread.CurrentThread.CurrentUICulture = cultureInfoProvider.GetCultureInfo();
+            Thread.CurrentThread.CurrentUICulture = configurationProvider.GetCultureInfo();
             LoadLocalizationStrings();
         }
 
-		public string Header
+		public string Title
 		{
-			get => _header;
-			set => SetProperty(ref _header, value);
+			get => _title;
+		    protected set => SetProperty(ref _title, value);
 		}
 
         #region Event handlers
 
 	    private void LoadLocalizationStrings()
 	    {
-	        Header = Controls.Title;
+	        Title = Controls.Title;
 	    }
 
         #endregion

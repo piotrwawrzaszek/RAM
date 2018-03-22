@@ -1,5 +1,6 @@
 ﻿using System;
-using RAM.Domain.Helpers;
+using RAM.Domain.Helpers.Extensions;
+using RAM.Domain.Resources;
 
 namespace RAM.Domain.Model
 {
@@ -39,33 +40,33 @@ namespace RAM.Domain.Model
 	    public void SetHeader(string header)
 	    {
 	        if (header.IsNullOrWhiteSpace())
-	            throw new Exception("Menu item's header cannot be empty.");
+	            throw new Exception(ExceptionMessages.EmptyHeader);
             if (Header == header)
-                throw new Exception("You cannot save menu item's header with the same value.");
+                throw new Exception(ExceptionMessages.DuplicatedHeader);
             Header = header;
 	    }
 
 	    public void SetIsChecked(bool isChecked)
 	    {
 	        if (IsChecked == isChecked)
-	            throw new Exception("You cannot save menu item's is checked with the same value.");
+	            throw new Exception(ExceptionMessages.DuplicatedIsChecked);
 	        IsChecked = isChecked;
 	    }
-
-	    // Working perfectly fine, but in MVVM pattern is causing more troubles than benefits.
-	    [Obsolete]
+        
+	    /// Working perfectly fine, but in MVVM pattern is causing more troubles than benefits.
+	    [Obsolete("Use SetIsChecked method instead.")]
 	    public void Check()
 	    {
 	        if (!IsChecked)
-	            throw new Exception("Menu item is already checked.");
+	            throw new Exception(ExceptionMessages.AlreadyChecked);
 	        IsChecked = true;
 	    }
 
-	    [Obsolete]
+	    [Obsolete("Use SetIsChecked method instead.")]
 	    public void Uncheck()
 	    {
 	        if (!IsChecked)
-	            throw new Exception("Menu item is already unchecked.");
+	            throw new Exception(ExceptionMessages.AlreadyUnchecked);
 	        IsChecked = false;
 	    }
 

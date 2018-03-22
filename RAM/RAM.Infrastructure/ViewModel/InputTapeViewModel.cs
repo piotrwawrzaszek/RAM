@@ -6,16 +6,16 @@ using RAM.Infrastructure.Command;
 using RAM.Infrastructure.Data;
 using RAM.Infrastructure.Events;
 using RAM.Infrastructure.Resources.Controls;
+using RAM.Infrastructure.Resources.MenuItems;
 using RAM.Infrastructure.ViewModel.Base;
 using RAM.Infrastructure.ViewModel.Wrapper;
-using RAM.Infrastructure.Resources.MenuItems;
 
 namespace RAM.Infrastructure.ViewModel
 {
     public interface IInputTapeViewModel : IViewModel
     {
-        string Number { get; set; }
-        string Value { get; set; }
+        string Number { get; }
+        string Value { get; }
 
         ICommand PasteCommand { get; }
         ICommand CopyCommand { get; }
@@ -32,18 +32,16 @@ namespace RAM.Infrastructure.ViewModel
 
     public class InputTapeViewModel : BaseViewModel, IInputTapeViewModel
     {
-        private readonly ITapeMemberProvider _tapeMemberProvider;
         private readonly IEventAggregator _eventAggregator;
+        private readonly IImputMembersProvider _imputMembersProvider;
 
-        private string _number;
-        private string _value;
         private TapeMemberWrapper _selectedTapeMember;
         private ObservableCollection<TapeMemberWrapper> _tapeMembers;
-
-        public InputTapeViewModel(ITapeMemberProvider tapeMemberProvider,
+       
+        public InputTapeViewModel(IImputMembersProvider imputMembersProvider,
             IEventAggregator eventAggregator)
         {
-            _tapeMemberProvider = tapeMemberProvider;
+            _imputMembersProvider = imputMembersProvider;
             _eventAggregator = eventAggregator;
             _eventAggregator.GetEvent<LanguageChangedEvent>().Subscribe(LoadLocalizationStrings);
 
@@ -51,22 +49,35 @@ namespace RAM.Infrastructure.ViewModel
             SeedMenuItems();
 
             _tapeMembers = new ObservableCollection<TapeMemberWrapper>(
-                _tapeMemberProvider.GetAllTapeMembers().Select(x => new TapeMemberWrapper(x)));
+                _imputMembersProvider.GetAllTapeMembers().Select(x => new TapeMemberWrapper(x)));
             LoadLocalizationStrings();
         }
 
+        #region Event handlers
+
+        private void LoadLocalizationStrings()
+        {
+            Number = Controls.Number;
+            Value = Controls.Value;
+        }
+
+        #endregion
+
         #region Properties
+
+        private string _number;
+        private string _value;
 
         public string Number
         {
             get => _number;
-            set => SetProperty(ref _number, value);
+            protected set => SetProperty(ref _number, value);
         }
 
         public string Value
         {
             get => _value;
-            set => SetProperty(ref _value, value);
+            protected set => SetProperty(ref _value, value);
         }
 
         public TapeMemberWrapper SelectedTapeMember
@@ -81,6 +92,8 @@ namespace RAM.Infrastructure.ViewModel
             set => SetProperty(ref _tapeMembers, value);
         }
 
+        public ObservableCollection<IMenuItemViewModel> MenuItemViewModels { get; protected set; }
+
         public ICommand PasteCommand { get; protected set; }
         public ICommand CopyCommand { get; protected set; }
         public ICommand CutCommand { get; protected set; }
@@ -88,18 +101,6 @@ namespace RAM.Infrastructure.ViewModel
         public ICommand AddBelowCommand { get; protected set; }
         public ICommand DeleteCommand { get; protected set; }
         public ICommand ClearTapeCommand { get; protected set; }
-
-        public ObservableCollection<IMenuItemViewModel> MenuItemViewModels { get; protected set; }
-
-        #endregion
-
-        #region Event handlers
-        
-        private void LoadLocalizationStrings()
-        {
-            Number = Controls.Number;
-            Value = Controls.Value;
-        }
 
         #endregion
 

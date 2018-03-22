@@ -1,5 +1,6 @@
 ﻿using System;
 using RAM.Domain.Helpers;
+using RAM.Domain.Resources;
 
 namespace RAM.Domain.Model
 {
@@ -7,7 +8,7 @@ namespace RAM.Domain.Model
 	{
 		public Guid Id { get; protected set; }
 		public string Label { get; protected set; }
-		public string Instruction { get; protected set; } 
+		public Instruction Instruction { get; protected set; } 
 		public string Argument { get; protected set; } 
 		public string Comment { get; protected set; }
 
@@ -16,8 +17,8 @@ namespace RAM.Domain.Model
 
         #region Constructors
 
-        public Statement(string instruction = "", string argument = "",
-	        string label = "", string comment = "")
+        public Statement(Instruction instruction = Instruction.Empty, 
+            string argument = "", string label = "", string comment = "")
 	    {
 	        Id = Guid.NewGuid();
 	        SetLabel(label);
@@ -38,28 +39,28 @@ namespace RAM.Domain.Model
 	    public void SetLabel(string label)
 	    {
 	        if (Label == label)
-	            throw new Exception("You cannot save statement's label with the same value.");
+	            throw new Exception(ExceptionMessages.DuplicatedLabel);
 	        Label = label;
 	    }
 
-	    public void SetInstruction(string instruction)
+	    public void SetInstruction(Instruction instruction)
 	    {
 	        if (Instruction == instruction)
-	            throw new Exception("You cannot save statement's instruction with the same value.");
-	        Instruction = instruction.ToUpper();
+	            throw new Exception(ExceptionMessages.DuplicatedInstruction);
+	        Instruction = instruction;
 	    }
 
 	    public void SetArgument(string argument)
 	    {
 	        if (Argument == argument)
-	            throw new Exception("You cannot save statement's argument with the same value.");
+	            throw new Exception(ExceptionMessages.DuplicatedArgument);
 	        Argument = argument;
 	    }
 
 	    public void SetComment(string comment)
 	    {
 	        if (Comment == comment)
-	            throw new Exception("You cannot save statement's comment with the same value.");
+	            throw new Exception(ExceptionMessages.Statement_DuplicatedComment);
 	        Comment = comment;
 	    }
 

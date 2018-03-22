@@ -5,7 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:view="clr-namespace:RAM.UI.View"
-    Title="{Binding Header}"
+    Title="{Binding Title}"
     Width="725"
     Height="450"
     DataContext="{Binding MainWindowViewModel, Source={StaticResource ModelViewLocator}}"
@@ -29,9 +29,15 @@
             </Grid.RowDefinitions>
 
             <view:InputTapeView Grid.Row="1" Grid.Column="0" />
+
             <view:StatementGridView Grid.Row="1" Grid.Column="1" />
+
             <view:OutputTapewView Grid.Row="1" Grid.Column="2" />
+
+            <view:RegisterPanel
+                Grid.Row="2"
+                Grid.Column="0"
+                Grid.ColumnSpan="3" />
         </Grid>
     </DockPanel>
-
 </Window>
