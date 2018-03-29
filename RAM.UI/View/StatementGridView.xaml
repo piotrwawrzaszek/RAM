@@ -4,7 +4,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:viewModel="clr-namespace:RAM.Infrastructure.ViewModel;assembly=RAM.Infrastructure"
     d:DesignHeight="200"
     d:DesignWidth="250"
     DataContext="{Binding StatementGridViewModel, Source={StaticResource ModelViewLocator}}"
@@ -14,6 +13,7 @@
         AutoGenerateColumns="False"
         Background="Transparent"
         CanUserSortColumns="False"
+        ContextMenu="{StaticResource StatementContextMenu}"
         IsReadOnly="False"
         ItemsSource="{Binding Statements}"
         SelectedItem="{Binding SelectedStatement}">
@@ -62,21 +62,5 @@
                 </DataGridTemplateColumn.CellTemplate>
             </DataGridTemplateColumn>
         </DataGrid.Columns>
-
-        <DataGrid.ContextMenu>
-            <ContextMenu ItemsSource="{Binding MenuItemViewModels}">
-                <ContextMenu.ItemContainerStyle>
-                    <Style TargetType="{x:Type MenuItem}">
-                        <Setter Property="Command" Value="{Binding Path=(viewModel:IMenuItemViewModel.Command)}" />
-                        <Setter Property="CommandParameter" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}, Path=SelectedItem}" />
-                    </Style>
-                </ContextMenu.ItemContainerStyle>
-                <ContextMenu.ItemTemplate>
-                    <HierarchicalDataTemplate DataType="{x:Type viewModel:MenuItemViewModel}" ItemsSource="{Binding Children}">
-                        <TextBlock Text="{Binding Model.Header}" />
-                    </HierarchicalDataTemplate>
-                </ContextMenu.ItemTemplate>
-            </ContextMenu>
-        </DataGrid.ContextMenu>
     </DataGrid>
 </UserControl>

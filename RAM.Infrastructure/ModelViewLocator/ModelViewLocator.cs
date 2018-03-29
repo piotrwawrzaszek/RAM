@@ -1,6 +1,8 @@
 ﻿using RAM.Infrastructure.Startup;
 using RAM.Infrastructure.ViewModel;
+using RAM.Infrastructure.ViewModel.Base;
 using RAM.Infrastructure.ViewModel.Dialogs;
+using RAM.Infrastructure.ViewModel.Menus;
 
 namespace RAM.Infrastructure.ModelViewLocator
 {
@@ -8,12 +10,6 @@ namespace RAM.Infrastructure.ModelViewLocator
 	{
 		public IMainWindowViewModel MainWindowViewModel
 			=> Container.Resolve<IMainWindowViewModel>();
-
-		public IMenuBarViewModel MenuBarViewModel
-			=> Container.Resolve<IMenuBarViewModel>();
-
-		public IMenuItemViewModel MenuItemViewModel
-			=> Container.Resolve<IMenuItemViewModel>();
 
 		public IStatementGridViewModel StatementGridViewModel
 			=> Container.Resolve<IStatementGridViewModel>();
@@ -27,8 +23,18 @@ namespace RAM.Infrastructure.ModelViewLocator
 	    public IRegisterPanelViewModel RegisterPanelViewModel
 	        => Container.Resolve<IRegisterPanelViewModel>();
 
+        //Menus
+	    public IMenuBarViewModel MenuBarViewModel
+	        => Container.Resolve<IMenuBarViewModel>();
+
+	    public IStatementContextMenuViewModel StatementContextMenuViewModel
+	        => Container.Resolve<IStatementContextMenuViewModel>();
+
+	    public IInputTapeContextMenuViewModel InputTapeContextMenuViewModel
+	        => Container.Resolve<IInputTapeContextMenuViewModel>();
+
         //Dialogs
-	    public ILoadFileDialogViewModel LoadFileDialogViewModel
+        public ILoadFileDialogViewModel LoadFileDialogViewModel
 	        => Container.Resolve<ILoadFileDialogViewModel>();
 	}
 }

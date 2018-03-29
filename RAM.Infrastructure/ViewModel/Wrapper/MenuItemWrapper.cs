@@ -5,8 +5,8 @@ using RAM.Infrastructure.ViewModel.Base;
 
 namespace RAM.Infrastructure.ViewModel.Wrapper
 {
-	public class MenuItemWrapper : BaseViewModel
-	{
+	public class MenuItemWrapper : BaseViewModel, IWrapper
+    {
 		private bool _isChanged;
 
 		public MenuItemWrapper(MenuItem menuItem)

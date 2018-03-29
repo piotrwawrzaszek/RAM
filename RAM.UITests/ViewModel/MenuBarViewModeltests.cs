@@ -6,6 +6,7 @@ using Moq;
 using Prism.Events;
 using RAM.Infrastructure.Events;
 using RAM.Infrastructure.ViewModel;
+using RAM.Infrastructure.ViewModel.Menus;
 using Xunit;
 
 namespace RAM.UITests.ViewModel

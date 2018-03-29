@@ -6,8 +6,8 @@ using RAM.Infrastructure.ViewModel.Base;
 
 namespace RAM.Infrastructure.ViewModel.Wrapper
 {
-	public class StatementWrapper : BaseViewModel
-	{
+	public class StatementWrapper : BaseViewModel, IWrapper
+    {
 		private bool _isChanged;
 
 	    #region Constructors
@@ -28,10 +28,12 @@ namespace RAM.Infrastructure.ViewModel.Wrapper
 	    {
 	    }
 
-	    #endregion
+        public StatementWrapper()
+        {
+            Model = Statement.GetEmptyInstance();
+        }
 
-        public static StatementWrapper GetEmptyInstance()
-            => new StatementWrapper(Statement.GetEmptyInstance());
+        #endregion
         
         public Statement Model { get; }
 

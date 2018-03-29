@@ -4,56 +4,40 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:viewModel="clr-namespace:RAM.Infrastructure.ViewModel;assembly=RAM.Infrastructure"
     d:DesignHeight="300"
     d:DesignWidth="300"
     DataContext="{Binding InputTapeViewModel, Source={StaticResource ModelViewLocator}}"
     mc:Ignorable="d">
-    <Grid>
-        <DataGrid
-            AutoGenerateColumns="False"
-            CanUserSortColumns="False"
-            ItemsSource="{Binding TapeMembers}"
-            SelectedItem="{Binding SelectedTapeMember}">
-            <DataGrid.Columns>
-                <DataGridTemplateColumn Width="1*">
-                    <DataGridTemplateColumn.Header>
-                        <TextBlock Text="{Binding DataContext.Number, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" />
-                    </DataGridTemplateColumn.Header>
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding Number}" />
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
 
-                <DataGridTemplateColumn Width="4*">
-                    <DataGridTemplateColumn.Header>
-                        <TextBlock Text="{Binding DataContext.Value, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" />
-                    </DataGridTemplateColumn.Header>
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <TextBox BorderThickness="0" Text="{Binding Value, Converter={StaticResource NumberingConverter}}" />
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-            </DataGrid.Columns>
+    <DataGrid
+        Margin="3,0,-3,0"
+        AutoGenerateColumns="False"
+        CanUserSortColumns="False"
+        ContextMenu="{StaticResource InputTapeContextMenu}"
+        ItemsSource="{Binding TapeMembers}"
+        SelectedItem="{Binding SelectedTapeMember}">
+        <DataGrid.Columns>
+            <DataGridTemplateColumn Width="1*">
+                <DataGridTemplateColumn.Header>
+                    <TextBlock Text="{Binding DataContext.Number, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" />
+                </DataGridTemplateColumn.Header>
+                <DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Number}" />
+                    </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
 
-            <DataGrid.ContextMenu>
-                <ContextMenu ItemsSource="{Binding MenuItemViewModels}">
-                    <ContextMenu.ItemContainerStyle>
-                        <Style TargetType="{x:Type MenuItem}">
-                            <Setter Property="Command" Value="{Binding Path=(viewModel:IMenuItemViewModel.Command)}" />
-                            <Setter Property="CommandParameter" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}, Path=SelectedItem}" />
-                        </Style>
-                    </ContextMenu.ItemContainerStyle>
-                    <ContextMenu.ItemTemplate>
-                        <HierarchicalDataTemplate DataType="{x:Type viewModel:MenuItemViewModel}" ItemsSource="{Binding Children}">
-                            <TextBlock Text="{Binding Model.Header}" />
-                        </HierarchicalDataTemplate>
-                    </ContextMenu.ItemTemplate>
-                </ContextMenu>
-            </DataGrid.ContextMenu>
-        </DataGrid>
-    </Grid>
+            <DataGridTemplateColumn Width="4*">
+                <DataGridTemplateColumn.Header>
+                    <TextBlock Text="{Binding DataContext.Value, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" />
+                </DataGridTemplateColumn.Header>
+                <DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate>
+                        <TextBox BorderThickness="0" Text="{Binding Value, Converter={StaticResource NumberingConverter}}" />
+                    </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
+        </DataGrid.Columns>
+    </DataGrid>
 </UserControl>

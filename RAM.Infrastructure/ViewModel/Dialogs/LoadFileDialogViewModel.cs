@@ -10,7 +10,7 @@ using RAM.Infrastructure.ViewModel.Wrapper;
 
 namespace RAM.Infrastructure.ViewModel.Dialogs
 {
-    public interface ILoadFileDialogViewModel : IViewModel
+    public interface ILoadFileDialogViewModel
     {
         string NameHeader { get; }
         string CommentHeader { get; }
@@ -49,7 +49,7 @@ namespace RAM.Infrastructure.ViewModel.Dialogs
 
         #region Event handlers
 
-        private void LoadLocalizationStrings()
+        protected sealed override void LoadLocalizationStrings()
         {
             DialogTitle = Controls.LoadDialogHeader;
             OkButtonText = Controls.OkButtonText;
@@ -133,7 +133,7 @@ namespace RAM.Infrastructure.ViewModel.Dialogs
 
         #region Command methods
 
-        private void SeedCommands()
+        protected sealed override void SeedCommands()
         {
             OkCommand = new RelayCommand(OkExecute, OkCanExecute);
             CancelCommand = new RelayCommand(CancelExecute);
@@ -141,7 +141,7 @@ namespace RAM.Infrastructure.ViewModel.Dialogs
             SwitchLoadInputCommand = new RelayCommand(SwitchLoadInputExecute);
         }
 
-        private void InvalidateCommands()
+        protected override void InvalidateCommands()
         {
             ((RelayCommand) OkCommand).RaiseCanExecuteChanged();
             ((RelayCommand) DeleteCommand).RaiseCanExecuteChanged();

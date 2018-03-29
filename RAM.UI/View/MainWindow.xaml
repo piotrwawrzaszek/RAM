@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:menus="clr-namespace:RAM.UI.Menus"
     xmlns:view="clr-namespace:RAM.UI.View"
     Title="{Binding Title}"
     Width="725"
@@ -12,7 +13,7 @@
     mc:Ignorable="d">
 
     <DockPanel>
-        <view:MenuBarView DockPanel.Dock="Top" />
+        <menus:MenuBarView DockPanel.Dock="Top" />
 
         <Grid DockPanel.Dock="Top">
             <Grid.ColumnDefinitions>

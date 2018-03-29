@@ -32,7 +32,7 @@ namespace RAM.Infrastructure.ViewModel
 
         #region Event handlers
 
-	    private void LoadLocalizationStrings()
+	    protected sealed  override void LoadLocalizationStrings()
 	    {
 	        Title = Controls.Title;
 	    }

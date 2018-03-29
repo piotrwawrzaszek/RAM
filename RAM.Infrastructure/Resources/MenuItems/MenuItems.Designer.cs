@@ -70,29 +70,38 @@ namespace RAM.Infrastructure.Resources.MenuItems {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add above.
+        ///   Looks up a localized string similar to Above.
         /// </summary>
-        public static string AddAbove {
+        public static string Above {
             get {
-                return ResourceManager.GetString("AddAbove", resourceCulture);
+                return ResourceManager.GetString("Above", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add below.
+        ///   Looks up a localized string similar to Add.
         /// </summary>
-        public static string AddBelow {
+        public static string Add {
             get {
-                return ResourceManager.GetString("AddBelow", resourceCulture);
+                return ResourceManager.GetString("Add", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Clear tape.
+        ///   Looks up a localized string similar to Below.
         /// </summary>
-        public static string ClearTape {
+        public static string Below {
             get {
-                return ResourceManager.GetString("ClearTape", resourceCulture);
+                return ResourceManager.GetString("Below", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Clear.
+        /// </summary>
+        public static string Clear {
+            get {
+                return ResourceManager.GetString("Clear", resourceCulture);
             }
         }
         

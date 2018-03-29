@@ -120,14 +120,17 @@
   <data name="About" xml:space="preserve">
     <value>O nas</value>
   </data>
-  <data name="AddAbove" xml:space="preserve">
-    <value>Dodaj powyżej</value>
+  <data name="Above" xml:space="preserve">
+    <value>Powyżej</value>
   </data>
-  <data name="AddBelow" xml:space="preserve">
-    <value>Dodaj poniżej</value>
+  <data name="Add" xml:space="preserve">
+    <value>Dodaj</value>
   </data>
-  <data name="ClearTape" xml:space="preserve">
-    <value>Wyczyść taśmę</value>
+  <data name="Below" xml:space="preserve">
+    <value>Poniżej</value>
+  </data>
+  <data name="Clear" xml:space="preserve">
+    <value>Wyczyść</value>
   </data>
   <data name="Copy" xml:space="preserve">
     <value>Kopiuj</value>

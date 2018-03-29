@@ -6,7 +6,7 @@ using RAM.Infrastructure.ViewModel.Base;
 
 namespace RAM.Infrastructure.ViewModel.Wrapper
 {
-    public class FileRecordWrapper : BaseViewModel
+    public class FileRecordWrapper : BaseViewModel, IWrapper
     {
         private bool _isChanged;
 

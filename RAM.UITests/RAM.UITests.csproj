@@ -81,7 +81,6 @@
     <Compile Include="ViewModel\InputTapeViewModelTests.cs" />
     <Compile Include="ViewModel\MainWindowViewModelTests.cs" />
     <Compile Include="ViewModel\MenuBarViewModeltests.cs" />
-    <Compile Include="ViewModel\MenuItemViewModelTests.cs" />
     <Compile Include="ViewModel\OutputTapeViewModelTests.cs" />
     <Compile Include="ViewModel\RegisterPanelViewModelTests.cs" />
     <Compile Include="ViewModel\StatementGridViewModelTests.cs" />

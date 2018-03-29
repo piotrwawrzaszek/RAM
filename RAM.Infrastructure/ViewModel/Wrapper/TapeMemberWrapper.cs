@@ -5,8 +5,8 @@ using System;
 
 namespace RAM.Infrastructure.ViewModel.Wrapper
 {
-	public class TapeMemberWrapper : BaseViewModel
-	{
+	public class TapeMemberWrapper : BaseViewModel, IWrapper
+    {
 		private bool _isChanged;
 
 	    #region Constructors
@@ -26,11 +26,13 @@ namespace RAM.Infrastructure.ViewModel.Wrapper
 	    {
 	    }
 
-	    #endregion
+        public TapeMemberWrapper()
+        {
+            Model = TapeMember.GetEmptyInstance();
+        }
+
+        #endregion
        
-	    public static TapeMemberWrapper GetEmptyInstance()
-            => new TapeMemberWrapper(TapeMember.GetEmptyInstance());
-        
         public TapeMember Model { get; }
 
 		public void AcceptChanges()

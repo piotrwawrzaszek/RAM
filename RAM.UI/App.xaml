@@ -7,8 +7,18 @@
     StartupUri="View/MainWindow.xaml">
 
     <Application.Resources>
-        <modelViewLocator:ModelViewLocator x:Key="ModelViewLocator" />
-        <converters:InstructionConverter x:Key="InstructionConverter" />
-        <converters:NumberingConverter x:Key="NumberingConverter" />
+        <ResourceDictionary>
+            <modelViewLocator:ModelViewLocator x:Key="ModelViewLocator" />
+            <converters:InstructionConverter x:Key="InstructionConverter" />
+            <converters:NumberingConverter x:Key="NumberingConverter" />
+            <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Menus/StatementContextMenu.xaml" />
+                <ResourceDictionary Source="Menus/InputTapeContextMenu.xaml" />
+                <ResourceDictionary Source="Styles/MenuStyle.xaml" />
+                <ResourceDictionary Source="Styles/ContextMenuStyle.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

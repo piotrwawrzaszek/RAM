@@ -1,0 +1,37 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:modelViewLocator="clr-namespace:RAM.Infrastructure.ModelViewLocator;assembly=RAM.Infrastructure"
+    mc:Ignorable="d">
+
+    <modelViewLocator:ModelViewLocator x:Key="ModelViewLocator" />
+    <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+
+    <ContextMenu x:Key="StatementContextMenu" DataContext="{Binding StatementContextMenuViewModel, Source={StaticResource ModelViewLocator}}">
+        <MenuItem Command="{Binding CutCommand}" Header="{Binding Cut}" />
+        <MenuItem Command="{Binding CopyCommand}" Header="{Binding Copy}" />
+        <MenuItem Command="{Binding PasteCommand}" Header="{Binding Paste}" />
+        <Separator />
+        <MenuItem
+            Command="{Binding AddBelowCommand}"
+            Header="{Binding Add}"
+            Visibility="{Binding IsAddWithOptionsVisible, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Visible}">
+            <MenuItem
+                Command="{Binding AddBelowCommand}"
+                Header="{Binding Below}"
+                Visibility="{Binding IsAddWithOptionsVisible, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Visible}" />
+            <MenuItem
+                Command="{Binding AddAboveCommand}"
+                Header="{Binding Above}"
+                Visibility="{Binding IsAddWithOptionsVisible, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Visible}" />
+        </MenuItem>
+        <MenuItem
+            Command="{Binding AddBelowCommand}"
+            Header="{Binding Add}"
+            Visibility="{Binding IsAddVisible, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Collapsed}" />
+        <MenuItem Command="{Binding DeleteCommand}" Header="{Binding Delete}" />
+        <MenuItem Command="{Binding ClearCommand}" Header="{Binding Clear}" />
+    </ContextMenu>
+</ResourceDictionary>
