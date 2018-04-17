@@ -6,11 +6,14 @@
     xmlns:modelViewLocator="clr-namespace:RAM.Infrastructure.ModelViewLocator;assembly=RAM.Infrastructure"
     mc:Ignorable="d">
 
-    <modelViewLocator:ModelViewLocator x:Key="ModelViewLocator" />
+    <!--<modelViewLocator:ModelViewLocator x:Key="ModelViewLocator" />-->
     <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
 
     <ContextMenu x:Key="InputTapeContextMenu" DataContext="{Binding InputTapeContextMenuViewModel, Source={StaticResource ModelViewLocator}}">
-        <MenuItem Command="{Binding CutCommand}" Header="{Binding Cut}" />
+        <MenuItem
+            Command="{Binding CutCommand}"
+            CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}"
+            Header="{Binding Cut}" />
         <MenuItem Command="{Binding CopyCommand}" Header="{Binding Copy}" />
         <MenuItem Command="{Binding PasteCommand}" Header="{Binding Paste}" />
         <Separator />

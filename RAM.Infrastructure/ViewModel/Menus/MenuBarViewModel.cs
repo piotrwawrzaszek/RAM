@@ -1,5 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using System.Globalization;
+﻿using System.Globalization;
 using System.Threading;
 using System.Windows.Forms;
 using System.Windows.Input;
@@ -22,7 +21,7 @@ namespace RAM.Infrastructure.ViewModel.Menus
         ICommand ChangeLanguageCommand { get; }
     }
 
-    public class MenuBarViewModel : BaseViewModel, IMenuBarViewModel
+    public class MenuBarViewModel : ViewModelBase, IMenuBarViewModel
     {
         private readonly IEventAggregator _eventAggregator;
         private string _about;

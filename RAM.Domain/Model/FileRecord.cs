@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Reflection.Emit;
 using RAM.Domain.Helpers.Extensions;
 using RAM.Domain.Resources;
 
@@ -11,6 +10,7 @@ namespace RAM.Domain.Model
         public Guid Id { get; protected set; }
         public string Name { get; protected set; }
         public string Comment { get; protected set; }
+        public DateTime CreatedAt { get; protected set; }
         public List<Statement> Statements { get; protected set; }
         public List<TapeMember> InputMembers { get; protected set; }
 
@@ -25,6 +25,7 @@ namespace RAM.Domain.Model
             IEnumerable<TapeMember> inputMembers)
         {
             Id = id;
+            CreatedAt = DateTime.Now;
             SetName(name);
             SetComment(comment);
             SetStatements(statements);
@@ -35,6 +36,7 @@ namespace RAM.Domain.Model
             IEnumerable<TapeMember> inputMembers)
         {
             Id = Guid.NewGuid();
+            SetCreatedAt(DateTime.Now);
             SetName(name);
             SetComment(comment);
             SetStatements(statements);
@@ -49,6 +51,7 @@ namespace RAM.Domain.Model
         public FileRecord(string name, string comment)
         {
             Id = Guid.NewGuid();
+            SetCreatedAt(DateTime.Now);
             SetName(name);
             SetComment(comment);
         }
@@ -63,7 +66,7 @@ namespace RAM.Domain.Model
 
         public void SetName(string name)
         {
-            if(name.IsNullOrWhiteSpace())
+            if (name.IsNullOrWhiteSpace())
                 throw new Exception(ExceptionMessages.EmptyRecordName);
             if (Name == name)
                 throw new Exception(ExceptionMessages.DuplicatedLabel);
@@ -75,6 +78,13 @@ namespace RAM.Domain.Model
             if (Comment == comment)
                 throw new Exception(ExceptionMessages.FileRecord_DuplicatedComment);
             Comment = comment;
+        }
+
+        public void SetCreatedAt(DateTime createdAt)
+        {
+            if (createdAt > DateTime.Now)
+                throw new Exception(ExceptionMessages.DateOutOfRange);
+            CreatedAt = createdAt;
         }
 
         public void SetInputMembers(IEnumerable<TapeMember> inputMembers)

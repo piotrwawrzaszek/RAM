@@ -79,6 +79,15 @@ namespace RAM.Domain.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to File record&apos;s creation date cannot be from future..
+        /// </summary>
+        public static string DateOutOfRange {
+            get {
+                return ResourceManager.GetString("DateOutOfRange", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You cannot save statement&apos;s argument with the same value..
         /// </summary>
         public static string DuplicatedArgument {

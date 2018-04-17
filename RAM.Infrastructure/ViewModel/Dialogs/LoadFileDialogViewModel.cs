@@ -1,74 +1,91 @@
 ﻿using System.Collections.ObjectModel;
-using System.Windows.Controls;
+using System.Windows;
 using System.Windows.Input;
 using Prism.Events;
 using RAM.Infrastructure.Command;
+using RAM.Infrastructure.Data;
 using RAM.Infrastructure.Events;
+using RAM.Infrastructure.Events.FileRecordEvents;
 using RAM.Infrastructure.Resources.Controls;
+using RAM.Infrastructure.Resources.Messages;
 using RAM.Infrastructure.ViewModel.Base;
 using RAM.Infrastructure.ViewModel.Wrapper;
 
 namespace RAM.Infrastructure.ViewModel.Dialogs
 {
-    public interface ILoadFileDialogViewModel
+    public interface ILoadFileDialogViewModel : IDialogViewModel
     {
         string NameHeader { get; }
         string CommentHeader { get; }
-        string DialogTitle { get; }
-        string OkButtonText { get; }
-        string CancelButtonText { get; }
-        string DeleteButtonText { get; }
+        string CreatedAtHeader { get; }
         string LoadInputMembersText { get; }
+
+        bool LoadInputIsChecked { get; set; }
+        bool ShowDeleteWarning { get; }
 
         ICommand OkCommand { get; }
         ICommand CancelCommand { get; }
         ICommand DeleteCommand { get; }
-        ICommand SwitchLoadInputCommand { get; }
 
         FileRecordWrapper SelectedRecord { get; set; }
-        ObservableCollection<FileRecordWrapper> SavedFileRecords { get; set; }
+        ObservableCollection<FileRecordWrapper> FileRecords { get; set; }
     }
 
-    public class LoadFileDialogViewModel : BaseViewModel, ILoadFileDialogViewModel
+    public class LoadFileDialogViewModel : DialogViewModelBase, ILoadFileDialogViewModel
     {
+        private readonly IFileDataProvider _fileDataProvider;
         private readonly IEventAggregator _eventAggregator;
-
-        private FileRecordWrapper _selectedRecord;
-        private ObservableCollection<FileRecordWrapper> _savedFileRecords;
-
-        public LoadFileDialogViewModel(IEventAggregator eventAggregator)
+        
+        public LoadFileDialogViewModel(IFileDataProvider fileDataProvider, IEventAggregator eventAggregator)
         {
+            _fileDataProvider = fileDataProvider;
             _eventAggregator = eventAggregator;
-            _eventAggregator.GetEvent<LanguageChangedEvent>().Subscribe(LoadLocalizationStrings);
+
+            FileRecords = _fileDataProvider.GetAllRecords();
+            SubscribeToEvents();
 
             SeedCommands();
             SelectedRecord.PropertyChanged += (sender, args) => InvalidateCommands();
-
             LoadLocalizationStrings();
         }
 
         #region Event handlers
 
+        protected sealed override void SubscribeToEvents()
+        {
+            _eventAggregator.GetEvent<LanguageChangedEvent>().Subscribe(LoadLocalizationStrings);
+        }
+
         protected sealed override void LoadLocalizationStrings()
         {
+            base.LoadLocalizationStrings();
+            CommentHeader = Controls.CommentHeader;
+            CreatedAtHeader = Controls.CreatedAtHeader;
+            NameHeader = Controls.NameHeader;
             DialogTitle = Controls.LoadDialogHeader;
-            OkButtonText = Controls.OkButtonText;
-            CancelButtonText = Controls.CancelButtonText;
-            DeleteButtonText = Controls.DeleteButtonText;
             LoadInputMembersText = Controls.LoadInputMembersText;
+        }
+
+        private void CreateMessage(string message)
+        {
+            _eventAggregator.GetEvent<MessageCreatedEvent>().Publish(message);
         }
 
         #endregion
 
         #region Properties
-
-        private string _cancelButtonText;
-        private string _deleteButtonText;
+        
         private string _commentHeader;
+        private string _createdAtHeader;
         private string _nameHeader;
         private string _dialogTitle;
         private string _loadInputMembersText;
-        private string _okButtonText;
+
+        private bool _loadInputIsChecked;
+        private bool _showDeleteWarning;
+
+        private FileRecordWrapper _selectedRecord;
+        private ObservableCollection<FileRecordWrapper> _fileRecords;
 
         public string DialogTitle
         {
@@ -88,22 +105,10 @@ namespace RAM.Infrastructure.ViewModel.Dialogs
             protected set => SetProperty(ref _commentHeader, value);
         }
 
-        public string OkButtonText
+        public string CreatedAtHeader
         {
-            get => _okButtonText;
-            protected set => SetProperty(ref _okButtonText, value);
-        }
-
-        public string CancelButtonText
-        {
-            get => _cancelButtonText;
-            protected set => SetProperty(ref _cancelButtonText, value);
-        }
-
-        public string DeleteButtonText
-        {
-            get => _deleteButtonText;
-            protected set => SetProperty(ref _deleteButtonText, value);
+            get => _createdAtHeader;
+            protected set => SetProperty(ref _createdAtHeader, value);
         }
 
         public string LoadInputMembersText
@@ -112,10 +117,21 @@ namespace RAM.Infrastructure.ViewModel.Dialogs
             protected set => SetProperty(ref _loadInputMembersText, value);
         }
 
-        public ObservableCollection<FileRecordWrapper> SavedFileRecords
+        public bool LoadInputIsChecked
         {
-            get => _savedFileRecords;
-            set => SetProperty(ref _savedFileRecords, value);
+            get => _loadInputIsChecked;
+            set => SetProperty(ref _loadInputIsChecked, value);
+        }
+        public bool ShowDeleteWarning
+        {
+            get => _showDeleteWarning;
+            protected set => SetProperty(ref _showDeleteWarning, value);
+        }
+
+        public ObservableCollection<FileRecordWrapper> FileRecords
+        {
+            get => _fileRecords;
+            set => SetProperty(ref _fileRecords, value);
         }
 
         public FileRecordWrapper SelectedRecord
@@ -138,7 +154,6 @@ namespace RAM.Infrastructure.ViewModel.Dialogs
             OkCommand = new RelayCommand(OkExecute, OkCanExecute);
             CancelCommand = new RelayCommand(CancelExecute);
             DeleteCommand = new RelayCommand(DeleteExecute, DeleteCanExecute);
-            SwitchLoadInputCommand = new RelayCommand(SwitchLoadInputExecute);
         }
 
         protected override void InvalidateCommands()
@@ -149,47 +164,51 @@ namespace RAM.Infrastructure.ViewModel.Dialogs
 
         private void OkExecute(object sender)
         {
-            if (!(sender is Button) && !(sender is FileRecordWrapper)) return;
-
-            //var index = _statements.IndexOf(statement);
-            //_statements.Insert(index, StatementWrapper.GetEmptyInstance());
-            
+            if(!(sender is Window window)) return;
+            _eventAggregator.GetEvent<LoadStatementsEvent>().Publish(SelectedRecord);
+            if(LoadInputIsChecked)
+                _eventAggregator.GetEvent<LoadInputMembersEvent>().Publish(SelectedRecord);
+            window.Close();
+            CreateMessage(Messages.FileRecordLoaded);
         }
 
         private bool OkCanExecute(object sender)
-            => SelectedRecord != null && SavedFileRecords.Contains(SelectedRecord);
+            => SelectedRecord != null && FileRecords.Contains(SelectedRecord);
 
-        private void CancelExecute(object sender)
+        private static void CancelExecute(object sender)
         {
-            if (!(sender is Button)) return;
-
-            //if (!(sender is StatementWrapper statement)) return;
-
-            //var index = _statements.IndexOf(statement);
-            //_statements.Insert(index + 1, StatementWrapper.GetEmptyInstance());
-
+            if (sender is Window window) window.Close();
         }
 
         private void DeleteExecute(object sender)
         {
-            //if (!(sender is StatementWrapper statement)) return;
-            //_statements.Remove(statement);
+            if (!ShowDeleteWarning) DeleteRecord();
+            else
+            {
+            //    var result = _messageDialogService.ShowYesNoDialog(Controls.DeleteRecordTitle,
+            //        $"{Controls.DeleteRecordMessage} {SelectedRecord.Name}");
+            //    if(result) DeleteRecord();
+            }
+            CreateMessage(Messages.FileRecordDeleted);
+        }
 
-            //if (_statements.Count == 0)
-            //    _statements.Add(StatementWrapper.GetEmptyInstance());
-         
+        private void DeleteRecord()
+        {
+            _fileDataProvider.DeleteRecord(SelectedRecord.Id);
+            var index = _fileRecords.IndexOf(SelectedRecord);
+            _fileRecords.Remove(SelectedRecord);
+
+            if (index - 1 < 0) index = 0;
+            if (_fileRecords.Count <= 0)
+            {
+                SelectedRecord = null;
+                return;
+            }
+            SelectedRecord = _fileRecords[index - 1];
         }
 
         private bool DeleteCanExecute(object sender)
-            => SelectedRecord != null && SavedFileRecords.Contains(SelectedRecord);
-
-        private void SwitchLoadInputExecute(object sender)
-        {
-            //    if (!(sender is StatementWrapper)) return;
-            //    _statements.Clear();
-            //    _statements.Add(StatementWrapper.GetEmptyInstance());
-           
-        }
+            => SelectedRecord != null && FileRecords.Contains(SelectedRecord);
 
         #endregion
     }

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using RAM.Infrastructure.ViewModel.Base;
+﻿using RAM.Infrastructure.ViewModel.Base;
 
 namespace RAM.Infrastructure.ViewModel.Dialogs
 {
@@ -11,7 +6,7 @@ namespace RAM.Infrastructure.ViewModel.Dialogs
     {
     }
 
-    public class SaveFileDialogViewModel : BaseViewModel, ISaveFileDialogViewModel
+    public class SaveFileDialogViewModel : DialogViewModelBase, ISaveFileDialogViewModel
     {
     }
 }

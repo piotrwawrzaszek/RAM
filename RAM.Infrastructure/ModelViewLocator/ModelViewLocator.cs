@@ -1,6 +1,5 @@
 ﻿using RAM.Infrastructure.Startup;
 using RAM.Infrastructure.ViewModel;
-using RAM.Infrastructure.ViewModel.Base;
 using RAM.Infrastructure.ViewModel.Dialogs;
 using RAM.Infrastructure.ViewModel.Menus;
 
@@ -23,6 +22,9 @@ namespace RAM.Infrastructure.ModelViewLocator
 	    public IRegisterPanelViewModel RegisterPanelViewModel
 	        => Container.Resolve<IRegisterPanelViewModel>();
 
+	    public IOptionsViewModel OptionsViewModel
+	        => Container.Resolve<IOptionsViewModel>();
+
         //Menus
 	    public IMenuBarViewModel MenuBarViewModel
 	        => Container.Resolve<IMenuBarViewModel>();
@@ -36,5 +38,11 @@ namespace RAM.Infrastructure.ModelViewLocator
         //Dialogs
         public ILoadFileDialogViewModel LoadFileDialogViewModel
 	        => Container.Resolve<ILoadFileDialogViewModel>();
+
+	    public ISaveFileDialogViewModel SaveFileDialogViewModel
+	        => Container.Resolve<ISaveFileDialogViewModel>();
+
+	    public IYesNoDialogViewModel YesNoDialogViewModel
+	        => Container.Resolve<IYesNoDialogViewModel>();
 	}
 }

@@ -5,7 +5,7 @@ using System;
 
 namespace RAM.Infrastructure.ViewModel.Wrapper
 {
-	public class TapeMemberWrapper : BaseViewModel, IWrapper
+	public class TapeMemberWrapper : ViewModelBase, IWrapper
     {
 		private bool _isChanged;
 
@@ -28,7 +28,7 @@ namespace RAM.Infrastructure.ViewModel.Wrapper
 
         public TapeMemberWrapper()
         {
-            Model = TapeMember.GetEmptyInstance();
+            Model = new TapeMember();
         }
 
         #endregion

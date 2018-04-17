@@ -3,12 +3,11 @@ using System.Windows.Input;
 using Prism.Events;
 using RAM.Infrastructure.Command;
 using RAM.Infrastructure.Events;
-using RAM.Infrastructure.Events.MenuItemEvent;
+using RAM.Infrastructure.Events.MenuItemEvents;
 using RAM.Infrastructure.Resources.MenuItems;
-using RAM.Infrastructure.ViewModel.Base;
 using RAM.Infrastructure.ViewModel.Wrapper;
 
-namespace RAM.Infrastructure.ViewModel.Menus
+namespace RAM.Infrastructure.ViewModel.Base
 {
     public interface IContextMenuViewModel : IViewModel
     {
@@ -33,7 +32,7 @@ namespace RAM.Infrastructure.ViewModel.Menus
         ICommand ClearCommand { get; }
     }
 
-    public abstract class ContextMenuViewModel<T> : BaseViewModel, IContextMenuViewModel where T : IWrapper, new()
+    public abstract class ContextMenuViewModelBase<T> : ViewModelBase, IContextMenuViewModel where T : IWrapper, new()
     {
         private readonly IEventAggregator _eventAggregator;
         private string _above;
@@ -48,7 +47,7 @@ namespace RAM.Infrastructure.ViewModel.Menus
         private bool _isAddVisible;
         private bool _isAddWithOptionsVisible;
 
-        protected ContextMenuViewModel(IEventAggregator eventAggregator)
+        protected ContextMenuViewModelBase(IEventAggregator eventAggregator)
         {
             _eventAggregator = eventAggregator;
             _eventAggregator.GetEvent<LanguageChangedEvent>().Subscribe(LoadLocalizationStrings);
@@ -203,7 +202,7 @@ namespace RAM.Infrastructure.ViewModel.Menus
         private void PasteExecute(object sender)
         {
             if (sender is T item)
-                _eventAggregator.GetEvent<AddBelowEvent<T>>().Publish(item);
+                _eventAggregator.GetEvent<PasteEvent<T>>().Publish(item);
         }
 
         private bool PasteCanExecute(object sender)

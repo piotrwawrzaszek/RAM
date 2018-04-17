@@ -9,22 +9,16 @@ namespace RAM.Infrastructure.ViewModel
 {
 	public interface IOutputTapeViewModel : IViewModel
 	{
-	    string Number { get; }
-	    string Value { get; }
+	    string NumberHeader { get; }
+	    string ValueHeader { get; }
 
         TapeMemberWrapper SelectedTapeMember { get; set; }
 		ObservableCollection<TapeMemberWrapper> TapeMembers { get; set; }
 	}
 
-	public class OutputTapeViewModel : BaseViewModel, IOutputTapeViewModel
+	public class OutputTapeViewModel : ViewModelBase, IOutputTapeViewModel
 	{
 	    private readonly IEventAggregator _eventAggregator;
-
-	    private string _number;
-	    private string _value;
-
-        private TapeMemberWrapper _selectedTapeMember;
-		private ObservableCollection<TapeMemberWrapper> _tapeMembers;
         
         public OutputTapeViewModel(IEventAggregator eventAggregator)
         {
@@ -40,18 +34,24 @@ namespace RAM.Infrastructure.ViewModel
 			};
 		}
 
-	    #region Properties
+        #region Properties
+        
+	    private string _numberHeader;
+	    private string _valueHeader;
 
-	    public string Number
-	    {
-	        get => _number;
-	        protected set => SetProperty(ref _number, value);
+	    private TapeMemberWrapper _selectedTapeMember;
+	    private ObservableCollection<TapeMemberWrapper> _tapeMembers;
+
+        public string NumberHeader
+        {
+	        get => _numberHeader;
+	        protected set => SetProperty(ref _numberHeader, value);
 	    }
 
-	    public string Value
-	    {
-	        get => _value;
-	        protected set => SetProperty(ref _value, value);
+	    public string ValueHeader
+        {
+	        get => _valueHeader;
+	        protected set => SetProperty(ref _valueHeader, value);
 	    }
 
         public TapeMemberWrapper SelectedTapeMember
@@ -72,8 +72,8 @@ namespace RAM.Infrastructure.ViewModel
 
 	    protected sealed override void LoadLocalizationStrings()
 	    {
-	        Number = Controls.Number;
-	        Value = Controls.Value;
+            NumberHeader = Controls.NumberHeader;
+            ValueHeader = Controls.ValueHeader;
 	    }
 
 	    #endregion

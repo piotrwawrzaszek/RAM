@@ -12,7 +12,7 @@ namespace RAM.Infrastructure.ViewModel
 
     }
 
-    public class OptionsViewModel : BaseViewModel, IOptionsViewModel
+    public class OptionsViewModel : ViewModelBase, IOptionsViewModel
     {
 
     }

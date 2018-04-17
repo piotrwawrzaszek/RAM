@@ -17,7 +17,7 @@
             <DataGrid.Columns>
                 <DataGridTemplateColumn Width="1*">
                     <DataGridTemplateColumn.Header>
-                        <TextBlock Text="{Binding DataContext.Number, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" />
+                        <TextBlock Text="{Binding DataContext.NumberHeader, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" />
                     </DataGridTemplateColumn.Header>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -28,7 +28,7 @@
 
                 <DataGridTemplateColumn Width="4*">
                     <DataGridTemplateColumn.Header>
-                        <TextBlock Text="{Binding DataContext.Value, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" />
+                        <TextBlock Text="{Binding DataContext.ValueHeader, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" />
                     </DataGridTemplateColumn.Header>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

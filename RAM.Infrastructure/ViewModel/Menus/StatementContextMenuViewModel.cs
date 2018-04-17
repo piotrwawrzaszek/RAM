@@ -1,4 +1,5 @@
 ﻿using Prism.Events;
+using RAM.Infrastructure.ViewModel.Base;
 using RAM.Infrastructure.ViewModel.Wrapper;
 
 namespace RAM.Infrastructure.ViewModel.Menus
@@ -7,7 +8,7 @@ namespace RAM.Infrastructure.ViewModel.Menus
     {
     }
 
-    public class StatementContextMenuViewModel : ContextMenuViewModel<StatementWrapper>, 
+    public class StatementContextMenuViewModel : ContextMenuViewModelBase<StatementWrapper>, 
         IStatementContextMenuViewModel
     {
         public StatementContextMenuViewModel(IEventAggregator eventAggregator) : base(eventAggregator)

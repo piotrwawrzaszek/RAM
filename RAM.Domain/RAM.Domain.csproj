@@ -42,7 +42,9 @@
   <ItemGroup>
     <Compile Include="Helpers\Extensions\EnumExtensions.cs" />
     <Compile Include="Helpers\Extensions\StringExtensions.cs" />
+    <Compile Include="Helpers\FilePath.cs" />
     <Compile Include="Helpers\Instruction.cs" />
+    <Compile Include="Helpers\Dialog.cs" />
     <Compile Include="Model\FileRecord.cs" />
     <Compile Include="Model\MenuItem.cs" />
     <Compile Include="Model\Statement.cs" />

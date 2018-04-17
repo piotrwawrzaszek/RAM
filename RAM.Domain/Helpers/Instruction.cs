@@ -2,6 +2,7 @@
 {
     public enum Instruction
     {
+        Empty,
         LOAD,
         STORE,
         READ,
@@ -15,7 +16,6 @@
         JZERO,
         JGTZ,
         JLTZ,
-        HALT,
-        Empty
+        HALT
     }
 }

@@ -12,7 +12,7 @@ namespace RAM.Infrastructure.ViewModel
     {
     }
 
-    public class RegisterPanelViewModel : BaseViewModel, IRegisterPanelViewModel
+    public class RegisterPanelViewModel : ViewModelBase, IRegisterPanelViewModel
     {
         private readonly IEventAggregator _eventAggregator;
 

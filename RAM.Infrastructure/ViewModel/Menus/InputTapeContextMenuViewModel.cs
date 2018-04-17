@@ -1,4 +1,5 @@
 ﻿using Prism.Events;
+using RAM.Infrastructure.ViewModel.Base;
 using RAM.Infrastructure.ViewModel.Wrapper;
 
 namespace RAM.Infrastructure.ViewModel.Menus
@@ -7,10 +8,10 @@ namespace RAM.Infrastructure.ViewModel.Menus
     {
     }
 
-    public class InputInputTapeContextMenuViewModel : ContextMenuViewModel<TapeMemberWrapper>,
+    public class InputInputTapeContextMenuViewModelBase : ContextMenuViewModelBase<TapeMemberWrapper>,
         IInputTapeContextMenuViewModel
     {
-        public InputInputTapeContextMenuViewModel(IEventAggregator eventAggregator) : base(eventAggregator)
+        public InputInputTapeContextMenuViewModelBase(IEventAggregator eventAggregator) : base(eventAggregator)
         {
         }
     }

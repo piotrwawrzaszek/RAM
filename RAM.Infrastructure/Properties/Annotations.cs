@@ -67,7 +67,7 @@ namespace RAM.Infrastructure.Annotations
   /// <summary>
   /// Can be appplied to symbols of types derived from IEnumerable as well as to symbols of Task
   /// and Lazy classes to indicate that the value of a collection item, of the Task.Result property
-  /// or of the Lazy.Value property can never be null.
+  /// or of the Lazy.ValueHeader property can never be null.
   /// </summary>
   [AttributeUsage(
     AttributeTargets.Method | AttributeTargets.Parameter | AttributeTargets.Property |
@@ -77,7 +77,7 @@ namespace RAM.Infrastructure.Annotations
   /// <summary>
   /// Can be appplied to symbols of types derived from IEnumerable as well as to symbols of Task
   /// and Lazy classes to indicate that the value of a collection item, of the Task.Result property
-  /// or of the Lazy.Value property can be null.
+  /// or of the Lazy.ValueHeader property can be null.
   /// </summary>
   [AttributeUsage(
     AttributeTargets.Method | AttributeTargets.Parameter | AttributeTargets.Property |
@@ -202,14 +202,14 @@ namespace RAM.Infrastructure.Annotations
   /// <list>
   /// <item>FDT      ::= FDTRow [;FDTRow]*</item>
   /// <item>FDTRow   ::= Input =&gt; Output | Output &lt;= Input</item>
-  /// <item>Input    ::= ParameterName: Value [, Input]*</item>
-  /// <item>Output   ::= [ParameterName: Value]* {halt|stop|void|nothing|Value}</item>
-  /// <item>Value    ::= true | false | null | notnull | canbenull</item>
+  /// <item>Input    ::= ParameterName: ValueHeader [, Input]*</item>
+  /// <item>Output   ::= [ParameterName: ValueHeader]* {halt|stop|void|nothing|ValueHeader}</item>
+  /// <item>ValueHeader    ::= true | false | null | notnull | canbenull</item>
   /// </list>
   /// If method has single input parameter, it's name could be omitted.<br/>
   /// Using <c>halt</c> (or <c>void</c>/<c>nothing</c>, which is the same) for method output
   /// means that the methos doesn't return normally (throws or terminates the process).<br/>
-  /// Value <c>canbenull</c> is only applicable for output parameters.<br/>
+  /// ValueHeader <c>canbenull</c> is only applicable for output parameters.<br/>
   /// You can use multiple <c>[ContractAnnotation]</c> for each FDT row, or use single attribute
   /// with rows separated by semicolon. There is no notion of order rows, all rows are checked
   /// for applicability and applied per each program state tracked by R# analysis.<br/>

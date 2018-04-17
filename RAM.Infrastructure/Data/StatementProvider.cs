@@ -30,7 +30,7 @@ namespace RAM.Infrastructure.Data
 				new Statement(Instruction.ADD, "=2"),
 				new Statement(Instruction.WRITE, "1"),
 				new Statement(Instruction.HALT),
-				Statement.GetEmptyInstance()
+				new Statement()
 			};
 		}
 

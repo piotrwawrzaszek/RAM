@@ -6,7 +6,7 @@ using RAM.Infrastructure.ViewModel.Base;
 
 namespace RAM.Infrastructure.ViewModel.Wrapper
 {
-    public class FileRecordWrapper : BaseViewModel, IWrapper
+    public class FileRecordWrapper : ViewModelBase, IWrapper
     {
         private bool _isChanged;
 
@@ -38,7 +38,7 @@ namespace RAM.Infrastructure.ViewModel.Wrapper
 
         #endregion
 
-        #region MenuItem properties 
+        #region FileRecord properties 
 
         public bool IsChanged
         {
@@ -58,6 +58,17 @@ namespace RAM.Infrastructure.ViewModel.Wrapper
                 OnPropertyChanged();
             }
         }
+
+        public DateTime CreatedAt
+        {
+            get => Model.CreatedAt;
+            set
+            {
+                if (Model.CreatedAt == value) return;
+                Model.SetCreatedAt(value);
+                OnPropertyChanged();
+            }
+    }
 
         public string Comment
         {
@@ -79,7 +90,7 @@ namespace RAM.Infrastructure.ViewModel.Wrapper
             }
         }
 
-        public IEnumerable<TapeMember> ImputMembers
+        public IEnumerable<TapeMember> InputMembers
         {
             get => Model.InputMembers;
             set

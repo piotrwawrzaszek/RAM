@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Windows.Navigation;
 using Newtonsoft.Json;
 using RAM.Domain.Helpers.Extensions;
 using RAM.Domain.Model;

@@ -5,7 +5,7 @@ using RAM.Infrastructure.Annotations;
 
 namespace RAM.Infrastructure.ViewModel.Base
 {
-	public abstract class BaseViewModel : INotifyPropertyChanged
+	public abstract class ViewModelBase : INotifyPropertyChanged
 	{
 	    protected virtual void LoadLocalizationStrings()
 	    {
@@ -16,6 +16,10 @@ namespace RAM.Infrastructure.ViewModel.Base
 	    }
 
 	    protected virtual void InvalidateCommands()
+	    {
+	    }
+
+	    protected virtual void SubscribeToEvents()
 	    {
 	    }
 

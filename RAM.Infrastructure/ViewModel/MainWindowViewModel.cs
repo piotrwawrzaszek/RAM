@@ -12,10 +12,8 @@ namespace RAM.Infrastructure.ViewModel
 		string Title { get; }
 	}
 
-	public class MainWindowViewModel : BaseViewModel, IMainWindowViewModel
+	public class MainWindowViewModel : ViewModelBase, IMainWindowViewModel
 	{
-	    private string _title;
-        
         public MainWindowViewModel(IEventAggregator eventAggregator, 
             IConfigurationProvider configurationProvider)
         {
@@ -24,15 +22,21 @@ namespace RAM.Infrastructure.ViewModel
             LoadLocalizationStrings();
         }
 
-		public string Title
-		{
-			get => _title;
-		    protected set => SetProperty(ref _title, value);
-		}
+        #region Properties
+
+        private string _title;
+
+	    public string Title
+	    {
+	        get => _title;
+	        protected set => SetProperty(ref _title, value);
+	    }
+
+        #endregion
 
         #region Event handlers
 
-	    protected sealed  override void LoadLocalizationStrings()
+        protected sealed  override void LoadLocalizationStrings()
 	    {
 	        Title = Controls.Title;
 	    }

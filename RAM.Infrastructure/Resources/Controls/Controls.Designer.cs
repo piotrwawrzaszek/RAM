@@ -63,9 +63,9 @@ namespace RAM.Infrastructure.Resources.Controls {
         /// <summary>
         ///   Looks up a localized string similar to Argument.
         /// </summary>
-        public static string Argument {
+        public static string ArgumentHeader {
             get {
-                return ResourceManager.GetString("Argument", resourceCulture);
+                return ResourceManager.GetString("ArgumentHeader", resourceCulture);
             }
         }
         
@@ -81,9 +81,18 @@ namespace RAM.Infrastructure.Resources.Controls {
         /// <summary>
         ///   Looks up a localized string similar to Comment.
         /// </summary>
-        public static string Comment {
+        public static string CommentHeader {
             get {
-                return ResourceManager.GetString("Comment", resourceCulture);
+                return ResourceManager.GetString("CommentHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Created at.
+        /// </summary>
+        public static string CreatedAtHeader {
+            get {
+                return ResourceManager.GetString("CreatedAtHeader", resourceCulture);
             }
         }
         
@@ -99,18 +108,18 @@ namespace RAM.Infrastructure.Resources.Controls {
         /// <summary>
         ///   Looks up a localized string similar to Instruction.
         /// </summary>
-        public static string Instruction {
+        public static string InstructionHeader {
             get {
-                return ResourceManager.GetString("Instruction", resourceCulture);
+                return ResourceManager.GetString("InstructionHeader", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Label.
         /// </summary>
-        public static string Label {
+        public static string LabelHeader {
             get {
-                return ResourceManager.GetString("Label", resourceCulture);
+                return ResourceManager.GetString("LabelHeader", resourceCulture);
             }
         }
         
@@ -135,18 +144,18 @@ namespace RAM.Infrastructure.Resources.Controls {
         /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
-        public static string Name {
+        public static string NameHeader {
             get {
-                return ResourceManager.GetString("Name", resourceCulture);
+                return ResourceManager.GetString("NameHeader", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to №.
         /// </summary>
-        public static string Number {
+        public static string NumberHeader {
             get {
-                return ResourceManager.GetString("Number", resourceCulture);
+                return ResourceManager.GetString("NumberHeader", resourceCulture);
             }
         }
         
@@ -171,9 +180,9 @@ namespace RAM.Infrastructure.Resources.Controls {
         /// <summary>
         ///   Looks up a localized string similar to Value.
         /// </summary>
-        public static string Value {
+        public static string ValueHeader {
             get {
-                return ResourceManager.GetString("Value", resourceCulture);
+                return ResourceManager.GetString("ValueHeader", resourceCulture);
             }
         }
     }

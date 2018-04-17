@@ -123,6 +123,9 @@
   <data name="AlreadyUnchecked" xml:space="preserve">
     <value>Menu item is already unchecked.</value>
   </data>
+  <data name="DateOutOfRange" xml:space="preserve">
+    <value>File record's creation date cannot be from future.</value>
+  </data>
   <data name="DuplicatedArgument" xml:space="preserve">
     <value>You cannot save statement's argument with the same value.</value>
   </data>

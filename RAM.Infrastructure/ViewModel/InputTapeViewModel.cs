@@ -3,6 +3,8 @@ using System.Linq;
 using Prism.Events;
 using RAM.Infrastructure.Data;
 using RAM.Infrastructure.Events;
+using RAM.Infrastructure.Events.FileRecordEvents;
+using RAM.Infrastructure.Events.MenuItemEvents;
 using RAM.Infrastructure.Resources.Controls;
 using RAM.Infrastructure.ViewModel.Base;
 using RAM.Infrastructure.ViewModel.Wrapper;
@@ -11,58 +13,48 @@ namespace RAM.Infrastructure.ViewModel
 {
     public interface IInputTapeViewModel : IViewModel
     {
-        string Number { get; }
-        string Value { get; }
+        string NumberHeader { get; }
+        string ValueHeader { get; }
 
         TapeMemberWrapper SelectedTapeMember { get; set; }
         ObservableCollection<TapeMemberWrapper> TapeMembers { get; set; }
     }
 
-    public class InputTapeViewModel : BaseViewModel, IInputTapeViewModel
+    public class InputTapeViewModel : ViewModelBase, IInputTapeViewModel
     {
         private readonly IEventAggregator _eventAggregator;
         private readonly IImputMembersProvider _imputMembersProvider;
 
-        private TapeMemberWrapper _selectedTapeMember;
-        private ObservableCollection<TapeMemberWrapper> _tapeMembers;
-       
         public InputTapeViewModel(IImputMembersProvider imputMembersProvider,
-            IEventAggregator eventAggregator) 
+            IEventAggregator eventAggregator)
         {
             _imputMembersProvider = imputMembersProvider;
             _eventAggregator = eventAggregator;
-            _eventAggregator.GetEvent<LanguageChangedEvent>().Subscribe(LoadLocalizationStrings);
-            
-            _tapeMembers = new ObservableCollection<TapeMemberWrapper>(
+            SubscribeToEvents();
+
+            TapeMembers = new ObservableCollection<TapeMemberWrapper>(
                 _imputMembersProvider.GetAllTapeMembers().Select(x => new TapeMemberWrapper(x)));
             LoadLocalizationStrings();
         }
 
-        #region Event handlers
-
-        protected sealed override void LoadLocalizationStrings()
-        {
-            Number = Controls.Number;
-            Value = Controls.Value;
-        }
-
-        #endregion
-
         #region Properties
 
-        private string _number;
-        private string _value;
+        private string _numberHeader;
+        private string _valueHeader;
 
-        public string Number
+        private TapeMemberWrapper _selectedTapeMember;
+        private ObservableCollection<TapeMemberWrapper> _tapeMembers;
+
+        public string NumberHeader
         {
-            get => _number;
-            protected set => SetProperty(ref _number, value);
+            get => _numberHeader;
+            protected set => SetProperty(ref _numberHeader, value);
         }
 
-        public string Value
+        public string ValueHeader
         {
-            get => _value;
-            protected set => SetProperty(ref _value, value);
+            get => _valueHeader;
+            protected set => SetProperty(ref _valueHeader, value);
         }
 
         public TapeMemberWrapper SelectedTapeMember
@@ -76,7 +68,67 @@ namespace RAM.Infrastructure.ViewModel
             get => _tapeMembers;
             set => SetProperty(ref _tapeMembers, value);
         }
-        
+
+        #endregion
+
+        #region Event handlers
+
+        protected sealed override void SubscribeToEvents()
+        {
+            _eventAggregator.GetEvent<LanguageChangedEvent>().Subscribe(LoadLocalizationStrings);
+            _eventAggregator.GetEvent<AddAboveEvent<TapeMemberWrapper>>().Subscribe(AddAboveEventHandler);
+            _eventAggregator.GetEvent<AddBelowEvent<TapeMemberWrapper>>().Subscribe(AddBelowEventHandler);
+            _eventAggregator.GetEvent<PasteEvent<TapeMemberWrapper>>().Subscribe(PasteEventHandler);
+            _eventAggregator.GetEvent<DeleteEvent<TapeMemberWrapper>>().Subscribe(DeleteEventHandler);
+            _eventAggregator.GetEvent<ClearEvent<TapeMemberWrapper>>().Subscribe(ClearEventHandler);
+            _eventAggregator.GetEvent<LoadInputMembersEvent>().Subscribe(LoadInputMembersHandler);
+        }
+
+        protected sealed override void LoadLocalizationStrings()
+        {
+            NumberHeader = Controls.NumberHeader;
+            ValueHeader = Controls.ValueHeader;
+        }
+
+        private void AddAboveEventHandler(TapeMemberWrapper tapeMember)
+        {
+            var index = TapeMembers.IndexOf(tapeMember);
+            TapeMembers.Insert(index, new TapeMemberWrapper());
+        }
+
+        private void AddBelowEventHandler(TapeMemberWrapper tapeMember)
+        {
+            var index = TapeMembers.IndexOf(tapeMember);
+            TapeMembers.Insert(index + 1, new TapeMemberWrapper());
+        }
+
+        private void PasteEventHandler(TapeMemberWrapper tapeMember)
+        {
+            if (tapeMember == null) return;
+            var index = TapeMembers.IndexOf(tapeMember);
+            TapeMembers.Insert(index, tapeMember);
+        }
+
+        private void DeleteEventHandler(TapeMemberWrapper tapeMember)
+        {
+            TapeMembers.Remove(tapeMember);
+            if (TapeMembers.Count == 0)
+                TapeMembers.Add(new TapeMemberWrapper());
+        }
+
+        private void ClearEventHandler()
+        {
+            TapeMembers.Clear();
+            TapeMembers.Add(new TapeMemberWrapper());
+        }
+
+        private void LoadInputMembersHandler(FileRecordWrapper fileRecord)
+        {
+            TapeMembers =
+                new ObservableCollection<TapeMemberWrapper>(
+                    fileRecord.InputMembers.Select(x => new TapeMemberWrapper(x)));
+        }
+
         #endregion
     }
 }

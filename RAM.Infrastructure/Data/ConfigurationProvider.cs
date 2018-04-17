@@ -7,6 +7,7 @@ namespace RAM.Infrastructure.Data
     {
         CultureInfo GetCultureInfo();
         string GetStorageFilePath();
+        string GetExamplesFilePath();
     }
 
     public class ConfigurationProvider : IConfigurationProvider

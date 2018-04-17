@@ -6,7 +6,7 @@ using RAM.Infrastructure.ViewModel.Base;
 
 namespace RAM.Infrastructure.ViewModel.Wrapper
 {
-	public class StatementWrapper : BaseViewModel, IWrapper
+	public class StatementWrapper : ViewModelBase, IWrapper
     {
 		private bool _isChanged;
 
@@ -30,7 +30,7 @@ namespace RAM.Infrastructure.ViewModel.Wrapper
 
         public StatementWrapper()
         {
-            Model = Statement.GetEmptyInstance();
+            Model = new Statement();
         }
 
         #endregion

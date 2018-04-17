@@ -12,9 +12,6 @@ namespace RAM.Domain.Model
 		public string Argument { get; protected set; } 
 		public string Comment { get; protected set; }
 
-	    public static Statement GetEmptyInstance()
-	        => new Statement();
-
         #region Constructors
 
         public Statement(Instruction instruction = Instruction.Empty, 
@@ -45,8 +42,8 @@ namespace RAM.Domain.Model
 
 	    public void SetInstruction(Instruction instruction)
 	    {
-	        if (Instruction == instruction)
-	            throw new Exception(ExceptionMessages.DuplicatedInstruction);
+	        if (Instruction == instruction && instruction != Instruction.Empty)
+                throw new Exception(ExceptionMessages.DuplicatedInstruction);
 	        Instruction = instruction;
 	    }
 

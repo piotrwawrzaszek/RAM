@@ -62,14 +62,20 @@
     <Compile Include="Converters\InstructionConverter.cs" />
     <Compile Include="Converters\NumberingConverter.cs" />
     <Compile Include="Data\ConfigurationProvider.cs" />
+    <Compile Include="Data\FileDataProvider.cs" />
     <Compile Include="Data\IDataProvider.cs" />
     <Compile Include="Data\StatementProvider.cs" />
     <Compile Include="Data\ImputMembersProvider.cs" />
-    <Compile Include="Events\MenuItemEvent\AddAboveEvent.cs" />
-    <Compile Include="Events\MenuItemEvent\AddBelowEvent.cs" />
+    <Compile Include="Events\DialogEvents\DialogClosedEvent.cs" />
+    <Compile Include="Events\FileRecordEvents\LoadInputMembersEvent.cs" />
+    <Compile Include="Events\FileRecordEvents\LoadStatementsEvent.cs" />
+    <Compile Include="Events\MenuItemEvents\AddAboveEvent.cs" />
+    <Compile Include="Events\MenuItemEvents\AddBelowEvent.cs" />
     <Compile Include="Events\LanguageChangedEvent.cs" />
-    <Compile Include="Events\MenuItemEvent\ClearEvent.cs" />
-    <Compile Include="Events\MenuItemEvent\DeleteEvent.cs" />
+    <Compile Include="Events\MenuItemEvents\ClearEvent.cs" />
+    <Compile Include="Events\MenuItemEvents\DeleteEvent.cs" />
+    <Compile Include="Events\MenuItemEvents\PasteEvent.cs" />
+    <Compile Include="Events\MessageCreatedEvent.cs" />
     <Compile Include="ModelViewLocator\ModelViewLocator.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -113,20 +119,29 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MenuItems.pl-PL.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\Messages\Messages.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Messages.resx</DependentUpon>
+    </Compile>
     <Compile Include="Services\FileDataService.cs" />
     <Compile Include="Services\IService.cs" />
+    <Compile Include="Services\MessageDialogService.cs" />
     <Compile Include="Services\StatementService.cs" />
     <Compile Include="Startup\BootStraper.cs" />
     <Compile Include="Startup\Container.cs" />
     <Compile Include="Startup\Modules\DataProviderModule.cs" />
     <Compile Include="Startup\Modules\ServiceModule.cs" />
     <Compile Include="Startup\Modules\ViewModelModule.cs" />
+    <Compile Include="ViewModel\Base\DialogViewModelBase.cs" />
+    <Compile Include="ViewModel\Base\IDialogViewModel.cs" />
     <Compile Include="ViewModel\Base\IViewModel.cs" />
-    <Compile Include="ViewModel\Base\BaseViewModel.cs" />
+    <Compile Include="ViewModel\Base\ViewModelBase.cs" />
     <Compile Include="ViewModel\Dialogs\LoadFileDialogViewModel.cs" />
     <Compile Include="ViewModel\Dialogs\SaveFileDialogViewModel.cs" />
+    <Compile Include="ViewModel\Dialogs\YesNoDialogViewModel.cs" />
     <Compile Include="ViewModel\InputTapeViewModel.cs" />
-    <Compile Include="ViewModel\Menus\ContextMenuViewModel.cs" />
+    <Compile Include="ViewModel\Base\ContextMenuViewModelBase.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\Menus\MenuBarViewModel.cs" />
     <Compile Include="ViewModel\Menus\StatementContextMenuViewModel.cs" />
@@ -182,6 +197,10 @@
     <EmbeddedResource Include="Resources\MenuItems\MenuItems.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>MenuItems.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Messages\Messages.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Messages.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

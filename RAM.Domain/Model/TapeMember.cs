@@ -8,9 +8,6 @@ namespace RAM.Domain.Model
 		public Guid Id { get; protected set; }
 		public string Value { get; protected set; }
 	    public int Number { get; protected set; } = -1;
-
-        public static TapeMember GetEmptyInstance()
-	        => new TapeMember();
 	        
 	    #region Constructors
 
